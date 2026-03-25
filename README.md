@@ -12,7 +12,7 @@ Welcome to my homepage. This page is a work in progress as I'm really busy right
 
 [Geometry Dash Lite (W.I.P)](https://daniezonmc.github.io/Geometrydashlite/)
 
-[Papas Freezeria (W.I.P, not working right yet, will have ruffle error screen once loaded)](https://daniezonmc.github.io/Freezeria/papasfreezeria)
+[Papas Freezeria](https://daniezonmc.github.io/Freezeria/papasfreezeria)
 
 # Scenes
 
@@ -25,7 +25,7 @@ Welcome to my homepage. This page is a work in progress as I'm really busy right
 # Information About W.I.P Games
 **Geometry Dash Lite:** Won't get updates besides bug fixes unless RobTop (***Original Creator of Geometry Dash***) adds an update to Geometry Dash Lite. This HTML file is also super unstable, and if it is securely blocked, it might not be fixed.
 
-**Papas Freezeria:** This game displays a ruffle error screen when loaded. The issue is being addressed and will be resolved soon.
+**Papas Freezeria:** Black Screen Fixed and the game will now run normally
 
 # Games I'm Not Updating At The Moment
 
