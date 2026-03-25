@@ -31,4 +31,4 @@ Welcome to my homepage. This page is a work in progress as I'm really busy right
 
 **Eaglercraft 1.20:** This game has a ton of bugs that regular Minecraft doesn't, but Chocofush, the original developer, is no longer working on it, and I don't have the necessary skills to fix them. 
  
-###### No Copyright on Any Projects, Please do not copy without credit to me, and the original creators of the games, scenes, or trolls.
+###### No Copyright on Any Projects, besides for Papas Freezeria (Apache, MIT Licences). Please do not copy without credit to me, and the original creators of the games, scenes, or trolls.
