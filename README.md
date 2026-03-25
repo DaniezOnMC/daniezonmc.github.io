@@ -12,7 +12,13 @@ Welcome to my homepage. This page is a work in progress as I'm really busy right
 
 [Geometry Dash Lite (W.I.P)](https://daniezonmc.github.io/Geometrydashlite/)
 
-[Papas Freezeria](https://daniezonmc.github.io/Freezeria/papasfreezeria)
+[Papas Freezeria](https://daniezonmc.github.io/papas/papasfreezeria)
+
+[Papas Pizzaeria](https://daniezonmc.github.io/papas/papaspizza)
+
+[Papas Donuteria](https://daniezonmc.github.io/papas/papasdonuteria)
+
+[Papas Bakeria](https://daniezonmc.github.io/papas/papasbakeria)
 
 # Scenes
 
