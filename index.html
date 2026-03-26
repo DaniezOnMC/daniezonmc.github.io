@@ -98,17 +98,35 @@
         .profile-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: bold; }
         .profile-img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid var(--primary); }
 
-        /* --- MAIN CONTENT --- */
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, var(--primary), #5865f2);
+        /* --- HERO SECTION --- */
+        .hero {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, #5865f2 100%);
             color: white;
             border-radius: 20px;
-            margin-top: 20px;
-            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
+        .hero-content h1 { margin: 0; font-size: 2.2em; }
+        .hero-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .hero-btn:hover { transform: scale(1.05); }
+
+        /* --- GRID & CARDS --- */
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
         .badge-trending {
             background-color: var(--amethyst);
             color: white; font-size: 0.65em; padding: 2px 8px; border-radius: 12px; margin-left: 8px;
@@ -130,10 +148,9 @@
         .card:hover { transform: translateY(-4px); border-color: var(--primary); }
         .troll-card { border-bottom: 3px solid var(--accent); }
 
-        /* --- ABOUT ME & SOCIALS --- */
+        /* --- COMMUNITY & ABOUT --- */
         .social-grid { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
-        .social-btn { display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; transition: opacity 0.2s; }
-        .social-btn:hover { opacity: 0.85; }
+        .social-btn { display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; }
         
         .dev-card {
             display: flex;
@@ -158,7 +175,7 @@
     </div>
 </div>
 
-<nav id="top">
+<nav>
     <div class="nav-container">
         <a href="#home" class="profile-brand">
             <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC" class="profile-img">
@@ -176,10 +193,15 @@
 </nav>
 
 <div class="container" id="home">
-    <header>
-        <h1>DaniezonMC's Homepage</h1>
-        <p>A work in progress homepage for all my game projects! Enjoy!</p>
-    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <p style="font-size: 0.8em; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; opacity: 0.9;">Featured Project</p>
+            <h1>Eaglercraft 1.20</h1>
+            <p style="margin-top: 5px;">Experience the latest Minecraft update in your browser!</p>
+            <a href="https://daniezonmc.github.io/1.20" class="hero-btn">Play Now</a>
+        </div>
+        <div style="font-size: 5em; opacity: 0.2;"><i class="fas fa-cube"></i></div>
+    </section>
 
     <section id="games">
         <h2>Popular Games</h2>
@@ -245,7 +267,6 @@
 </div>
 
 <script>
-    // Theme Logic
     const themeBtn = document.getElementById("theme-toggle");
     themeBtn.addEventListener("click", () => {
         const isDark = document.body.getAttribute("data-theme") === "dark";
@@ -254,7 +275,6 @@
         themeBtn.innerHTML = newTheme === "dark" ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
     });
 
-    // Search Logic
     const search = document.getElementById('nav-search');
     const cards = document.querySelectorAll('.game-card');
     search.addEventListener('input', (e) => {
@@ -268,19 +288,13 @@
         document.getElementById('search-results-count').innerText = `${count} games available`;
     });
 
-    // Keys: / for search, R for random
     document.addEventListener('keydown', (e) => {
-        if (e.key === '/') {
-            e.preventDefault();
-            search.focus();
-        }
+        if (e.key === '/') { e.preventDefault(); search.focus(); }
         if (e.key.toLowerCase() === 'r' && document.activeElement !== search) {
             const links = Array.from(cards).map(c => c.href);
             window.location.href = links[Math.floor(Math.random() * links.length)];
         }
     });
 </script>
-
 </body>
 </html>
-
