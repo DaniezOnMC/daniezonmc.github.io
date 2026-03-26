@@ -7,7 +7,6 @@
     <link rel="icon" href="https://avatars.githubusercontent.com/u/204815157?v=4" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Base Light Theme */
         :root {
             --primary: #7289da; 
             --bg: #f0f2f5;
@@ -19,9 +18,9 @@
             --twitch: #9146FF;
             --github: #24292e;
             --border: rgba(0,0,0,0.1);
+            --amethyst: #9966cc;
         }
 
-        /* Dark Theme Variables */
         [data-theme="dark"] {
             --bg: #1a1c22;
             --nav-bg: #24272e;
@@ -32,7 +31,6 @@
         }
 
         html { scroll-behavior: smooth; }
-
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--bg);
@@ -60,71 +58,6 @@
             padding: 0 20px;
         }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95em;
-        }
-
-        .profile-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--text);
-            font-weight: bold;
-        }
-
-        .profile-img {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
-        }
-
-        /* Theme Toggle Styling */
-        #theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            font-size: 1.2em;
-            padding: 5px;
-            display: flex;
-            align-items: center;
-            transition: transform 0.2s;
-        }
-        
-        #theme-toggle:hover { transform: scale(1.1); color: var(--primary); }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Amethyst Trending Tag */
-        .badge-trending {
-            background-color: #9966cc; 
-            color: white;
-            font-size: 0.65em;
-            padding: 2px 8px;
-            border-radius: 12px;
-            margin-left: 8px;
-            vertical-align: middle;
-            display: inline-block;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        /* Nav Search Bar Styling */
         .search-container {
             position: relative;
             margin: 0 15px;
@@ -134,19 +67,24 @@
 
         #nav-search {
             width: 100%;
-            padding: 8px 12px;
+            padding: 8px 15px;
             border-radius: 20px;
             border: 1px solid var(--border);
             background: var(--bg);
             color: var(--text);
-            font-size: 0.9em;
             outline: none;
         }
 
-        /* Ensure nav stays organized */
-        @media (max-width: 600px) {
-            .search-container { display: none; } 
-        }
+        .nav-links { display: flex; align-items: center; gap: 20px; }
+        .nav-link { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.95em; }
+        
+        .profile-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: bold; }
+        .profile-img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid var(--primary); }
+
+        #theme-toggle { background: none; border: none; color: var(--text); cursor: pointer; font-size: 1.2em; transition: transform 0.2s; }
+        #theme-toggle:hover { transform: scale(1.1); color: var(--primary); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
         header {
             text-align: center;
@@ -158,28 +96,22 @@
             margin-bottom: 40px;
         }
 
-        .badge {
-            background-color: var(--primary); 
+        /* Badges */
+        .badge, .badge-trending {
             color: white;
             font-size: 0.65em;
             padding: 2px 8px;
-            border-radius: 12px; 
+            border-radius: 12px;
             margin-left: 8px;
             vertical-align: middle;
             display: inline-block;
             font-weight: bold;
             text-transform: uppercase;
         }
+        .badge { background-color: var(--primary); }
+        .badge-trending { background-color: var(--amethyst); }
 
-        h2 { font-size: 1.8em; margin-top: 50px; scroll-margin-top: 80px; }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
         .card {
             background: var(--card-bg);
             color: var(--text);
@@ -189,65 +121,20 @@
             text-align: center;
             font-weight: 600;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, border-color 0.2s;
             border: 1px solid var(--border);
         }
-
         .card:hover { transform: translateY(-4px); border-color: var(--primary); }
         .troll-card { border-bottom: 3px solid var(--accent); }
 
-        .info-section {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 20px;
-            border: 1px solid var(--border);
-        }
-
-        .social-grid {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 10px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
+        .info-section { background: var(--card-bg); padding: 25px; border-radius: 15px; margin-top: 20px; border: 1px solid var(--border); }
+        .social-grid { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+        .social-btn { display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 10px; color: white; text-decoration: none; font-weight: bold; }
         .discord-btn { background-color: var(--primary); }
         .twitch-btn { background-color: var(--twitch); }
         .github-btn { background-color: var(--github); }
 
-        .dev-card {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 40px;
-            border: 1px solid var(--border);
-        }
-
-        .dev-card img { width: 80px; height: 80px; border-radius: 15px; }
-
-        .footer {
-            margin-top: 60px;
-            text-align: center;
-            padding: 40px;
-            color: var(--secondary-text);
-            font-size: 0.9em;
-            border-top: 1px solid var(--border);
-        }
+        .footer { margin-top: 60px; text-align: center; padding: 40px; color: var(--secondary-text); border-top: 1px solid var(--border); font-size: 0.9em; }
     </style>
 </head>
 <body data-theme="light">
@@ -256,74 +143,37 @@
     <div class="nav-container">
         <a href="#home" class="profile-brand">
             <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC" class="profile-img">
-            <span>DaniezonMC</span>
+            <span>DaniezonMC's Homepage</span>
         </a>
-
         <div class="search-container">
             <input type="text" id="nav-search" placeholder="Search games...">
         </div>
-
         <div class="nav-links">
             <a href="#games" class="nav-link">Games</a>
-            <button id="theme-toggle" title="Toggle Light/Dark Mode">
-                <i class="fas fa-moon"></i>
-            </button>
+            <a href="#community" class="nav-link">Community</a>
+            <button id="theme-toggle" title="Toggle Light/Dark Mode"><i class="fas fa-moon"></i></button>
         </div>
     </div>
 </nav>
-    
+
 <div class="container" id="home">
     <header>
         <h1>DaniezonMC's Games</h1>
-        <p>A work in progress homepage for all my game projects and WIP Games! Enjoy!</p>
+        <p>A work in progress homepage for all my game projects! Enjoy!</p>
     </header>
 
     <section id="games">
         <h2>Popular Games</h2>
         <p id="search-results-count" style="font-size: 0.8em; color: var(--secondary-text); margin-bottom: 10px;">8 games available</p>
-        
         <div class="grid" id="game-grid">
-            <a href="https://daniezonmc.github.io/1.20" class="card game-card">
-                Eaglercraft 1.20 <span class="badge-trending">Trending</span>
-            </a>
-            <a href="https://daniezonmc.github.io/1.8" class="card game-card">
-                Resent Client 1.8
-            </a>
-            <a href="https://daniezonmc.github.io/beeswarm" class="card game-card">
-                Bee Swarm
-            </a>
-            <a href="https://daniezonmc.github.io/Geometrydashlite" class="card game-card">
-                GD Lite <span class="badge">WIP</span>
-            </a>
-            <a href="https://daniezonmc.github.io/papas/papasfreezeria" class="card game-card">
-                Papa's Freezeria
-            </a>
-            <a href="https://daniezonmc.github.io/papas/papaspizza" class="card game-card">
-                Papa's Pizzeria
-            </a>
-            <a href="https://daniezonmc.github.io/papas/papasdonuteria" class="card game-card">
-                Papa's Donuteria
-            </a>
-            <a href="https://daniezonmc.github.io/papas/papasbakeria" class="card game-card">
-                Papa's Bakeria
-            </a>
-        </div>
-    </section>
-
-    <section id="scenes">
-        <h2>Scenes</h2>
-        <div class="grid">
-            <a href="https://daniezonmc.github.io/flower-mc-gif/index.gif" class="card" style="grid-column: 1 / -1;">Flower Minecraft Background</a>
-        </div>
-    </section>
-
-    <section id="trolls">
-        <h2>Fun & Trolls</h2>
-        <div class="grid">
-            <a href="https://daniezonmc.github.io/1.21." class="card troll-card">
-                Scam Eaglercraft 1.21
-                <p style="font-size: 0.7em; font-weight: normal; margin-top: 5px; color: var(--secondary-text);">Troll your friends! (Careful with Chromebooks)</p>
-            </a>
+            <a href="https://daniezonmc.github.io/1.20" class="card game-card">Eaglercraft 1.20 <span class="badge-trending">Trending</span></a>
+            <a href="https://daniezonmc.github.io/1.8" class="card game-card">Resent Client 1.8</a>
+            <a href="https://daniezonmc.github.io/beeswarm" class="card game-card">Bee Swarm</a>
+            <a href="https://daniezonmc.github.io/Geometrydashlite" class="card game-card">GD Lite <span class="badge">WIP</span></a>
+            <a href="https://daniezonmc.github.io/papas/papasfreezeria" class="card game-card">Papa's Freezeria</a>
+            <a href="https://daniezonmc.github.io/papas/papaspizza" class="card game-card">Papa's Pizzeria</a>
+            <a href="https://daniezonmc.github.io/papas/papasdonuteria" class="card game-card">Papa's Donuteria</a>
+            <a href="https://daniezonmc.github.io/papas/papasbakeria" class="card game-card">Papa's Bakeria</a>
         </div>
     </section>
 
@@ -334,81 +184,63 @@
             <a href="https://www.twitch.tv/daniezgamemc" class="social-btn twitch-btn" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
             <a href="https://github.com/daniezonmc" class="social-btn github-btn" target="_blank"><i class="fab fa-github"></i> GitHub</a>
         </div>
-
-        <div class="dev-card">
-            <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC">
-            <div>
-                <h3>Created by DaniezonMC</h3>
-                <p style="color: var(--secondary-text); margin: 0;">Developing Fun Games for our crappy chromebooks! Made popular from my famous 1.20 link! Glad you stopped by!</p>
-            </div>
-        </div>
     </section>
 
     <section id="updates">
         <h2>Status Updates</h2>
         <div class="info-section">
-            <p><strong>Geometry Dash Lite:</strong> Waiting for official RobTop releases to update to. Currently a bit unstable, jumps may be delayed!</p>
-            <p><strong>Papa's Freezeria:</strong> Black screen issue fixed! Everything is running smooth.</p>
-            <p><strong>Eaglercraft 1.20:</strong> Currently on a break while I work on bug-fixing skills.</p>
-            <p><strong>Homepage Theme Switch:</strong> Fixed! Use the moon/sun icon in the nav bar.</p>
+            <p><strong>Theme Switcher:</strong> Fixed! Use the moon/sun icon in the nav bar.</p>
+            <p><strong>Eaglercraft 1.20:</strong> On a break for bug-fixing. Check back soon!</p>
+            <p><strong>Geometry Dash Lite:</strong> RobTop releases pending. Currently unstable!</p>
         </div>
     </section>
 
     <footer class="footer">
-        <p>No copyright on projects (except Papa's games).<br>Please give credit to <strong>DaniezonMC and Original Creators</strong> if you use these projects!</p>
+        <p>No copyright on projects (except Papa's games).<br>Please give credit to <strong>DaniezonMC</strong> if you use these projects!</p>
     </footer>
 </div>
 
 <script>
+    // Theme Toggle Logic
+    const themeBtn = document.getElementById("theme-toggle");
+    const themeIcon = themeBtn.querySelector("i");
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+        document.body.setAttribute("data-theme", savedTheme);
+        themeIcon.className = savedTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
+    }
+
+    themeBtn.addEventListener("click", () => {
+        const isDark = document.body.getAttribute("data-theme") === "dark";
+        const newTheme = isDark ? "light" : "dark";
+        document.body.setAttribute("data-theme", newTheme);
+        themeIcon.className = newTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
+        localStorage.setItem("theme", newTheme);
+    });
+
     // Search Functionality
     const navSearch = document.getElementById('nav-search');
     const allCards = document.querySelectorAll('.game-card');
     const countDisplay = document.getElementById('search-results-count');
 
-    if (navSearch) {
-        navSearch.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            let visibleCount = 0;
+    navSearch.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        let visibleCount = 0;
 
-            allCards.forEach(card => {
-                const title = card.textContent.toLowerCase();
-                if (title.includes(term)) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            if (term === "") {
-                countDisplay.textContent = `${allCards.length} games available`;
+        allCards.forEach(card => {
+            const title = card.textContent.toLowerCase();
+            if (title.includes(term)) {
+                card.style.display = 'block';
+                visibleCount++;
             } else {
-                countDisplay.textContent = `${visibleCount} match${visibleCount === 1 ? '' : 'es'} found`;
+                card.style.display = 'none';
             }
         });
-    }
 
-    // Theme Toggle Logic
-    const btn = document.getElementById("theme-toggle");
-    const icon = btn.querySelector("i");
-    const currentTheme = localStorage.getItem("theme");
-
-    if (currentTheme) {
-        document.body.setAttribute("data-theme", currentTheme);
-        if (currentTheme === "dark") icon.className = "fas fa-sun";
-    }
-
-    btn.addEventListener("click", function() {
-        let theme = document.body.getAttribute("data-theme");
-        if (theme === "light") {
-            document.body.setAttribute("data-theme", "dark");
-            icon.className = "fas fa-sun";
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.body.setAttribute("data-theme", "light");
-            icon.className = "fas fa-moon";
-            localStorage.setItem("theme", "light");
-        }
+        countDisplay.textContent = term === "" 
+            ? `${allCards.length} games available` 
+            : `${visibleCount} match${visibleCount === 1 ? '' : 'es'} found`;
     });
 </script>
 
