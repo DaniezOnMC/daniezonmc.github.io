@@ -110,6 +110,44 @@
             padding: 20px;
         }
 
+        /* Amethyst Trending Tag */
+        .badge-trending {
+            background-color: #9966cc; 
+            color: white;
+            font-size: 0.65em;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 8px;
+            vertical-align: middle;
+            display: inline-block;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Nav Search Bar Styling */
+        .search-container {
+            position: relative;
+            margin: 0 15px;
+            flex-grow: 1;
+            max-width: 300px;
+        }
+
+        #nav-search {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 0.9em;
+            outline: none;
+        }
+
+        /* Ensure nav stays organized */
+        @media (max-width: 600px) {
+            .search-container { display: none; } 
+        }
+
         header {
             text-align: center;
             padding: 60px 20px;
@@ -121,19 +159,17 @@
         }
 
         .badge {
-    background-color: var(--primary); /* Discord Blurple */
-    color: white;
-    font-size: 0.65em;
-    padding: 2px 8px;
-    border-radius: 12px; /* Curved edges */
-    margin-left: 8px;
-    vertical-align: middle;
-    display: inline-block;
-    font-weight: bold;
-    text-transform: uppercase;
-      
+            background-color: var(--primary); 
+            color: white;
+            font-size: 0.65em;
+            padding: 2px 8px;
+            border-radius: 12px; 
+            margin-left: 8px;
+            vertical-align: middle;
+            display: inline-block;
+            font-weight: bold;
+            text-transform: uppercase;
         }
-        
 
         h2 { font-size: 1.8em; margin-top: 50px; scroll-margin-top: 80px; }
 
@@ -158,7 +194,6 @@
         }
 
         .card:hover { transform: translateY(-4px); border-color: var(--primary); }
-
         .troll-card { border-bottom: 3px solid var(--accent); }
 
         .info-section {
@@ -221,18 +256,22 @@
     <div class="nav-container">
         <a href="#home" class="profile-brand">
             <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC" class="profile-img">
-            <span>DaniezonMC's Homepage</span>
+            <span>DaniezonMC</span>
         </a>
+
+        <div class="search-container">
+            <input type="text" id="nav-search" placeholder="Search games...">
+        </div>
+
         <div class="nav-links">
             <a href="#games" class="nav-link">Games</a>
-            <a href="#community" class="nav-link">Community</a>
             <button id="theme-toggle" title="Toggle Light/Dark Mode">
                 <i class="fas fa-moon"></i>
             </button>
         </div>
     </div>
 </nav>
-
+    
 <div class="container" id="home">
     <header>
         <h1>DaniezonMC's Games</h1>
@@ -241,17 +280,33 @@
 
     <section id="games">
         <h2>Popular Games</h2>
-        <div class="grid">
-            <a href="https://daniezonmc.github.io/1.20" class="card">Eaglercraft 1.20</a>
-            <a href="https://daniezonmc.github.io/1.8" class="card">Resent Client 1.8</a>
-            <a href="https://daniezonmc.github.io/beeswarm" class="card">Bee Swarm</a>
-            <a href="https://daniezonmc.github.io/Geometrydashlite" class="card">
-    GD Lite <span class="badge">WIP</span>
+        <p id="search-results-count" style="font-size: 0.8em; color: var(--secondary-text); margin-bottom: 10px;">8 games available</p>
+        
+        <div class="grid" id="game-grid">
+            <a href="https://daniezonmc.github.io/1.20" class="card game-card">
+                Eaglercraft 1.20 <span class="badge-trending">Trending</span>
             </a>
-            <a href="https://daniezonmc.github.io/papas/papasfreezeria" class="card">Papa's Freezeria</a>
-            <a href="https://daniezonmc.github.io/papas/papaspizza" class="card">Papa's Pizzeria</a>
-            <a href="https://daniezonmc.github.io/papas/papasdonuteria" class="card">Papa's Donuteria</a>
-            <a href="https://daniezonmc.github.io/papas/papasbakeria" class="card">Papa's Bakeria</a>
+            <a href="https://daniezonmc.github.io/1.8" class="card game-card">
+                Resent Client 1.8
+            </a>
+            <a href="https://daniezonmc.github.io/beeswarm" class="card game-card">
+                Bee Swarm
+            </a>
+            <a href="https://daniezonmc.github.io/Geometrydashlite" class="card game-card">
+                GD Lite <span class="badge">WIP</span>
+            </a>
+            <a href="https://daniezonmc.github.io/papas/papasfreezeria" class="card game-card">
+                Papa's Freezeria
+            </a>
+            <a href="https://daniezonmc.github.io/papas/papaspizza" class="card game-card">
+                Papa's Pizzeria
+            </a>
+            <a href="https://daniezonmc.github.io/papas/papasdonuteria" class="card game-card">
+                Papa's Donuteria
+            </a>
+            <a href="https://daniezonmc.github.io/papas/papasbakeria" class="card game-card">
+                Papa's Bakeria
+            </a>
         </div>
     </section>
 
@@ -295,21 +350,49 @@
             <p><strong>Geometry Dash Lite:</strong> Waiting for official RobTop releases to update to. Currently a bit unstable, jumps may be delayed!</p>
             <p><strong>Papa's Freezeria:</strong> Black screen issue fixed! Everything is running smooth.</p>
             <p><strong>Eaglercraft 1.20:</strong> Currently on a break while I work on bug-fixing skills.</p>
-            <p><strong>Homepage Theme Switch:</strong>Fixed! See that moon icon next to the 'Community' tab? Click it make it dark mode!</p>
+            <p><strong>Homepage Theme Switch:</strong> Fixed! Use the moon/sun icon in the nav bar.</p>
         </div>
     </section>
 
     <footer class="footer">
-        <p>No copyright on projects (except Papa's Freezeria, Pizzaeria, Bakeria, Donuteria).<br>Please give credit to <strong>DaniezonMC and Original Creators</strong> if you use these projects!</p>
+        <p>No copyright on projects (except Papa's games).<br>Please give credit to <strong>DaniezonMC and Original Creators</strong> if you use these projects!</p>
     </footer>
 </div>
 
 <script>
+    // Search Functionality
+    const navSearch = document.getElementById('nav-search');
+    const allCards = document.querySelectorAll('.game-card');
+    const countDisplay = document.getElementById('search-results-count');
+
+    if (navSearch) {
+        navSearch.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            let visibleCount = 0;
+
+            allCards.forEach(card => {
+                const title = card.textContent.toLowerCase();
+                if (title.includes(term)) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (term === "") {
+                countDisplay.textContent = `${allCards.length} games available`;
+            } else {
+                countDisplay.textContent = `${visibleCount} match${visibleCount === 1 ? '' : 'es'} found`;
+            }
+        });
+    }
+
+    // Theme Toggle Logic
     const btn = document.getElementById("theme-toggle");
     const icon = btn.querySelector("i");
     const currentTheme = localStorage.getItem("theme");
 
-    // Apply saved theme on load
     if (currentTheme) {
         document.body.setAttribute("data-theme", currentTheme);
         if (currentTheme === "dark") icon.className = "fas fa-sun";
