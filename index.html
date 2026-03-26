@@ -1,3 +1,5 @@
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,11 +136,15 @@
 
         /* --- GRID & CARDS --- */
         .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        .badge-trending {
-            background-color: var(--amethyst);
+        .badge-status {
             color: white; font-size: 0.65em; padding: 2px 8px; border-radius: 12px; margin-left: 8px;
             font-weight: bold; text-transform: uppercase;
         }
+        
+        /* THEME UPDATES */
+        .badge-trending { background-color: var(--amethyst); }
+        .badge-wip { background-color: var(--primary); }
+
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
         .card {
             background: var(--card-bg);
@@ -186,7 +192,7 @@
     <div class="nav-container">
         <a href="#home" class="profile-brand">
             <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC" class="profile-img">
-            <span>DaniezonMC's Homepage</span>
+            <span>DaniezonMC</span>
         </a>
         <div class="search-container">
             <input type="text" id="nav-search" placeholder="Search (Press /)">
@@ -215,10 +221,10 @@
         <h2>Popular Games</h2>
         <p id="search-results-count" style="font-size: 0.8em; color: var(--secondary-text); margin-bottom: 10px;">8 games available</p>
         <div class="grid" id="game-grid">
-            <a href="https://daniezonmc.github.io/1.20" class="card game-card">Eaglercraft 1.20 <span class="badge-trending">Trending</span></a>
+            <a href="https://daniezonmc.github.io/1.20" class="card game-card">Eaglercraft 1.20 <span class="badge-status badge-trending">Trending</span></a>
             <a href="https://daniezonmc.github.io/1.8" class="card game-card">Resent Client 1.8</a>
             <a href="https://daniezonmc.github.io/beeswarm" class="card game-card">Bee Swarm</a>
-            <a href="https://daniezonmc.github.io/Geometrydashlite" class="card game-card">GD Lite</a>
+            <a href="https://daniezonmc.github.io/Geometrydashlite" class="card game-card">GD Lite <span class="badge-status badge-wip">WIP</span></a>
             <a href="https://daniezonmc.github.io/papas/papasfreezeria" class="card game-card">Papa's Freezeria</a>
             <a href="https://daniezonmc.github.io/papas/papaspizza" class="card game-card">Papa's Pizzeria</a>
             <a href="https://daniezonmc.github.io/papas/papasdonuteria" class="card game-card">Papa's Donuteria</a>
