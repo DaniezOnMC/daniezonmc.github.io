@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DaniezonMC Portal</title>
+    <title>DaniezonMC's Homepage</title>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/204815157?v=4" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -22,266 +22,265 @@
         }
 
         [data-theme="dark"] {
-            --bg: #0f111a;
-            --nav-bg: #161922;
-            --card-bg: #1c202b;
-            --text: #e0e0e0;
-            --secondary-text: #8b949e;
-            --border: rgba(255,255,255,0.08);
+            --bg: #1a1c22;
+            --nav-bg: #24272e;
+            --card-bg: #24272e;
+            --text: #ffffff;
+            --secondary-text: #a0a0a0;
+            --border: rgba(255,255,255,0.1);
         }
 
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--bg);
             color: var(--text);
+            line-height: 1.6;
             margin: 0;
-            transition: all 0.3s ease;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* --- NEWS TICKER --- */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: var(--primary);
+            color: white;
+            padding: 6px 0;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 100%;
+            animation: ticker 25s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
         }
 
         /* --- NAVIGATION --- */
         nav {
             background: var(--nav-bg);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 2000;
-            padding: 8px 0;
+            z-index: 1000;
+            padding: 10px 0;
         }
-
         .nav-container {
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
         }
-
-        .nav-left { display: flex; align-items: center; gap: 15px; }
-        .nav-right { display: flex; align-items: center; gap: 15px; }
-
         .search-container {
             position: relative;
+            margin: 0 15px;
             flex-grow: 1;
             max-width: 300px;
-            margin: 0 20px;
         }
-
         #nav-search {
             width: 100%;
-            padding: 10px 18px;
-            border-radius: 25px;
+            padding: 8px 15px;
+            border-radius: 20px;
             border: 1px solid var(--border);
             background: var(--bg);
             color: var(--text);
             outline: none;
-            transition: border-color 0.2s;
         }
-        #nav-search:focus { border-color: var(--primary); }
+        .nav-links { display: flex; align-items: center; gap: 20px; }
+        .nav-link { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.95em; }
+        .profile-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: bold; }
+        .profile-img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid var(--primary); }
 
-        .nav-link { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.9em; }
-        
-        #random-btn {
-            background: linear-gradient(45deg, var(--primary), var(--amethyst));
-            color: white; border: none; padding: 8px 16px; border-radius: 20px;
-            font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 6px;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 50px 30px;
-            background: linear-gradient(135deg, #1e2124 0%, #2f3136 100%);
-            border-radius: 24px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        /* --- MAIN CONTENT --- */
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary), #5865f2);
             color: white;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .hero-content { z-index: 2; max-width: 500px; }
-        .hero-title { font-size: 2.5em; margin: 0; color: #fff; }
-        .hero-btn {
-            display: inline-block;
+            border-radius: 20px;
             margin-top: 20px;
-            padding: 14px 35px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 40px;
         }
-        .hero-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--primary); }
-
-        /* --- GRID & CARDS --- */
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--primary);
-            padding-left: 15px;
+        .badge-trending {
+            background-color: var(--amethyst);
+            color: white; font-size: 0.65em; padding: 2px 8px; border-radius: 12px; margin-left: 8px;
+            font-weight: bold; text-transform: uppercase;
         }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
-        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
         .card {
             background: var(--card-bg);
-            padding: 25px;
-            border-radius: 18px;
-            text-align: center;
-            font-weight: bold;
-            text-decoration: none;
             color: var(--text);
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s, border-color 0.2s;
             border: 1px solid var(--border);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card:hover { transform: translateY(-4px); border-color: var(--primary); }
+        .troll-card { border-bottom: 3px solid var(--accent); }
+
+        /* --- ABOUT ME & SOCIALS --- */
+        .social-grid { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+        .social-btn { display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; transition: opacity 0.2s; }
+        .social-btn:hover { opacity: 0.85; }
+        
+        .dev-card {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 80px;
+            align-items: center;
+            gap: 20px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 25px;
+            border: 1px solid var(--border);
         }
-        .card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .dev-card img { width: 80px; height: 80px; border-radius: 15px; }
 
-        .badge-trending {
-            background: var(--amethyst); color: white; font-size: 0.6em; padding: 3px 10px;
-            border-radius: 20px; margin-top: 8px; align-self: center;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.8; transform: scale(0.95); }
-            50% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0.8; transform: scale(0.95); }
-        }
-
-        /* --- CLOCK --- */
-        #live-clock { font-family: monospace; font-size: 0.9em; color: var(--secondary-text); }
-
-        /* --- FOOTER --- */
-        .footer { text-align: center; padding: 60px 20px; opacity: 0.7; font-size: 0.85em; }
-
-        @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; }
-            .search-container { display: none; }
-        }
+        .footer { margin-top: 60px; text-align: center; padding: 40px; color: var(--secondary-text); border-top: 1px solid var(--border); font-size: 0.9em; }
     </style>
 </head>
 <body data-theme="dark">
 
-<nav>
+<div class="ticker-wrap">
+    <div class="ticker">
+        LATEST NEWS: Eaglercraft 1.20 is currently the top played game! • Press "/" to quick search • Press "R" for a random game • New "Fun & Trolls" section added below! • Check out our Discord for link updates! •
+    </div>
+</div>
+
+<nav id="top">
     <div class="nav-container">
-        <div class="nav-left">
-            <a href="#home" class="profile-brand" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: var(--text);">
-                <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DM" style="width: 32px; border-radius: 50%;">
-                <span style="font-weight: 800; letter-spacing: -1px;">DANIEZON<span style="color: var(--primary);">MC</span></span>
-            </a>
-        </div>
-
+        <a href="#home" class="profile-brand">
+            <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC" class="profile-img">
+            <span>DaniezonMC</span>
+        </a>
         <div class="search-container">
-            <input type="text" id="nav-search" placeholder="Search the portal...">
+            <input type="text" id="nav-search" placeholder="Search (Press /)">
         </div>
-
-        <div class="nav-right">
-            <div id="live-clock">00:00:00</div>
-            <button id="random-btn"><i class="fas fa-random"></i> Lucky</button>
-            <button id="theme-toggle" style="background: none; border: none; color: var(--text); cursor: pointer;"><i class="fas fa-moon"></i></button>
+        <div class="nav-links">
+            <a href="#games" class="nav-link">Games</a>
+            <a href="#community" class="nav-link">Community</a>
+            <button id="theme-toggle" style="background:none; border:none; color:var(--text); cursor:pointer;"><i class="fas fa-moon"></i></button>
         </div>
     </div>
 </nav>
 
-<div class="container">
-    <section class="hero">
-        <div class="hero-content">
-            <span style="color: var(--primary); font-weight: bold; text-transform: uppercase;">Featured Project</span>
-            <h1 class="hero-title">Eaglercraft 1.20</h1>
-            <p>Experience the latest Minecraft update right in your browser. Optimized for Chromebook performance.</p>
-            <a href="https://daniezonmc.github.io/1.20" class="hero-btn">Launch Game</a>
+<div class="container" id="home">
+    <header>
+        <h1>DaniezonMC's Homepage</h1>
+        <p>A work in progress homepage for all my game projects! Enjoy!</p>
+    </header>
+
+    <section id="games">
+        <h2>Popular Games</h2>
+        <p id="search-results-count" style="font-size: 0.8em; color: var(--secondary-text); margin-bottom: 10px;">8 games available</p>
+        <div class="grid" id="game-grid">
+            <a href="https://daniezonmc.github.io/1.20" class="card game-card">Eaglercraft 1.20 <span class="badge-trending">Trending</span></a>
+            <a href="https://daniezonmc.github.io/1.8" class="card game-card">Resent Client 1.8</a>
+            <a href="https://daniezonmc.github.io/beeswarm" class="card game-card">Bee Swarm</a>
+            <a href="https://daniezonmc.github.io/Geometrydashlite" class="card game-card">GD Lite</a>
+            <a href="https://daniezonmc.github.io/papas/papasfreezeria" class="card game-card">Papa's Freezeria</a>
+            <a href="https://daniezonmc.github.io/papas/papaspizza" class="card game-card">Papa's Pizzeria</a>
+            <a href="https://daniezonmc.github.io/papas/papasdonuteria" class="card game-card">Papa's Donuteria</a>
+            <a href="https://daniezonmc.github.io/papas/papasbakeria" class="card game-card">Papa's Bakeria</a>
         </div>
-        <div style="font-size: 8em; opacity: 0.1; transform: rotate(-15deg);"><i class="fas fa-cube"></i></div>
     </section>
 
-    <div class="section-header">
-        <h2>Game Library</h2>
-        <span id="search-results-count">8 games ready</span>
-    </div>
+    <section id="scenes" style="margin-top:40px;">
+        <h2>Scenes</h2>
+        <div class="grid">
+            <a href="https://daniezonmc.github.io/flower-mc-gif/index.gif" class="card" style="grid-column: 1 / -1;">Flower Minecraft Background</a>
+        </div>
+    </section>
 
-    <div class="grid" id="game-grid">
-        <a href="https://daniezonmc.github.io/1.20" class="card game-card">Eaglercraft 1.20 <span class="badge-trending">TRENDING</span></a>
-        <a href="https://daniezonmc.github.io/1.8" class="card game-card">Resent Client 1.8</a>
-        <a href="https://daniezonmc.github.io/beeswarm" class="card game-card">Bee Swarm</a>
-        <a href="https://daniezonmc.github.io/Geometrydashlite" class="card game-card">GD Lite <span style="font-size: 0.6em; color: var(--primary);">WIP</span></a>
-        <a href="https://daniezonmc.github.io/papas/papasfreezeria" class="card game-card">Papa's Freezeria</a>
-        <a href="https://daniezonmc.github.io/papas/papaspizza" class="card game-card">Papa's Pizzeria</a>
-        <a href="https://daniezonmc.github.io/papas/papasdonuteria" class="card game-card">Papa's Donuteria</a>
-        <a href="https://daniezonmc.github.io/papas/papasbakeria" class="card game-card">Papa's Bakeria</a>
-    </div>
+    <section id="trolls" style="margin-top:40px;">
+        <h2>Fun & Trolls</h2>
+        <div class="grid">
+            <a href="https://daniezonmc.github.io/1.21." class="card troll-card">
+                Scam Eaglercraft 1.21
+                <p style="font-size: 0.7em; font-weight: normal; margin-top: 5px; color: var(--secondary-text);">Troll your friends! (Careful with Chromebooks)</p>
+            </a>
+        </div>
+    </section>
 
-    <h2 style="margin-top: 60px;">Resources</h2>
-    <div class="grid">
-        <a href="https://daniezonmc.github.io/flower-mc-gif/index.gif" class="card">Flower MC GIF</a>
-        <a href="https://daniezonmc.github.io/1.21." class="card" style="border-bottom: 3px solid var(--accent);">Eaglercraft 1.21 <span style="color: var(--accent); font-size: 0.6em;">TROLL</span></a>
-    </div>
+    <section id="community" style="margin-top:40px;">
+        <h2>Community</h2>
+        <div class="social-grid">
+            <a href="https://discord.gg/V9nVwu836D" class="social-btn" style="background:#7289da;"><i class="fab fa-discord"></i> Discord</a>
+            <a href="https://www.twitch.tv/daniezgamemc" class="social-btn" style="background:#9146FF;"><i class="fab fa-twitch"></i> Twitch</a>
+            <a href="https://github.com/daniezonmc" class="social-btn" style="background:#24292e;"><i class="fab fa-github"></i> GitHub</a>
+        </div>
 
-    <section id="community" style="margin-top: 60px; text-align: center;">
-        <div style="background: var(--card-bg); padding: 40px; border-radius: 24px; border: 1px solid var(--border);">
-            <h3>Join the Community</h3>
-            <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
-                <a href="https://discord.gg/V9nVwu836D" style="color: white; background: var(--primary); padding: 12px 25px; border-radius: 12px; text-decoration: none; font-weight: bold;"><i class="fab fa-discord"></i> Discord</a>
-                <a href="https://github.com/daniezonmc" style="color: white; background: var(--github); padding: 12px 25px; border-radius: 12px; text-decoration: none; font-weight: bold;"><i class="fab fa-github"></i> GitHub</a>
+        <div class="dev-card">
+            <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC">
+            <div>
+                <h3>Created by DaniezonMC</h3>
+                <p style="color: var(--secondary-text); margin: 0;">Developing Fun Games for our crappy chromebooks! Made popular from my famous 1.20 link! Glad you stopped by!</p>
             </div>
         </div>
     </section>
 
+    <section id="updates" style="margin-top:40px;">
+        <h2>Status Updates</h2>
+        <div style="background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid var(--border);">
+            <p><strong>Theme Switcher:</strong> Fixed! Use the moon/sun icon in the nav bar.</p>
+            <p><strong>Eaglercraft 1.20:</strong> On a break for bug-fixing. Check back soon!</p>
+            <p><strong>Geometry Dash Lite:</strong> RobTop releases pending. Currently unstable!</p>
+        </div>
+    </section>
+
     <footer class="footer">
-        <p>Built by <strong>DaniezonMC</strong>. Chromebook Gaming Revolution.</p>
+        <p>No copyright on projects (except Papa's games).<br>Please give credit to <strong>DaniezonMC</strong> if you use these projects!</p>
     </footer>
 </div>
 
 <script>
-    // Clock
-    setInterval(() => {
-        const now = new Date();
-        document.getElementById('live-clock').innerText = now.toLocaleTimeString([], {hour12: false});
-    }, 1000);
-
-    // Theme
+    // Theme Logic
     const themeBtn = document.getElementById("theme-toggle");
     themeBtn.addEventListener("click", () => {
-        const current = document.body.getAttribute("data-theme");
-        const next = current === "dark" ? "light" : "dark";
-        document.body.setAttribute("data-theme", next);
-        themeBtn.innerHTML = next === "dark" ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        const isDark = document.body.getAttribute("data-theme") === "dark";
+        const newTheme = isDark ? "light" : "dark";
+        document.body.setAttribute("data-theme", newTheme);
+        themeBtn.innerHTML = newTheme === "dark" ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
     });
 
-    // Search
+    // Search Logic
     const search = document.getElementById('nav-search');
     const cards = document.querySelectorAll('.game-card');
     search.addEventListener('input', (e) => {
         const val = e.target.value.toLowerCase();
         let count = 0;
         cards.forEach(card => {
-            const match = card.innerText.toLowerCase().includes(val);
-            card.style.display = match ? 'flex' : 'none';
+            const match = card.textContent.toLowerCase().includes(val);
+            card.style.display = match ? 'block' : 'none';
             if(match) count++;
         });
-        document.getElementById('search-results-count').innerText = `${count} results`;
+        document.getElementById('search-results-count').innerText = `${count} games available`;
     });
 
-    // Random
-    document.getElementById('random-btn').addEventListener('click', () => {
-        const urls = Array.from(cards).map(c => c.href);
-        window.location.href = urls[Math.floor(Math.random() * urls.length)];
+    // Keys: / for search, R for random
+    document.addEventListener('keydown', (e) => {
+        if (e.key === '/') {
+            e.preventDefault();
+            search.focus();
+        }
+        if (e.key.toLowerCase() === 'r' && document.activeElement !== search) {
+            const links = Array.from(cards).map(c => c.href);
+            window.location.href = links[Math.floor(Math.random() * links.length)];
+        }
     });
 </script>
+
 </body>
 </html>
+
