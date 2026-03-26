@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaniezonMC's Games</title>
+    <style>
+        :root {
+            --primary: #7289da; /* Friendly Blurple */
+            --bg: #f0f2f5;      /* Light background */
+            --nav-bg: #ffffff;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --accent: #ff4757;
+            --secondary-text: #5f676d;
+        }
+
+        /* Dark mode preference for gamer feel */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1a1c22;
+                --nav-bg: #24272e;
+                --card-bg: #24272e;
+                --text: #ffffff;
+                --secondary-text: #a0a0a0;
+            }
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Clean Navigation */
+        nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 20px;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover { color: var(--primary); }
+
+        /* Main Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--primary), #5865f2);
+            color: white;
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        header h1 { margin: 0; font-size: 2.5em; }
+        header p { opacity: 0.9; font-size: 1.1em; max-width: 600px; margin: 10px auto; }
+
+        h2 { 
+            font-size: 1.8em; 
+            margin-top: 50px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            scroll-margin-top: 80px;
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            color: var(--text);
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .troll-card { border-bottom: 3px solid var(--accent); }
+
+        /* Info Sections */
+        .info-section {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .status-tag {
+            font-size: 0.7em;
+            text-transform: uppercase;
+            background: #eee;
+            color: #333;
+            padding: 3px 8px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        .footer {
+            margin-top: 100px;
+            text-align: center;
+            padding: 40px;
+            color: var(--secondary-text);
+            font-size: 0.9em;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#games" class="nav-link">Games</a>
+        <a href="#scenes" class="nav-link">Scenes</a>
+        <a href="#trolls" class="nav-link">Trolls</a>
+        <a href="#updates" class="nav-link">Updates</a>
+    </div>
+</nav>
+
+<div class="container" id="home">
+    <header>
+        <h1>DaniezonMC's Games</h1>
+        <p>A chill spot for all my game projects and WIPs. Check back often for updates on the latest scenes and trolls!</p>
+    </header>
+
+    <section id="games">
+        <h2>🎮 Popular Games</h2>
+        <div class="grid">
+            <a href="https://daniezonmc.github.io" class="card">Eaglercraft 1.20</a>
+            <a href="https://daniezonmc.github.io" class="card">Resent Client 1.8</a>
+            <a href="https://daniezonmc.github.io" class="card">Astra Client</a>
+            <a href="https://daniezonmc.github.io" class="card">Bee Swarm</a>
+            <a href="https://daniezonmc.github.io" class="card">GD Lite <span class="status-tag">WIP</span></a>
+            <a href="https://daniezonmc.github.io" class="card">Papa's Freezeria</a>
+            <a href="https://daniezonmc.github.io" class="card">Papa's Pizzeria</a>
+            <a href="https://daniezonmc.github.io" class="card">Papa's Donuteria</a>
+            <a href="https://daniezonmc.github.io" class="card">Papa's Bakeria</a>
+        </div>
+    </section>
+
+    <section id="scenes">
+        <h2>🖼️ Scenes</h2>
+        <div class="grid">
+            <a href="https://daniezonmc.github.io" class="card" style="grid-column: 1 / -1;">Flower Minecraft Background</a>
+        </div>
+    </section>
+
+    <section id="trolls">
+        <h2>⚠️ Fun & Trolls</h2>
+        <div class="grid">
+            <a href="https://daniezonmc.github.io." class="card troll-card">
+                Scam Eaglercraft 1.21
+                <p style="font-size: 0.7em; font-weight: normal; margin-top: 5px; color: var(--secondary-text);">Troll your friends! (Careful with Chromebooks)</p>
+            </a>
+        </div>
+    </section>
+
+    <section id="updates">
+        <h2>ℹ️ Status Updates</h2>
+        <div class="info-section">
+            <p><strong>Geometry Dash Lite:</strong> Updates are tied to RobTop's official releases. Currently a bit unstable, so bear with it!</p>
+            <p><strong>Papa's Freezeria:</strong> Good news! The black screen issue is resolved. Play away!</p>
+            <p><strong>Eaglercraft 1.20:</strong> Currently on hiatus. Since the original dev (Chocofush) stopped work, I'm waiting until I can handle the bug fixes myself.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>No copyright on projects (except Papa's Freezeria).<br>Please give credit to <strong>DaniezonMC</strong> if you use these projects!</p>
+    </footer>
+</div>
+
+</body>
+</html>
