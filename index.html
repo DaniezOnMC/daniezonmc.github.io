@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaniezonMC's Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <style>
+        /* Base Light Theme */
+        :root {
+            --primary: #7289da; 
+            --bg: #f0f2f5;
+            --nav-bg: #ffffff;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --accent: #ff4757;
+            --secondary-text: #5f676d;
+            --twitch: #9146FF;
+            --github: #24292e;
+            --border: rgba(0,0,0,0.1);
+        }
+
+        /* Dark Theme Variables */
+        [data-theme="dark"] {
+            --bg: #1a1c22;
+            --nav-bg: #24272e;
+            --card-bg: #24272e;
+            --text: #ffffff;
+            --secondary-text: #a0a0a0;
+            --border: rgba(255,255,255,0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .profile-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: bold;
+        }
+
+        .profile-img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+        }
+
+        /* Theme Toggle Styling */
+        #theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.2em;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        
+        #theme-toggle:hover { transform: scale(1.1); color: var(--primary); }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--primary), #5865f2);
+            color: white;
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        h2 { font-size: 1.8em; margin-top: 50px; scroll-margin-top: 80px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            color: var(--text);
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border);
+        }
+
+        .card:hover { transform: translateY(-4px); border-color: var(--primary); }
+
+        .troll-card { border-bottom: 3px solid var(--accent); }
+
+        .info-section {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .discord-btn { background-color: var(--primary); }
+        .twitch-btn { background-color: var(--twitch); }
+        .github-btn { background-color: var(--github); }
+
+        .dev-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+            border: 1px solid var(--border);
+        }
+
+        .dev-card img { width: 80px; height: 80px; border-radius: 15px; }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            padding: 40px;
+            color: var(--secondary-text);
+            font-size: 0.9em;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+<nav>
+    <div class="nav-container">
+        <a href="#home" class="profile-brand">
+            <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC" class="profile-img">
+            <span>DaniezonMC's Homepage</span>
+        </a>
+        <div class="nav-links">
+            <a href="#games" class="nav-link">Games</a>
+            <a href="#community" class="nav-link">Community</a>
+            <button id="theme-toggle" title="Toggle Light/Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="container" id="home">
+    <header>
+        <h1>DaniezonMC's Games</h1>
+        <p>A work in progress homepage for all my game projects and WIP Games! Enjoy!</p>
+    </header>
+
+    <section id="games">
+        <h2>Popular Games</h2>
+        <div class="grid">
+            <a href="https://daniezonmc.github.io" class="card">Eaglercraft 1.20</a>
+            <a href="https://daniezonmc.github.io" class="card">Resent Client 1.8</a>
+            <a href="https://daniezonmc.github.io" class="card">Astra Client</a>
+            <a href="https://daniezonmc.github.io" class="card">Bee Swarm</a>
+            <a href="https://daniezonmc.github.io" class="card">GD Lite</a>
+            <a href="https://daniezonmc.github.io" class="card">Papa's Freezeria</a>
+            <a href="https://daniezonmc.github.io" class="card">Papa's Pizzeria</a>
+            <a href="https://daniezonmc.github.io" class="card">Papa's Donuteria</a>
+            <a href="https://daniezonmc.github.io" class="card">Papa's Bakeria</a>
+        </div>
+    </section>
+
+    <section id="scenes">
+        <h2>Scenes</h2>
+        <div class="grid">
+            <a href="https://daniezonmc.github.io" class="card" style="grid-column: 1 / -1;">Flower Minecraft Background</a>
+        </div>
+    </section>
+
+    <section id="trolls">
+        <h2>Fun & Trolls</h2>
+        <div class="grid">
+            <a href="https://daniezonmc.github.io." class="card troll-card">
+                Scam Eaglercraft 1.21
+                <p style="font-size: 0.7em; font-weight: normal; margin-top: 5px; color: var(--secondary-text);">Troll your friends! (Careful with Chromebooks)</p>
+            </a>
+        </div>
+    </section>
+
+    <section id="community">
+        <h2>Community</h2>
+        <div class="social-grid">
+            <a href="https://discord.gg/V9nVwu836D" class="social-btn discord-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+            <a href="https://www.twitch.tv/daniezgamemc" class="social-btn twitch-btn" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
+            <a href="https://github.com/daniezonmc" class="social-btn github-btn" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+
+        <div class="dev-card">
+            <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC">
+            <div>
+                <h3>Created by DaniezonMC</h3>
+                <p style="color: var(--secondary-text); margin: 0;">Developing Fun Games for our crappy chromebooks! Made popular from my famous 1.20 link! Glad you stopped by!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="updates">
+        <h2>Status Updates</h2>
+        <div class="info-section">
+            <p><strong>Geometry Dash Lite:</strong> Waiting for official RobTop releases to update to. Currently a bit unstable, jumps may be delayed!</p>
+            <p><strong>Papa's Freezeria:</strong> Black screen issue fixed! Everything is running smooth.</p>
+            <p><strong>Eaglercraft 1.20:</strong> Currently on a break while I work on bug-fixing skills.</p>
+            <p><strong>Homepage Theme Switch:</strong> Currently trying to fix this issue, this feature might be removed!</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>No copyright on projects (except Papa's Freezeria, Pizzaeria, Bakeria, Donuteria).<br>Please give credit to <strong>DaniezonMC and Original Creators</strong> if you use these projects!</p>
+    </footer>
+</div>
+
+<script>
+    const btn = document.getElementById("theme-toggle");
+    const icon = btn.querySelector("i");
+    const currentTheme = localStorage.getItem("theme");
+
+    // Apply saved theme on load
+    if (currentTheme) {
+        document.body.setAttribute("data-theme", currentTheme);
+        if (currentTheme === "dark") icon.className = "fas fa-sun";
+    }
+
+    btn.addEventListener("click", function() {
+        let theme = document.body.getAttribute("data-theme");
+        if (theme === "light") {
+            document.body.setAttribute("data-theme", "dark");
+            icon.className = "fas fa-sun";
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.body.setAttribute("data-theme", "light");
+            icon.className = "fas fa-moon";
+            localStorage.setItem("theme", "light");
+        }
+    });
+</script>
+
+</body>
+</html>
