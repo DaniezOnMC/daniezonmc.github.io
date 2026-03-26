@@ -1,5 +1,5 @@
 # DaniezonMC's Games Homepage!
-Welcome to my homepage. This page is a work in progress as I'm really busy right now. I am updating the bottom 2 categories regularly when I update my games, though.
+Welcome to my homepage. This page is a work in progress as I'm really busy right now. I am updating the bottom 2 categories regularly when I update my games, though. This will soon be formatted nicely into a neat HTML, but for now, this is using a github readme to be displayed on the web page.
 
 # Games, Popular and W.I.P (Work In Progress)
 [Eaglercraft 1.20](https://daniezonmc.github.io/1.20)
