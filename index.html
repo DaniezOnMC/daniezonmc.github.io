@@ -1,3 +1,5 @@
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,13 +136,21 @@
 
         /* --- GRID & CARDS --- */
         .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        .badge-status {
-            color: white; font-size: 0.65em; padding: 2px 8px; border-radius: 12px; margin-left: 8px;
-            font-weight: bold; text-transform: uppercase; display: inline-block; vertical-align: middle;
+        
+        .badge {
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 5px;
+            font-weight: 900;
+            text-transform: uppercase;
+            display: inline-block;
+            vertical-align: middle;
         }
         
-        .badge-trending { background-color: var(--amethyst); }
-        .badge-wip { background-color: var(--primary); }
+        .trending { background-color: var(--amethyst); }
+        .wip { background-color: var(--primary); }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
         .card {
@@ -154,6 +164,9 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             transition: transform 0.2s, border-color 0.2s;
             border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .card:hover { transform: translateY(-4px); border-color: var(--primary); }
         .troll-card { border-bottom: 3px solid var(--accent); }
@@ -218,10 +231,10 @@
         <h2>Popular Games</h2>
         <p id="search-results-count" style="font-size: 0.8em; color: var(--secondary-text); margin-bottom: 10px;">8 games available</p>
         <div class="grid" id="game-grid">
-            <a href="https://daniezonmc.github.io/1.20" class="card game-card">Eaglercraft 1.20 <span class="badge-status badge-trending">Trending</span></a>
+            <a href="https://daniezonmc.github.io/1.20" class="card game-card">Eaglercraft 1.20 <span class="badge trending">Trending</span></a>
             <a href="https://daniezonmc.github.io/1.8" class="card game-card">Resent Client 1.8</a>
             <a href="https://daniezonmc.github.io/beeswarm" class="card game-card">Bee Swarm</a>
-            <a href="https://daniezonmc.github.io/Geometrydashlite" class="card game-card">GD Lite <span class="badge-status badge-wip">WIP</span></a>
+            <a href="https://daniezonmc.github.io/Geometrydashlite" class="card game-card">GD Lite <span class="badge wip">WIP</span></a>
             <a href="https://daniezonmc.github.io/papas/papasfreezeria" class="card game-card">Papa's Freezeria</a>
             <a href="https://daniezonmc.github.io/papas/papaspizza" class="card game-card">Papa's Pizzeria</a>
             <a href="https://daniezonmc.github.io/papas/papasdonuteria" class="card game-card">Papa's Donuteria</a>
@@ -239,7 +252,7 @@
     <section id="trolls" style="margin-top:40px;">
         <h2>Fun & Trolls</h2>
         <div class="grid">
-            <a href="https://daniezonmc.github.io/1.21." class="card troll-card">
+            <a href="https://daniezonmc.github.io/1.21." class="card troll-card" style="display:block;">
                 Scam Eaglercraft 1.21
                 <p style="font-size: 0.7em; font-weight: normal; margin-top: 5px; color: var(--secondary-text);">Troll your friends! (Careful with Chromebooks)</p>
             </a>
@@ -284,7 +297,7 @@
         let count = 0;
         cards.forEach(card => {
             const match = card.textContent.toLowerCase().includes(val);
-            card.style.display = match ? 'block' : 'none';
+            card.style.display = match ? 'flex' : 'none';
             if(match) count++;
         });
         document.getElementById('search-results-count').innerText = `${count} games available`;
