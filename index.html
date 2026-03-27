@@ -3,27 +3,60 @@
 <head>
     <title>Inbox (369) - SFUSD Mail</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000; }
-        #ruffle { width: 100%; height: 100%; }
+        body, html { margin: 0; padding: 0; height: 100vh; overflow: hidden; background: #1a1a1a; font-family: sans-serif; }
+        #ruffle { width: 100%; height: 100%; display: none; }
+        #setup { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white; }
+        .btn { background: #4285f4; color: white; padding: 15px 30px; border-radius: 5px; cursor: pointer; border: none; font-size: 16px; }
     </style>
 </head>
 <body>
+
+    <div id="setup">
+        <h3>Local Flash Loader</h3>
+        <p>Select your <b>papasfreezeria.swf</b> to start</p>
+        <input type="file" id="file-picker" accept=".swf" style="display:none;">
+        <button class="btn" onclick="document.getElementById('file-picker').click()">Choose SWF File</button>
+    </div>
+
     <div id="ruffle"></div>
 
-    <!-- This line loads the local Ruffle engine -->
+    <!-- Load your local ruffle.js -->
     <script src="ruffle.js"></script>
 
     <script>
-        window.RufflePlayer = window.RufflePlayer || {};
-        window.addEventListener("load", (event) => {
+        const filePicker = document.getElementById('file-picker');
+        const setupDiv = document.getElementById('setup');
+        const ruffleDiv = document.getElementById('ruffle');
+
+        filePicker.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // This creates the "Blob" URL that bypasses the 404/Security error
+                    const blob = new Blob([e.target.result], {type: "application/x-shockwave-flash"});
+                    const url = URL.createObjectURL(blob);
+                    
+                    loadGame(url);
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        });
+
+        function loadGame(blobUrl) {
+            setupDiv.style.display = 'none';
+            ruffleDiv.style.display = 'block';
+
             const ruffle = window.RufflePlayer.newest();
             const player = ruffle.createPlayer();
-            const container = document.getElementById("ruffle");
-            container.appendChild(player);
-            
-            // Change "game.swf" to the exact name of your file
-            player.load("papasfreezeria.swf");
-        });
+            ruffleDiv.appendChild(player);
+
+            player.load({
+                url: blobUrl,
+                allowScriptAccess: true,
+                autoplay: "on"
+            });
+        }
     </script>
 </body>
 </html>
