@@ -158,10 +158,35 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 15px;
   margin-top: 20px;
+    
 }
+        
+.issues-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.issue-card {
+    padding: 20px;
+    border-radius: 12px;
+    min-height: 200px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.6); 
+    color: white;
+}
+
+.issue-card h3 {
+    margin-top: 0;
+    color: #fff;
+}
+
 
 .grid-vertical {
   grid-template-columns: 1fr;
+    
 }
 
         .card {
@@ -267,30 +292,43 @@
         </div>
     </section>
 
-    <section id="issues" style="margin-top:40px;">
+<section id="issues" style="margin-top:40px;">
     <h2>Known Issues</h2>
-    <div class="grid grid-vertical">
-        <div>
+    <div class="issues-grid">
+        <!-- NautilusOS Card -->
+        <div class="issue-card" style="background-image: url('https://avatars.githubusercontent.com/u/240241840?s=280&v=4');">
             <h3>NautilusOS</h3>
-            <ul>
-                <li style="color: var(--text-primary); margin-bottom: 8px;">x86 Emulator does not load</li>
-                <li style="color: var(--text-primary); margin-bottom: 8px;">UltraViolet Browser does not load and results in 404</li>
-                <li style="color: var(--text-primary); margin-bottom: 8px;">Helios Browser does not load and results in 404</li>
-                <li style="color: var(--text-primary); margin-bottom: 8px;">Themes are not functional</li>
+            <ul style="margin: 0; padding-left: 15px;">
+                <li>x86 Emulator does not load</li>
+                <li>UltraViolet Browser 404 error</li>
+                <li>Helios Browser 404 error</li>
+                <li>Themes are not functional</li>
             </ul>
         </div>
 
-        <div>
+        <!-- Eaglercraft Card -->
+        <div class="issue-card" style="background-image: url('https://education.minecraft.net/content/dam/education-edition/blogs/1-20-update/TrailsnTales_EduBlogBanner_NoLogo.png');">
             <h3>Eaglercraft 1.20</h3>
-            <ul>
-                <li style="color: var(--text-primary); margin-bottom: 8px;">
-                    A TON of features from Minecraft 1.20 (like mace and elytra flying with fireworks) are NOT in the game. 
-                    Please do not ask for these as I am not adding them.
-                </li>
+            <ul style="margin: 0; padding-left: 15px;">
+                <li>Mace/Elytra features are not in this version and won't be added.</li>
             </ul>
+        </div>
+
+        <!-- GD Lite Card -->
+        <div class="issue-card" style="background-image: url('https://m.media-amazon.com/images/I/61CCVhzkDeL.png');">
+            <h3>GD Lite</h3>
+            <ul style="margin: 0; padding-left: 15px;">
+                <li>Jumps sometimes don't register (unfixable).</li>
+            </ul>
+        </div>
+
+        <!-- Placeholder for 4th spot -->
+        <div class="issue-card" style="background-color: #222; display: flex; align-items: center; justify-content: center;">
+            <p style="font-style: italic; opacity: 0.5;">More updates coming soon...</p>
         </div>
     </div>
 </section>
+
 
     <section id="community" style="margin-top:40px;">
         <h2>Community</h2>
