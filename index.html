@@ -400,11 +400,32 @@
 </div>
 
 <script>
-    // 1. THEME LOGIC
+        // 1. UPDATED THEME LOGIC
     function setTheme(t) { 
         document.body.setAttribute("data-theme", t); 
         localStorage.setItem("site-theme", t); 
-    }
+        
+        // Update the icon inside the button if it exists
+        const themeBtn = document.getElementById('theme-toggle');
+        if (themeBtn) {
+            themeBtn.innerHTML = t === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        } 
+
+    // Initialize theme
+    const savedTheme = localStorage.getItem("site-theme") || "dark";
+    setTheme(savedTheme);
+
+    // Add the click listener after the page loads to be safe
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeBtn = document.getElementById('theme-toggle');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                const current = document.body.getAttribute("data-theme");
+                setTheme(current === "dark" ? "light" : "dark");
+            });
+        }
+    });
+    
     setTheme(localStorage.getItem("site-theme") || "dark");
 
     // 2. SEARCH LOGIC
