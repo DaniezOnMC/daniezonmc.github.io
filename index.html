@@ -469,36 +469,44 @@
         `).join('');
     }
 
-    async function runPingChecks() {
-        const masterStatus = document.getElementById('master-status');
-        const updateTime = document.getElementById('last-updated-time');
-        
-        if(masterStatus) masterStatus.innerText = "Checking Links...";
+async function runPingChecks() {
+    const masterStatus = document.getElementById('master-status');
+    const updateTime = document.getElementById('last-updated-time');
+    
+    if(masterStatus) masterStatus.innerText = "Checking Links...";
 
-        for (let game of gameData) {
-            const display = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
-            const target = `https://daniezonsfusd.github.io/${game.url}/`;
+    for (let game of gameData) {
+        const display = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
+        const target = `https://daniezonsfusd.github.io/${game.url}/`;
 
-            try {
-                // Fetch timeout
-                const controller = new AbortController();
-                const id = setTimeout(() => controller.abort(), 5000);
-                
-                await fetch(target, { mode: 'no-cors', signal: controller.signal });
-                clearTimeout(id);
-                
+        try {
+            // Fetch timeout
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), 5000);
+            
+            const response = await fetch(target, { signal: controller.signal });
+            clearTimeout(id);
+            
+            // Check if status is 2xx (success) - 404 will fail here
+            if(response.ok) {
                 if(display) {
                     display.innerHTML = '<span style="color: #4CAF50;">● ONLINE</span>';
                 }
-            } catch (err) {
+            } else {
                 if(display) {
                     display.innerHTML = '<span style="color: #ff4757;">● OFFLINE</span>';
                 }
             }
+        } catch (err) {
+            if(display) {
+                display.innerHTML = '<span style="color: #ff4757;">● OFFLINE</span>';
+            }
         }
-        
-        if(masterStatus) masterStatus.innerText = "All Systems Functional";
-        if(updateTime) updateTime.innerText = "Updated: " + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    }
+    
+    if(masterStatus) masterStatus.innerText = "All Systems Functional";
+    if(updateTime) updateTime.innerText = "Updated: " + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+}
     }
 
     // --- controls and hotkeys
