@@ -159,12 +159,7 @@
   gap: 15px;
   margin-top: 20px;
     
-}
-        
-.issues-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+
 }
 
 /* --- 1. System Status Bar --- */
@@ -202,6 +197,39 @@
     background: #444;
     border-radius: 50%;
 }
+.issues-grid {
+    display: grid;
+    /* This makes it a 2x2 grid on desktop, 1 column on mobile */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.issue-card {
+    position: relative;
+    padding: 30px; /* More room for text */
+    border-radius: 20px; /* Visible rounded corners */
+    min-height: 350px; /* Prevents image from looking "zoomed in" */
+    overflow: hidden; /* CRITICAL: Clips image to the rounded corners */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Pushes text to the bottom of the card */
+    
+    background-position: center;
+    background-size: cover; /* Fits image to card size */
+    background-repeat: no-repeat;
+    
+    /* Darker overlay so text actually fits and is readable */
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.7); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.issue-card ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 1rem; /* Ensures text is a readable size */
+    line-height: 1.5;
+}
 
 /* --- 3. Feature Request Button --- */
 .request-btn {
@@ -216,18 +244,6 @@
 }
         
 .request-btn:hover { transform: scale(1.05); background: #0056b3; }
-
-/* --- 5. Updated Card Zoom Effect --- */
-.issue-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    overflow: hidden;
-    
-}
-        
-.issue-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4), 0 10px 20px rgba(0,0,0,0.5);
 
 }
 
@@ -359,13 +375,14 @@
     <button class="request-btn" onclick="window.location.href='mailto:dalouie2@s.sfusd.edu'">Send Request</button>
 </section>
 
-<section id="issues" style="margin-top:40px;">
-    <h2>Known Issues</h2>
+<section id="issues" style="margin-top: 60px;">
+    <h2 style="margin-bottom: 25px;">Known Issues</h2>
+    
     <div class="issues-grid">
         <!-- NautilusOS Card -->
-        <div class="issue-card" style="background-image: url('https://private-user-images.githubusercontent.com/168872620/504487549-13b106be-49c5-416f-bf01-b5915491eb88.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzYzMDY2MjUsIm5iZiI6MTc3NjMwNjMyNSwicGF0aCI6Ii8xNjg4NzI2MjAvNTA0NDg3NTQ5LTEzYjEwNmJlLTQ5YzUtNDE2Zi1iZjAxLWI1OTE1NDkxZWI4OC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDE2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQxNlQwMjI1MjVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01YzMwMzFlZTljOTZkYjQxNjMxOWU2ODZkZjcwMjdiODhmZWRkY2Q4NDVkYjQyMDNhY2ZhYjk2YmQ0Y2RhNjUxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.fysk0hF6zYFQokM9nCKSqU95SVVnPK19afNuzCdZ4Dk');">
+        <div class="issue-card" style="background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), url('https://githubusercontent.com'); background-size: cover; background-position: center;">
             <h3>NautilusOS</h3>
-            <ul style="margin: 0; padding-left: 15px;">
+            <ul>
                 <li>x86 Emulator does not load</li>
                 <li>UltraViolet Browser 404 error</li>
                 <li>Helios Browser 404 error</li>
@@ -374,27 +391,30 @@
         </div>
 
         <!-- Eaglercraft Card -->
-        <div class="issue-card" style="background-image: url('https://education.minecraft.net/content/dam/education-edition/blogs/1-20-update/TrailsnTales_EduBlogBanner_NoLogo.png');">
+        <div class="issue-card" style="background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), url('https://minecraft.net'); background-size: cover; background-position: center;">
             <h3>Eaglercraft 1.20</h3>
-            <ul style="margin: 0; padding-left: 15px;">
-                <li>Mace/Elytra features are not in this version and won't be added.</li>
+            <ul>
+                <li>Mace/Elytra features are not in this version.</li>
+                <li>Feature requests for 1.20 items are ignored.</li>
             </ul>
         </div>
 
         <!-- GD Lite Card -->
-        <div class="issue-card" style="background-image: url('https://m.media-amazon.com/images/I/61CCVhzkDeL.png');">
+        <div class="issue-card" style="background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), url('https://media-amazon.com'); background-size: cover; background-position: center;">
             <h3>GD Lite</h3>
-            <ul style="margin: 0; padding-left: 15px;">
-                <li>Jumps sometimes don't register (unfixable).</li>
+            <ul>
+                <li>Jumps sometimes don't register.</li>
+                <li>This is an engine limitation and cannot be fixed.</li>
             </ul>
         </div>
 
-        <!-- Placeholder for 4th spot -->
-        <div class="issue-card" style="background-color: #222; display: flex; align-items: center; justify-content: center;">
-            <p style="font-style: italic; opacity: 0.5;">More updates coming soon...</p>
+        <!-- Placeholder/Upcoming Card -->
+        <div class="issue-card" style="background: #1a1a1a; display: flex; align-items: center; justify-content: center; border: 2px dashed #333;">
+            <p style="opacity: 0.5; font-style: italic;">No other issues reported...</p>
         </div>
     </div>
 </section>
+
 
 <section style="margin-top: 60px;">
     <h2>Recent Fixes</h2>
