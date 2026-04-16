@@ -468,6 +468,29 @@
         themeBtn.innerHTML = newTheme === "dark" ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
     });
 
+    function updateSystemStatus() {
+    const statusDot = document.querySelector('.dot');
+    const statusText = document.querySelector('.status-item span strong');
+    const lastUpdatedText = document.querySelector('.status-bar .status-item[style*="opacity: 0.7"]');
+    
+    // Logic: In a real app, you'd fetch an API here. 
+    // For now, we'll keep it "All Systems Functional" but update the timestamp.
+    const now = new Date();
+    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    // Optional: Add logic to turn it yellow if it's after school hours, etc.
+    statusDot.className = 'dot online'; 
+    statusText.innerText = 'System Status:';
+    lastUpdatedText.innerText = `Updated: Today at ${timeString}`;
+}
+
+// Run immediately on load
+updateSystemStatus();
+
+// Refresh every 5 minutes
+setInterval(updateSystemStatus, 300000);
+    
+
     const search = document.getElementById('nav-search');
     const cards = document.querySelectorAll('.game-card');
     search.addEventListener('input', (e) => {
