@@ -400,141 +400,178 @@
         <p>No copyright (except Papa's). Developed for the SFUSD Community. <br>Please give credit to <strong>DaniezonSFUSD</strong>! Flash help by <strong>JWheasley672</strong>.  Shout out to <strong>Adam</strong> at <strong>Aptos Middle</strong>.</p>
     </footer>
 </div>
- <script>
-  // --- theme controlers
-    const themeBtn = document.getElementById('theme-toggle');
+                    
+<script>
+  // --- theme controllers
+  const themeBtn = document.getElementById('theme-toggle');
 
-    function setTheme(t) { 
-        document.body.setAttribute("data-theme", t); 
-        localStorage.setItem("site-theme", t); 
-        
-        // update the main toggle icon
-        if (themeBtn) {
-            themeBtn.innerHTML = t === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-        }
-    }
+  function setTheme(t) { 
+      document.body.setAttribute("data-theme", t); 
+      localStorage.setItem("site-theme", t); 
+      
+      if (themeBtn) {
+          themeBtn.innerHTML = t === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+      }
+  }
 
-    // start on load
-    const savedTheme = localStorage.getItem("site-theme") || "dark";
-    setTheme(savedTheme);
+  const savedTheme = localStorage.getItem("site-theme") || "dark";
+  setTheme(savedTheme);
 
-    // Event Listeners for Buttons
-    if (themeBtn) {
-        themeBtn.onclick = () => {
-            const current = document.body.getAttribute("data-theme");
-            setTheme(current === "dark" ? "light" : "dark");
-        };
-    }
+  if (themeBtn) {
+      themeBtn.onclick = () => {
+          const current = document.body.getAttribute("data-theme");
+          setTheme(current === "dark" ? "light" : "dark");
+      };
+  }
 
-    // --- search engine
-    const searchInput = document.getElementById('nav-search');
-    const gameCards = document.querySelectorAll('.game-card');
-    
-    if (searchInput) {
-        searchInput.oninput = (e) => {
-            const val = e.target.value.toLowerCase();
-            let count = 0;
-            gameCards.forEach(card => {
-                const match = card.textContent.toLowerCase().includes(val);
-                card.style.display = match ? 'flex' : 'none';
-                if(match) count++;
-            });
-            const counter = document.getElementById('search-results-count');
-            if(counter) counter.innerText = `${count} games available`;
-        };
-    }
+  // --- search engine
+  const searchInput = document.getElementById('nav-search');
+  const gameCards = document.querySelectorAll('.game-card');
+  
+  if (searchInput) {
+      searchInput.oninput = (e) => {
+          const val = e.target.value.toLowerCase();
+          let count = 0;
+          gameCards.forEach(card => {
+              const match = card.textContent.toLowerCase().includes(val);
+              card.style.display = match ? 'flex' : 'none';
+              if(match) count++;
+          });
+          const counter = document.getElementById('search-results-count');
+          if(counter) counter.innerText = `${count} games available`;
+      };
+  }
 
-    // --- status updater
-    const gameData = [
-        { name: "Eaglercraft 1.20", url: "1.20" },
-        { name: "Resent Client 1.8", url: "1.8" },
-        { name: "Bee Swarm", url: "beeswarm" },
-        { name: "GD Lite", url: "Geometrydashlite" },
-        { name: "Papas Pizzaeria", url: "papas/papaspizza" },
-        { name: "Papas Freezeria", url: "papas/papasfreezeria" },
-        { name: "Papas Bakeria", url: "papas/papasbakeria" },
-        { name: "Papas Donuteria", url: "papas/papasdonuteria" },
-        { name: "SWF Loader", url: "papas/swfloader" },
-        { name: "Nautilus OS", url: "NautilusOS" }
-    ];
+  // --- status updater
+  const gameData = [
+      { name: "Eaglercraft 1.20", url: "https://daniezonsfusd.github.io/1.20" },
+      { name: "Resent Client 1.8", url: "https://daniezonsfusd.github.io/1.8" },
+      { name: "Bee Swarm", url: "https://daniezonsfusd.github.io/beeswarm" },
+      { name: "GD Lite", url: "https://daniezonsfusd.github.io/Geometrydashlite" },
+      { name: "Papas Pizzaeria", url: "https://daniezonsfusd.github.io/papas/papaspizza" },
+      { name: "Papas Freezeria", url: "https://daniezonsfusd.github.io/papas/papasfreezeria" },
+      { name: "Papas Bakeria", url: "https://daniezonsfusd.github.io/papas/papasbakeria" },
+      { name: "Papas Donuteria", url: "https://daniezonsfusd.github.io/papas/papasdonuteria" },
+      { name: "SWF Loader", url: "https://daniezonsfusd.github.io/papas/swfloader" },
+      { name: "Nautilus OS", url: "https://daniezonsfusd.github.io/NautilusOS" }
+  ];
 
-    function setupStatusDashboard() {
-        const grid = document.getElementById('status-checker-grid');
-        if(!grid) return;
-        grid.innerHTML = gameData.map(game => `
-            <div class="card" style="flex-direction: row; justify-content: space-between; padding: 15px; text-align: left;">
-                <span style="font-size: 0.9em;">${game.name}</span>
-                <span id="stat-${game.url.replace(/\//g, '-')}" style="font-weight: bold; font-size: 0.8em; color: #888;">WAITING...</span>
-            </div>
-        `).join('');
-    }
-function runPingChecks() {
-    let offlineCount = 0;
-    const games = [...]; // assume this is an array of game statuses
-    games.forEach(game => {
-        if (game.status === 'offline') {
-            offlineCount++;
-        }
-    });
-    updateStatusBar(offlineCount);
-}
+  function setupStatusDashboard() {
+      const grid = document.getElementById('status-checker-grid');
+      if(!grid) return;
+      grid.innerHTML = gameData.map(game => `
+          <div class="card" style="flex-direction: row; justify-content: space-between; padding: 15px; text-align: left;">
+              <span style="font-size: 0.9em;">${game.name}</span>
+              <span id="stat-${game.url.replace(/\//g, '-')}" style="font-weight: bold; font-size: 0.8em; color: #888;">WAITING...</span>
+          </div>
+      `).join('');
+  }
 
-function updateStatusBar(offlineCount) {
-    const statusBar = document.getElementById('statusBar');
-    const statusDot = document.getElementById('statusDot');
-    let statusMessage = '';
-    let borderColor = '';
-    let dotColor = '';
+  // Ping a URL with 20-second timeout
+  async function pingURL(url) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 20000); // 20 second timeout
 
-    if (offlineCount === 0) {
-        statusMessage = 'All Systems Functional';
-        borderColor = 'green';
-        dotColor = 'green';
-    } else if (offlineCount > 0 && offlineCount <= 5) {
-        statusMessage = 'Partially Online';
-        borderColor = 'yellow';
-        dotColor = 'yellow';
-    } else if (offlineCount > 5 && offlineCount <= 8) {
-        statusMessage = 'Mostly Offline';
-        borderColor = 'orange';
-        dotColor = 'orange';
-    } else {
-        statusMessage = 'Offline';
-        borderColor = 'red';
-        dotColor = 'red';
-    }
+      try {
+          const response = await fetch(url, {
+              method: 'HEAD',
+              mode: 'no-cors',
+              signal: controller.signal
+          });
+          clearTimeout(timeoutId);
+          return true; // Online
+      } catch (error) {
+          clearTimeout(timeoutId);
+          return false; // Offline or timeout
+      }
+  }
 
-    statusBar.textContent = statusMessage;
-    statusBar.style.borderColor = borderColor;
-    statusDot.style.backgroundColor = dotColor;
-}
+  async function runPingChecks() {
+      let offlineCount = 0;
+      
+      for (const game of gameData) {
+          const statElement = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
+          if (!statElement) continue;
 
-    // --- controls and hotkeys
-    document.onkeydown = (e) => {
-        // stealth mode
-        if (e.key === '[') { 
-            document.getElementById('stealth-mode').style.display = 'block'; 
-            document.title = "Nervous System Research"; 
-        }
-        if (e.key === ']') { 
-            document.getElementById('stealth-mode').style.display = 'none'; 
-            document.title = "DaniezOnSFUSD's Homepage"; 
-        }
-        // search focus
-        if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
-        // random game (only if not typing in search)
-        if (e.key.toLowerCase() === 'r' && document.activeElement !== searchInput) {
-            const visibleLinks = Array.from(gameCards).filter(c => c.style.display !== 'none');
-            if(visibleLinks.length > 0) {
-                window.location.href = visibleLinks[Math.floor(Math.random() * visibleLinks.length)].href;
-            }
-        }
-    };
+          const isOnline = await pingURL(game.url);
+          
+          if (isOnline) {
+              statElement.textContent = '🟢 Online';
+              statElement.style.color = '#4CAF50';
+          } else {
+              statElement.textContent = '🔴 Offline';
+              statElement.style.color = '#ff4757';
+              offlineCount++;
+          }
+      }
+      
+      updateMasterStatus(offlineCount);
+  }
 
-    // --- status exucuter ---
-    setupStatusDashboard();
-    runPingChecks();
-    setInterval(runPingChecks, 300000); // Check every 5 mins
- </script>
+  function updateMasterStatus(offlineCount) {
+      const masterStatus = document.getElementById('master-status');
+      const statusBar = document.querySelector('.status-bar');
+      
+      if (!masterStatus || !statusBar) return;
+
+      let statusText = '';
+      let borderColor = '';
+
+      if (offlineCount === 0) {
+          statusText = '✅ All Systems Functional';
+          borderColor = '#4CAF50';
+      } else if (offlineCount > 0 && offlineCount <= 5) {
+          statusText = '⚠️ Partially Online';
+          borderColor = '#FFC107';
+      } else if (offlineCount > 5 && offlineCount <= 8) {
+          statusText = '⚠️ Mostly Offline';
+          borderColor = '#FF9800';
+      } else {
+          statusText = '❌ Offline';
+          borderColor = '#ff4757';
+      }
+
+      masterStatus.textContent = statusText;
+      statusBar.style.borderLeftColor = borderColor;
+  }
+
+  // Update last-checked time
+  function updateLastCheckedTime() {
+      const timeElement = document.getElementById('last-updated-time');
+      if (timeElement) {
+          const now = new Date();
+          timeElement.textContent = `Updated: ${now.toLocaleTimeString()}`;
+      }
+  }
+
+  async function checkSystemStatus() {
+      await runPingChecks();
+      updateLastCheckedTime();
+  }
+
+  // --- controls and hotkeys
+  document.onkeydown = (e) => {
+      if (e.key === '[') { 
+          document.getElementById('stealth-mode').style.display = 'block'; 
+          document.title = "Nervous System Research"; 
+      }
+      if (e.key === ']') { 
+          document.getElementById('stealth-mode').style.display = 'none'; 
+          document.title = "DaniezOnSFUSD's Homepage"; 
+      }
+      if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
+      if (e.key.toLowerCase() === 'r' && document.activeElement !== searchInput) {
+          const visibleLinks = Array.from(gameCards).filter(c => c.style.display !== 'none');
+          if(visibleLinks.length > 0) {
+              window.location.href = visibleLinks[Math.floor(Math.random() * visibleLinks.length)].href;
+          }
+      }
+  };
+
+  // --- status executor ---
+  setupStatusDashboard();
+  checkSystemStatus();
+  setInterval(checkSystemStatus, 300000); // Check every 5 mins
+</script>
 </body>
 </html>
