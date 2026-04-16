@@ -308,7 +308,13 @@
             </div>
         </div>
     </section>
-        <section style="margin-top: 60px;">
+        
+        document.getElementById('search-results-count').innerText = `${count} games, loaders, and operating systems available`;
+    });
+
+    async function updateLiveStatus() {
+        const dot = document.getElementById('status-dot');
+        const text = documen    <section style="margin-top: 60px;">
         <h2>Recent Fixes</h2>
         <div class="changelog">
             <div class="changelog-item"><strong>April 15, 2026</strong><p style="margin:5px 0; color:#bbb;">Added GD Lite issues and updated card visuals.</p></div>
@@ -338,6 +344,7 @@
 </div>
 
 <script>
+    // THEME TOGGLE
     const themeBtn = document.getElementById("theme-toggle");
     themeBtn.addEventListener("click", () => {
         const isDark = document.body.getAttribute("data-theme") === "dark";
@@ -346,6 +353,7 @@
         themeBtn.innerHTML = newTheme === "dark" ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
     });
 
+    // SEARCH SYSTEM
     const search = document.getElementById('nav-search');
     const cards = document.querySelectorAll('.game-card');
     search.addEventListener('input', (e) => {
@@ -359,6 +367,7 @@
         document.getElementById('search-results-count').innerText = `${count} games, loaders, and operating systems available`;
     });
 
+    // IMPROVED STATUS PING SYSTEM
     async function updateLiveStatus() {
         const dot = document.getElementById('status-dot');
         const text = document.getElementById('status-text');
@@ -366,31 +375,27 @@
         const bar = document.getElementById('status-bar');
         const playerCount = document.getElementById('live-players');
 
+        // Set a safety timeout: If nothing happens in 6 seconds, show "Limited Connectivity"
+        const safetySwitch = setTimeout(() => {
+            if (text.innerText.includes("Pinging")) {
+                text.innerHTML = '<strong>System Status:</strong> Connection Timeout';
+                dot.className = 'dot partial';
+            }
+        }, 6000);
+
         const criticalLinks = [
             'https://daniezonsfusd.github.io/1.20', 
             'https://daniezonsfusd.github.io/NautilusOS'
-            'https://daniezonsfusd.github.io/1.8'
-            'https://daniezonsfusd.github.io/beeswarm'
-            'https://daniezonsfusd.github.io/Geometrydashlite'
-            'https://daniezonsfusd.github.io/papas/papaspizza'
-            'https://daniezonsfusd.github.io/papas/papasfreezeria'
-            'https://daniezonsfusd.github.io/papas/papasbakeria'
-            'https://daniezonsfusd.github.io/papas/papasdonuteria'
-            'https://daniezonsfusd.github.io/papas/swfloader'
         ];
-
-        // Prevents the "stuck" state if the site takes too long to respond
-        const fetchWithTimeout = (url, ms = 5000) => {
-            const controller = new AbortController();
-            const promise = fetch(url, { mode: 'no-cors', signal: controller.signal });
-            const timeout = setTimeout(() => controller.abort(), ms);
-            return promise.finally(() => clearTimeout(timeout));
-        };
 
         try {
             const checks = await Promise.all(criticalLinks.map(url => 
-                fetchWithTimeout(url).then(() => true).catch(() => false)
+                fetch(url, { mode: 'no-cors' })
+                .then(() => true)
+                .catch(() => false)
             ));
+
+            clearTimeout(safetySwitch); // Cancel safety timer if fetch works
 
             const isOnline = checks.every(s => s === true);
             const now = new Date();
@@ -406,11 +411,13 @@
                 bar.style.borderLeft = '5px solid #ff9800';
             }
 
+            // Player count simulation
             const players = Math.floor(Math.random() * (30 - 12 + 1)) + 12;
             playerCount.innerText = `${players} Players Online`;
             time.innerText = `Last Ping: ${timeStr}`;
 
         } catch (err) {
+            clearTimeout(safetySwitch);
             dot.className = 'dot offline';
             text.innerHTML = '<strong>System Status:</strong> Connection Error';
             bar.style.borderLeft = '5px solid #f44336';
@@ -418,9 +425,11 @@
         }
     }
 
+    // INITIALIZE
     updateLiveStatus();
-    setInterval(updateLiveStatus, 300000);
+    setInterval(updateLiveStatus, 300000); // Re-ping every 5 mins
 
+    // KEYBOARD SHORTCUTS
     document.addEventListener('keydown', (e) => {
         if (e.key === '/') { e.preventDefault(); search.focus(); }
         if (e.key.toLowerCase() === 'r' && document.activeElement !== search) {
@@ -431,5 +440,6 @@
 </script>
 </body>
 </html>
+
 
     
