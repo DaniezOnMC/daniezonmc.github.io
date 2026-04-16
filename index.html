@@ -320,6 +320,19 @@
         </div>
     </section>
 
+        <section id="status-dashboard" style="margin-top: 60px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2>Game Status Dashboard</h2>
+            <button onclick="checkSystemStatus()" class="hero-btn" style="margin-top:0; padding: 8px 15px; font-size: 0.8em;">
+                <i class="fas fa-sync-alt"></i> Force Refresh
+            </button>
+        </div>
+        
+        <div class="grid" id="status-checker-grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+            </div>
+        </section>
+    
+
     <section id="trolls" style="margin-top:40px;">
         <h2>Fun & Trolls</h2>
         <div class="grid">
@@ -387,12 +400,14 @@
 </div>
 
 <script>
+    // 1. THEME LOGIC
     function setTheme(t) { 
         document.body.setAttribute("data-theme", t); 
         localStorage.setItem("site-theme", t); 
     }
     setTheme(localStorage.getItem("site-theme") || "dark");
 
+    // 2. SEARCH LOGIC
     const search = document.getElementById('nav-search');
     const cards = document.querySelectorAll('.game-card');
     
@@ -404,36 +419,94 @@
             card.style.display = match ? 'flex' : 'none';
             if(match) count++;
         });
-        document.getElementById('search-results-count').innerText = `${count} games available`;
+        const countText = document.getElementById('search-results-count');
+        if(countText) countText.innerText = `${count} games available`;
     });
 
+    // 3. GAME STATUS CONFIGURATION
+    const gameList = [
+        { name: "Eaglercraft 1.20", url: "1.20" },
+        { name: "Resent Client 1.8", url: "1.8" },
+        { name: "Bee Swarm", url: "beeswarm" },
+        { name: "GD Lite", url: "Geometrydashlite" },
+        { name: "Papas Pizzaeria", url: "papas/papaspizza" },
+        { name: "Papas Freezeria", url: "papas/papasfreezeria" },
+        { name: "Papas Bakeria", url: "papas/papasbakeria" },
+        { name: "Papas Donuteria", url: "papas/papasdonuteria" },
+        { name: "SWF Loader", url: "papas/swfloader" },
+        { name: "Nautilus OS", url: "NautilusOS" }
+    ];
+
+    // Build the Dashboard UI
+    function initStatusGrid() {
+        const container = document.getElementById('status-checker-grid');
+        if(!container) return;
+        container.innerHTML = gameList.map(game => `
+            <div class="card" style="flex-direction: row; justify-content: space-between; padding: 15px; text-align: left;">
+                <span style="font-size: 0.9em;">${game.name}</span>
+                <span id="status-${game.url.replace(/\//g, '-')}" style="font-weight: bold; font-size: 0.8em;">Checking...</span>
+            </div>
+        `).join('');
+    }
+
+    // Actual Status Checking Logic
     async function checkSystemStatus() {
         const statusText = document.getElementById('master-status');
         const timeText = document.getElementById('last-updated-time');
-        const labels = document.querySelectorAll('.site-status-label');
-        for (let label of labels) {
+        if(statusText) statusText.innerText = "Scanning Github Servers...";
+
+        for (let game of gameList) {
+            const label = document.getElementById(`status-${game.url.replace(/\//g, '-')}`);
+            const mainCardLabel = document.querySelector(`.site-status-label[data-url="${game.url}"]`);
+            
+            // Fixed Root URL
+            const fullURL = `https://daniezonsfusd.github.io/${game.url}/`;
+
             try {
-                await fetch(`https://daniezonsfusd.github.io/${label.dataset.url}`, { mode: 'no-cors' });
-                label.innerText = "● Online"; label.style.color = "#4CAF50";
+                await fetch(fullURL, { mode: 'no-cors', cache: 'no-store' });
+                const statusHtml = `<span style="color: #4CAF50;">● ONLINE</span>`;
+                if(label) label.innerHTML = statusHtml;
+                if(mainCardLabel) {
+                    mainCardLabel.innerHTML = "● Online";
+                    mainCardLabel.style.color = "#4CAF50";
+                }
             } catch (e) {
-                label.innerText = "● Offline"; label.style.color = "#ff4757";
+                const statusHtml = `<span style="color: #ff4757;">● OFFLINE</span>`;
+                if(label) label.innerHTML = statusHtml;
+                if(mainCardLabel) {
+                    mainCardLabel.innerHTML = "● Offline";
+                    mainCardLabel.style.color = "#ff4757";
+                }
             }
         }
-        statusText.innerText = "All Systems Functional";
-        timeText.innerText = "Updated: " + new Date().toLocaleTimeString();
+        if(statusText) statusText.innerText = "All Systems Functional";
+        if(timeText) timeText.innerText = "Updated: " + new Date().toLocaleTimeString();
     }
-    checkSystemStatus();
-    setInterval(checkSystemStatus, 300000);
 
+    // 4. KEYBOARD SHORTCUTS
     document.addEventListener('keydown', (e) => {
-        if (e.key === '[') { document.getElementById('stealth-mode').style.display = 'block'; document.title = "Unit 4: Nervous System Research"; }
-        if (e.key === ']') { document.getElementById('stealth-mode').style.display = 'none'; document.title = "DaniezOnSFUSD's Homepage"; }
+        // Stealth Mode
+        if (e.key === '[') { 
+            document.getElementById('stealth-mode').style.display = 'block'; 
+            document.title = "Unit 4: Nervous System Research"; 
+        }
+        if (e.key === ']') { 
+            document.getElementById('stealth-mode').style.display = 'none'; 
+            document.title = "DaniezOnSFUSD's Homepage"; 
+        }
+        // Search Focus
         if (e.key === '/') { e.preventDefault(); search.focus(); }
+        // Random Game
         if (e.key.toLowerCase() === 'r' && document.activeElement !== search) {
             const links = Array.from(cards).map(c => c.href);
             window.location.href = links[Math.floor(Math.random() * links.length)];
         }
     });
+
+    // 5. RUN ON START
+    initStatusGrid();
+    checkSystemStatus();
+    setInterval(checkSystemStatus, 300000); // Re-check every 5 minutes
 </script>
 </body>
 </html>
