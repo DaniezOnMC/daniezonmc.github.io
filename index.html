@@ -19,7 +19,6 @@
             --github: #24292e;
             --border: rgba(0,0,0,0.1);
             --amethyst: #9966cc;
-            --crimson: #990000;
         }
 
         [data-theme="dark"] {
@@ -104,7 +103,7 @@
             max-width: 900px;
             margin: 20px auto;
             border-radius: 20px;
-            background-image: url('https://education.minecraft.net/content/dam/education-edition/blogs/1-20-update/TrailsnTales_EduBlogBanner_NoLogo.png');
+            background-image: url('https://private-user-images.githubusercontent.com/168872620/504487549-13b106be-49c5-416f-bf01-b5915491eb88.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzYzMDY2MjUsIm5iZiI6MTc3NjMwNjMyNSwicGF0aCI6Ii8xNjg4NzI2MjAvNTA0NDg3NTQ5LTEzYjEwNmJlLTQ5YzUtNDE2Zi1iZjAxLWI1OTE1NDkxZWI4OC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDE2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQxNlQwMjI1MjVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01YzMwMzFlZTljOTZkYjQxNjMxOWU2ODZkZjcwMjdiODhmZWRkY2Q4NDVkYjQyMDNhY2ZhYjk2YmQ0Y2RhNjUxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.fysk0hF6zYFQokM9nCKSqU95SVVnPK19afNuzCdZ4Dk');
             background-size: cover;
             background-position: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -161,6 +160,26 @@
         .wip { background-color: var(--primary); }
         .troll-card { border-bottom: 3px solid var(--accent); }
 
+        /* --- ROUNDED SOCIALS --- */
+        .social-grid { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+        .social-btn { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            color: white; 
+            text-decoration: none; 
+            font-size: 1.2em;
+            transition: transform 0.3s, filter 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .social-btn:hover { transform: scale(1.1); filter: brightness(1.1); }
+        .discord { background: #7289da; }
+        .twitch { background: var(--twitch); }
+        .github { background: var(--github); }
+
         /* --- ISSUES GRID --- */
         .issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; }
         .issue-card { display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; min-height: 350px; position: relative; border-radius: 24px; overflow: hidden; background-size: cover; background-position: center; border: 1px solid rgba(255, 255, 255, 0.1); }
@@ -171,9 +190,6 @@
         .changelog { border-left: 2px solid #333; margin-left: 20px; padding-left: 20px; margin-top: 20px; }
         .changelog-item { margin-bottom: 20px; position: relative; }
         .changelog-item::before { content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; background: #444; border-radius: 50%; }
-
-        .request-btn { background: #7289da; color: white; border: none; padding: 12px 24px; border-radius: 50px; cursor: pointer; transition: transform 0.2s; font-weight: bold; }
-        .request-btn:hover { transform: scale(1.05); }
 
         .dev-card { display: flex; align-items: center; gap: 20px; background: var(--card-bg); padding: 20px; border-radius: 15px; margin-top: 25px; border: 1px solid var(--border); }
         .dev-card img { width: 80px; height: 80px; border-radius: 15px; }
@@ -232,7 +248,7 @@
 
     <section id="games">
         <h2>Games</h2>
-        <p id="search-results-count" style="font-size: 0.8em; color: var(--secondary-text); margin-bottom: 10px;">10 games available</p>
+        <p id="search-results-count" style="font-size: 0.8em; color: var(--secondary-text); margin-bottom: 10px;">10 games, loaders, and operating systems available</p>
         <div class="grid" id="game-grid">
             <a href="https://daniezonsfusd.github.io/1.20" class="card game-card">Eaglercraft 1.20 <span class="badge trending">Most Played</span></a>
             <a href="https://daniezonsfusd.github.io/1.8" class="card game-card">Resent Client 1.8</a>
@@ -259,8 +275,8 @@
 
     <section style="text-align: center; margin-top: 60px; padding: 40px; background: #111; border-radius: 15px;">
         <h3>Have a Suggestion?</h3>
-        <p>Let me know what features or games you want to see next!</p>
-        <button class="request-btn" onclick="window.location.href='mailto:dalouie2@s.sfusd.edu'">Send Request</button>
+        <p>Let me know what features or games you want to see next! (Only works if using a SFUSD email!)</p>
+        <button class="request-btn" style="background:#7289da; color:white; border:none; padding:12px 24px; border-radius:50px; cursor:pointer;" onclick="window.location.href='mailto:dalouie2@s.sfusd.edu'">Send Request</button>
     </section>
 
     <section id="issues" style="margin-top: 60px;">
@@ -284,7 +300,10 @@
             </div>
             <div class="issue-card" style="background-image: url('https://m.media-amazon.com/images/I/61CCVhzkDeL.png');">
                 <h3>GD Lite</h3>
-                <ul><li>Jumps sometimes don't register (Engine limitation).</li></ul>
+                <ul>
+                    <li>Jumps sometimes don't register.</li>
+                    <li>This is an engine limitation and cannot be fixed.</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -292,29 +311,29 @@
     <section style="margin-top: 60px;">
         <h2>Recent Fixes</h2>
         <div class="changelog">
-            <div class="changelog-item"><strong>April 15, 2026</strong><p style="color: #bbb;">Added GD Lite issues and updated visuals.</p></div>
-            <div class="changelog-item"><strong>April 10, 2026</strong><p style="color: #bbb;">Fixed grid layout overflow on mobile devices.</p></div>
+            <div class="changelog-item"><strong>April 15, 2026</strong><p style="margin:5px 0; color:#bbb;">Added GD Lite issues and updated card visuals.</p></div>
+            <div class="changelog-item"><strong>April 10, 2026</strong><p style="margin:5px 0; color:#bbb;">Fixed grid layout overflow on mobile devices.</p></div>
         </div>
     </section>
 
     <section id="community" style="margin-top:40px;">
-        <h2>Community</h2>
+        <h2>Community & Socials</h2>
         <div class="social-grid">
-            <a href="https://discord.gg/V9nVwu836D" class="social-btn" style="background:#7289da;"><i class="fab fa-discord"></i> Discord</a>
-            <a href="https://www.twitch.tv/daniezgamemc" class="social-btn" style="background:#9146FF;"><i class="fab fa-twitch"></i> Twitch</a>
-            <a href="https://github.com/daniezonsfusd" class="social-btn" style="background:#24292e;"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://discord.gg/V9nVwu836D" class="social-btn discord" title="Discord"><i class="fab fa-discord"></i></a>
+            <a href="https://www.twitch.tv/daniezgamemc" class="social-btn twitch" title="Twitch"><i class="fab fa-twitch"></i></a>
+            <a href="https://github.com/daniezonsfusd" class="social-btn github" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
         <div class="dev-card">
             <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC">
             <div>
-                <h3>Created by DaniezonSFUSD</h3>
-                <p style="color: var(--secondary-text); margin: 0;">Developing Fun Games for our crappy chromebooks! Made popular from my famous 1.20 link!</p>
+                <h3>Created by DaniezOnSFUSD</h3>
+                <p style="color: var(--secondary-text); margin: 0;">Developing Fun Games for our chromebooks! Popular from my famous 1.20 link! Glad you stopped by!</p>
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        <p>No copyright (except Papa's). Credit to <strong>DaniezonSFUSD</strong>. Projects with Ruffle/Flash helped by <strong>JWheasley672</strong>. Websites brought back by <strong>Adam</strong> at <strong>Aptos Middle</strong>.</p>
+        <p>No copyright (except Papa's). Credit to <strong>DaniezOnSFUSD</strong>. Ruffle/Flash help by <strong>JWheasley672</strong>. Websites brought back by <strong>Adam</strong> at <strong>Aptos Middle</strong>.</p>
     </footer>
 </div>
 
@@ -322,8 +341,9 @@
     const themeBtn = document.getElementById("theme-toggle");
     themeBtn.addEventListener("click", () => {
         const isDark = document.body.getAttribute("data-theme") === "dark";
-        document.body.setAttribute("data-theme", isDark ? "light" : "dark");
-        themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        const newTheme = isDark ? "light" : "dark";
+        document.body.setAttribute("data-theme", newTheme);
+        themeBtn.innerHTML = newTheme === "dark" ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
     });
 
     const search = document.getElementById('nav-search');
@@ -336,7 +356,7 @@
             card.style.display = match ? 'flex' : 'none';
             if(match) count++;
         });
-        document.getElementById('search-results-count').innerText = `${count} games available`;
+        document.getElementById('search-results-count').innerText = `${count} games, loaders, and operating systems available`;
     });
 
     async function updateLiveStatus() {
@@ -357,15 +377,9 @@
             const now = new Date();
             const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-            if (isOnline) {
-                dot.className = 'dot online';
-                text.innerHTML = '<strong>System Status:</strong> All Systems Functional';
-                bar.style.borderLeft = '5px solid #4CAF50';
-            } else {
-                dot.className = 'dot partial';
-                text.innerHTML = '<strong>System Status:</strong> Limited Connectivity';
-                bar.style.borderLeft = '5px solid #ff9800';
-            }
+            dot.className = isOnline ? 'dot online' : 'dot partial';
+            text.innerHTML = `<strong>System Status:</strong> ' + (isOnline ? 'All Systems Functional' : 'Limited Connectivity');
+            bar.style.borderLeft = isOnline ? '5px solid #4CAF50' : '5px solid #ff9800';
 
             const players = Math.floor(Math.random() * (30 - 12 + 1)) + 12;
             playerCount.innerText = `${players} Players Online`;
@@ -373,7 +387,7 @@
 
         } catch (err) {
             dot.className = 'dot offline';
-            text.innerHTML = '<strong>System Status:</strong> Offline / Error';
+            text.innerHTML = '<strong>System Status:</strong> Connection Error';
             bar.style.borderLeft = '5px solid #f44336';
         }
     }
