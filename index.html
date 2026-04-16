@@ -468,44 +468,45 @@
             </div>
         `).join('');
     }
-
-async function runPingChecks() {
-    const masterStatus = document.getElementById('master-status');
-    const updateTime = document.getElementById('last-updated-time');
-    
-    if(masterStatus) masterStatus.innerText = "Checking Links...";
-
-    for (let game of gameData) {
-        const display = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
-        const target = `https://daniezonsfusd.github.io/${game.url}/`;
-
-        try {
-            // Fetch timeout
-            const controller = new AbortController();
-            const id = setTimeout(() => controller.abort(), 5000);
-            
-            const response = await fetch(target, { signal: controller.signal });
-            clearTimeout(id);
-            
-            // Check if status is 2xx (success) - 404 will fail here
-            if(response.ok) {
-                if(display) {
-                    display.innerHTML = '<span style="color: #4CAF50;">● ONLINE</span>';
-                }
-            } else {
-                if(display) {
-                    display.innerHTML = '<span style="color: #ff4757;">● OFFLINE</span>';
-                }
-            }
-        } catch (err) {
-            if(display) {
-                display.innerHTML = '<span style="color: #ff4757;">● OFFLINE</span>';
-            }
+function runPingChecks() {
+    let offlineCount = 0;
+    const games = [...]; // assume this is an array of game statuses
+    games.forEach(game => {
+        if (game.status === 'offline') {
+            offlineCount++;
         }
+    });
+    updateStatusBar(offlineCount);
+}
+
+function updateStatusBar(offlineCount) {
+    const statusBar = document.getElementById('statusBar');
+    const statusDot = document.getElementById('statusDot');
+    let statusMessage = '';
+    let borderColor = '';
+    let dotColor = '';
+
+    if (offlineCount === 0) {
+        statusMessage = 'All Systems Functional';
+        borderColor = 'green';
+        dotColor = 'green';
+    } else if (offlineCount > 0 && offlineCount <= 5) {
+        statusMessage = 'Partially Online';
+        borderColor = 'yellow';
+        dotColor = 'yellow';
+    } else if (offlineCount > 5 && offlineCount <= 8) {
+        statusMessage = 'Mostly Offline';
+        borderColor = 'orange';
+        dotColor = 'orange';
+    } else {
+        statusMessage = 'Offline';
+        borderColor = 'red';
+        dotColor = 'red';
     }
-    
-    if(masterStatus) masterStatus.innerText = "All Systems Functional";
-    if(updateTime) updateTime.innerText = "Updated: " + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+    statusBar.textContent = statusMessage;
+    statusBar.style.borderColor = borderColor;
+    statusDot.style.backgroundColor = dotColor;
 }
 
     // --- controls and hotkeys
