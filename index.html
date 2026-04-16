@@ -31,6 +31,25 @@
             --border: rgba(255,255,255,0.1);
         }
 
+            .status-dot {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    .online {
+        background-color: green;
+    }
+    .partially-online {
+        background-color: yellow;
+    }
+    .mostly-offline {
+        background-color: orange;
+    }
+    .offline {
+        background-color: red;
+    }
+
         /* --- theme override --- */
         [data-theme="minecraft"] {
             --bg: #3c2a1a; --nav-bg: #2b1d12; --card-bg: #4e3524;
@@ -179,7 +198,9 @@
         .status-item { display: flex; align-items: center; gap: 10px; font-size: 0.9em; }
         .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; }
         .dot.online { background-color: #4CAF50; box-shadow: 0 0 8px #4CAF50; }
-
+.dot.partially-online { background-color: #FFC107; box-shadow: 0 0 8px #FFC107; }
+.dot.mostly-offline { background-color: #FF9800; box-shadow: 0 0 8px #FF9800; }
+.dot.offline { background-color: #ff4757; box-shadow: 0 0 8px #ff4757; }
         .changelog { border-left: 2px solid #333; margin-left: 20px; padding-left: 20px; }
         .changelog-item { margin-bottom: 20px; position: relative; }
         .changelog-item::before {
@@ -508,37 +529,43 @@ async function pingURL(url) {
               statElement.style.color = '#ff4757';
               offlineCount++;
           }
-      }
       
-      updateMasterStatus(offlineCount);
-  }
+function updateMasterStatus(offlineCount) {
+    const masterStatus = document.getElementById('master-status');
+    const statusBar = document.querySelector('.status-bar');
+    const dot = document.querySelector('.dot');
+    
+    if (!masterStatus || !statusBar || !dot) return;
 
-  function updateMasterStatus(offlineCount) {
-      const masterStatus = document.getElementById('master-status');
-      const statusBar = document.querySelector('.status-bar');
-      
-      if (!masterStatus || !statusBar) return;
+    let statusText = '';
+    let borderColor = '';
+    let dotClass = '';
 
-      let statusText = '';
-      let borderColor = '';
+    if (offlineCount === 0) {
+        statusText = 'All Systems Functional';
+        borderColor = '#4CAF50';
+        dotClass = 'online';
+    } else if (offlineCount > 0 && offlineCount <= 5) {
+        statusText = 'Partially Online';
+        borderColor = '#FFC107';
+        dotClass = 'partially-online';
+    } else if (offlineCount > 5 && offlineCount <= 8) {
+        statusText = 'Mostly Offline';
+        borderColor = '#FF9800';
+        dotClass = 'mostly-offline';
+    } else {
+        statusText = 'Offline';
+        borderColor = '#ff4757';
+        dotClass = 'offline';
+    }
 
-      if (offlineCount === 0) {
-          statusText = 'All Systems Functional';
-          borderColor = '#4CAF50';
-      } else if (offlineCount > 0 && offlineCount <= 5) {
-          statusText = 'Partially Online';
-          borderColor = '#FFC107';
-      } else if (offlineCount > 5 && offlineCount <= 8) {
-          statusText = 'Mostly Offline';
-          borderColor = '#FF9800';
-      } else {
-          statusText = 'Offline';
-          borderColor = '#ff4757';
-      }
-
-      masterStatus.textContent = statusText;
-      statusBar.style.borderLeftColor = borderColor;
-  }
+    masterStatus.textContent = statusText;
+    statusBar.style.borderLeftColor = borderColor;
+    
+    // Remove all status classes and add the new one
+    dot.classList.remove('online', 'partially-online', 'mostly-offline', 'offline');
+    dot.classList.add(dotClass);
+}
 
   // Update last-checked time
   function updateLastCheckedTime() {
