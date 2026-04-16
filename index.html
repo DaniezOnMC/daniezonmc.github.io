@@ -31,7 +31,7 @@
             --border: rgba(255,255,255,0.1);
         }
 
-        /* --- NEW THEME OVERRIDES --- */
+        /* --- theme override --- */
         [data-theme="minecraft"] {
             --bg: #3c2a1a; --nav-bg: #2b1d12; --card-bg: #4e3524;
             --text: #ffffff; --primary: #55aa00; --border: #000000;
@@ -401,20 +401,20 @@
     </footer>
 </div>
  <script>
-    // --- 1. CORE THEME ENGINE ---
+  // --- theme controlers
     const themeBtn = document.getElementById('theme-toggle');
 
     function setTheme(t) { 
         document.body.setAttribute("data-theme", t); 
         localStorage.setItem("site-theme", t); 
         
-        // Update the main toggle icon
+        // update the main toggle icon
         if (themeBtn) {
             themeBtn.innerHTML = t === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
         }
     }
 
-    // Initialize on load
+    // start on load
     const savedTheme = localStorage.getItem("site-theme") || "dark";
     setTheme(savedTheme);
 
@@ -426,7 +426,7 @@
         };
     }
 
-    // --- 2. SEARCH ENGINE ---
+    // --- search engine
     const searchInput = document.getElementById('nav-search');
     const gameCards = document.querySelectorAll('.game-card');
     
@@ -444,7 +444,7 @@
         };
     }
 
-    // --- 3. LIVE STATUS ENGINE ---
+    // --- status updater
     const gameData = [
         { name: "Eaglercraft 1.20", url: "1.20" },
         { name: "Resent Client 1.8", url: "1.8" },
@@ -480,7 +480,7 @@
             const target = `https://daniezonsfusd.github.io/${game.url}/`;
 
             try {
-                // Fetch with a timeout so it doesn't hang forever
+                // Fetch timeout
                 const controller = new AbortController();
                 const id = setTimeout(() => controller.abort(), 5000);
                 
@@ -501,9 +501,9 @@
         if(updateTime) updateTime.innerText = "Updated: " + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     }
 
-    // --- 4. CONTROLS & HOTKEYS ---
+    // --- controls and hotkeys
     document.onkeydown = (e) => {
-        // Stealth Mode
+        // stealth mode
         if (e.key === '[') { 
             document.getElementById('stealth-mode').style.display = 'block'; 
             document.title = "Nervous System Research"; 
@@ -512,9 +512,9 @@
             document.getElementById('stealth-mode').style.display = 'none'; 
             document.title = "DaniezOnSFUSD's Homepage"; 
         }
-        // Search Focus
+        // search focus
         if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
-        // Random Game (only if not typing in search)
+        // random game (only if not typing in search)
         if (e.key.toLowerCase() === 'r' && document.activeElement !== searchInput) {
             const visibleLinks = Array.from(gameCards).filter(c => c.style.display !== 'none');
             if(visibleLinks.length > 0) {
@@ -523,7 +523,7 @@
         }
     };
 
-    // --- 5. EXECUTION ---
+    // --- status exucuter ---
     setupStatusDashboard();
     runPingChecks();
     setInterval(runPingChecks, 300000); // Check every 5 mins
