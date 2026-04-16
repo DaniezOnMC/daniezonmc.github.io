@@ -153,7 +153,17 @@
         .trending { background-color: var(--amethyst); }
         .wip { background-color: var(--primary); }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.grid-vertical {
+  grid-template-columns: 1fr;
+}
+
         .card {
             background: var(--card-bg);
             color: var(--text);
@@ -273,26 +283,28 @@
         </div>
     </section>
 
-    <section id="issues" style="margin-top: 40px;">
+<section id="issues" style="margin-top:40px;">
     <h2>Known Issues</h2>
-    
-    <div class="grid">
-        <!-- Using h3 for sub-sections maintains a proper heading hierarchy -->
-        <h3>NautilusOS</h3>
-        <ul>
-            <li style="color: var(--text-primary); margin-bottom: 8px;">x86 Emulator does not load</li>
-            <li style="color: var(--text-primary); margin-bottom: 8px;">UltraViolet Browser does not load and results in 404</li>
-            <li style="color: var(--text-primary); margin-bottom: 8px;">Helios Browser does not load and results in 404</li>
-            <li style="color: var(--text-primary); margin-bottom: 8px;">Themes are not functional</li>
-        </ul>
+    <div class="grid grid-vertical">
+        <div>
+            <h3>NautilusOS</h3>
+            <ul>
+                <li style="color: var(--text-primary); margin-bottom: 8px;">x86 Emulator does not load</li>
+                <li style="color: var(--text-primary); margin-bottom: 8px;">UltraViolet Browser does not load and results in 404</li>
+                <li style="color: var(--text-primary); margin-bottom: 8px;">Helios Browser does not load and results in 404</li>
+                <li style="color: var(--text-primary); margin-bottom: 8px;">Themes are not functional</li>
+            </ul>
+        </div>
 
-        <h3>Eaglercraft 1.20</h3>
-        <ul>
-            <li style="color: var(--text-primary); margin-bottom: 8px;">
-                A TON of features from Minecraft 1.20 (like mace and elytra flying with fireworks) are NOT in the game. 
-                Please do not ask for these as I am not adding them.
-            </li>
-        </ul>
+        <div>
+            <h3>Eaglercraft 1.20</h3>
+            <ul>
+                <li style="color: var(--text-primary); margin-bottom: 8px;">
+                    A TON of features from Minecraft 1.20 (like mace and elytra flying with fireworks) are NOT in the game. 
+                    Please do not ask for these as I am not adding them.
+                </li>
+            </ul>
+        </div>
     </div>
 </section>
 
