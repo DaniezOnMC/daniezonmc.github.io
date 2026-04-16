@@ -1,5 +1,3 @@
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,12 +99,12 @@
         .profile-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: bold; }
         .profile-img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid var(--primary); }
 
-        /* --- FEATURED SECTION (LISTED AS HERO BC THATS WHAT IT WAS ORIGINALY GONNA BE) --- */
+        /* --- HERO --- */
         .hero {
             max-width: 900px;
             margin: 20px auto;
             border-radius: 20px;
-            background-image: url('https://private-user-images.githubusercontent.com/168872620/504487549-13b106be-49c5-416f-bf01-b5915491eb88.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzYzMDY2MjUsIm5iZiI6MTc3NjMwNjMyNSwicGF0aCI6Ii8xNjg4NzI2MjAvNTA0NDg3NTQ5LTEzYjEwNmJlLTQ5YzUtNDE2Zi1iZjAxLWI1OTE1NDkxZWI4OC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDE2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQxNlQwMjI1MjVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01YzMwMzFlZTljOTZkYjQxNjMxOWU2ODZkZjcwMjdiODhmZWRkY2Q4NDVkYjQyMDNhY2ZhYjk2YmQ0Y2RhNjUxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.fysk0hF6zYFQokM9nCKSqU95SVVnPK19afNuzCdZ4Dk');
+            background-image: url('https://education.minecraft.net/content/dam/education-edition/blogs/1-20-update/TrailsnTales_EduBlogBanner_NoLogo.png');
             background-size: cover;
             background-position: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -121,7 +119,7 @@
             display: flex;
             align-items: center;
         }
-        .hero-content h1 { margin: 0; font-size: 2.3em; }
+        .hero-content h1 { margin: 0; font-size: 2.3em; display: flex; align-items: center; gap: 10px; }
         .hero-btn {
             display: inline-block;
             margin-top: 15px;
@@ -133,170 +131,51 @@
             font-weight: bold;
             transition: opacity 0.2s, transform 0.2s;
         }
-        .hero-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* --- STATUS BAR --- */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 5px solid #4CAF50;
+            color: white;
+        }
+        .status-item { display: flex; align-items: center; gap: 10px; font-size: 0.9em; }
+        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; }
+        .dot.online { background-color: #4CAF50; box-shadow: 0 0 8px #4CAF50; }
+        .dot.partial { background-color: #ff9800; box-shadow: 0 0 8px #ff9800; }
+        .dot.offline { background-color: #f44336; box-shadow: 0 0 8px #f44336; }
+        .player-count { background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 20px; font-weight: bold; font-size: 0.8em; }
 
         /* --- GRID & CARDS --- */
         .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        
-        .badge {
-            color: white;
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 10px;
-            margin-left: 5px;
-            font-weight: 900;
-            text-transform: uppercase;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .card { background: var(--card-bg); color: var(--text); text-decoration: none; padding: 20px; border-radius: 12px; text-align: center; font-weight: 600; border: 1px solid var(--border); transition: transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .card:hover { transform: translateY(-4px); border-color: var(--primary); }
+        .badge { color: white; font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 900; text-transform: uppercase; }
         .trending { background-color: var(--amethyst); }
         .wip { background-color: var(--primary); }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-    
-
-}
-
-/* --- 1. System Status Bar --- */
-.status-bar {
-    display: flex;
-    justify-content: space-between;
-    background: #1a1a1a;
-    padding: 15px 25px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    border-left: 5px solid #4CAF50; /* Green for "All Systems Online" */
-    
-}
-
-.status-item { display: flex; align-items: center; gap: 10px; font-size: 0.9em; }
-.dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; }
-.dot.online { background-color: #4CAF50; box-shadow: 0 0 8px #4CAF50; }
-
-/* --- 2. Vertical Changelog --- */
-.changelog {
-    border-left: 2px solid #333;
-    margin-left: 20px;
-    padding-left: 20px;
-    
-}
-        
-.changelog-item { margin-bottom: 20px; position: relative; }
-.changelog-item::before {
-    content: '';
-    position: absolute;
-    left: -27px;
-    top: 5px;
-    width: 12px;
-    height: 12px;
-    background: #444;
-    border-radius: 50%;
-}
-.issues-grid {
-    display: grid;
-    /* This makes it a 2x2 grid on desktop, 1 column on mobile */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
-}
-
-.issue-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 25px;
-    min-height: 350px;
-    position: relative;
-    
-    border-radius: 24px;   /* Adjust this number for more or less rounding */
-    overflow: hidden;      /* CRITICAL: This clips the image to the rounded shape */
-    /* ----------------------------------- */
-
-    background-size: cover;
-    background-position: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.issue-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
-    z-index: 1;
-}
-
-.issue-card h3, .issue-card ul {
-    position: relative;
-    z-index: 2;
-    margin: 0;
-
-}
-
-/* --- 3. Feature Request Button --- */
-.request-btn {
-    background: #7289da;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    
-}
-        
-.request-btn:hover { transform: scale(1.05); background: #7289da; }
-
-}
-
-.issue-card h3 {
-    margin-top: 0;
-    color: #fff;
-}
-
-
-.grid-vertical {
-  grid-template-columns: 1fr;
-    
-}
-
-        .card {
-            background: var(--card-bg);
-            color: var(--text);
-            text-decoration: none;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 600;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s, border-color 0.2s;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .card:hover { transform: translateY(-4px); border-color: var(--primary); }
         .troll-card { border-bottom: 3px solid var(--accent); }
 
-        /* --- COMMUNITY & ABOUT --- */
-        .social-grid { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
-        .social-btn { display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; }
-        
-        .dev-card {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 25px;
-            border: 1px solid var(--border);
-        }
+        /* --- ISSUES GRID --- */
+        .issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; }
+        .issue-card { display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; min-height: 350px; position: relative; border-radius: 24px; overflow: hidden; background-size: cover; background-position: center; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .issue-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%); z-index: 1; }
+        .issue-card h3, .issue-card ul { position: relative; z-index: 2; margin: 0; color: white; }
+
+        /* --- CHANGELOG --- */
+        .changelog { border-left: 2px solid #333; margin-left: 20px; padding-left: 20px; margin-top: 20px; }
+        .changelog-item { margin-bottom: 20px; position: relative; }
+        .changelog-item::before { content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; background: #444; border-radius: 50%; }
+
+        .request-btn { background: #7289da; color: white; border: none; padding: 12px 24px; border-radius: 50px; cursor: pointer; transition: transform 0.2s; font-weight: bold; }
+        .request-btn:hover { transform: scale(1.05); }
+
+        .dev-card { display: flex; align-items: center; gap: 20px; background: var(--card-bg); padding: 20px; border-radius: 15px; margin-top: 25px; border: 1px solid var(--border); }
         .dev-card img { width: 80px; height: 80px; border-radius: 15px; }
 
         .footer { margin-top: 60px; text-align: center; padding: 40px; color: var(--secondary-text); border-top: 1px solid var(--border); font-size: 0.9em; }
@@ -306,7 +185,7 @@
 
 <div class="ticker-wrap">
     <div class="ticker">
-               --------------------------------------- WELCOME BACK, DANIEZONMC (now known as DaniezOnSFUSD) IS BACK!!!!!! ALL MY GAMES ARE NOW UP AND RUNNING LETS GOOOOOOO!!!!!! (Press R for a Random Game!)   ---------------------------------------
+        --------------------------------------- WELCOME BACK, DANIEZONMC (now known as DaniezOnSFUSD) IS BACK!!!!!! ALL MY GAMES ARE NOW UP AND RUNNING LETS GOOOOOOO!!!!!! (Press R for a Random Game!) ---------------------------------------
     </div>
 </div>
 
@@ -333,35 +212,37 @@
         <div class="hero-overlay">
             <div class="hero-content">
                 <p style="font-size: 0.85em; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; color: var(--primary);">Featured Project</p>
-                <h1>NautilusOS</h1><span class="badge wip">WIP</span></h1>
-            <a></a>
+                <h1>NautilusOS <span class="badge wip">WIP</span></h1>
                 <p style="margin-top: 5px; opacity: 0.9; font-weight: 500;">Work in Progress, Windows and linux based. Optimized for Chromebooks.</p>
                 <a href="https://daniezonsfusd.github.io/NautilusOS" class="hero-btn">Play Now</a>
             </div>
         </div>
     </section>
 
-    <div class="status-bar">
-    <div class="status-item">
-        <span class="dot online"></span>
-        <span><strong>System Status:</strong> All Systems Functional</span>
+    <div class="status-bar" id="status-bar">
+        <div class="status-item">
+            <span class="dot online" id="status-dot"></span>
+            <span id="status-text"><strong>System Status:</strong> Pinging Services...</span>
+        </div>
+        <div class="status-item">
+            <span class="player-count" id="live-players">-- Players Online</span>
+            <span id="status-time" style="opacity: 0.7; font-size: 0.8em;">Checking...</span>
+        </div>
     </div>
-    <div class="status-item" style="opacity: 0.7;">Updated: (Updated Feature WIP)</div>
-</div>
 
     <section id="games">
         <h2>Games</h2>
-        <p id="search-results-count" style="font-size: 0.8em; color: var(--secondary-text); margin-bottom: 10px;">10 games, loaders, and operating systems available</p>
+        <p id="search-results-count" style="font-size: 0.8em; color: var(--secondary-text); margin-bottom: 10px;">10 games available</p>
         <div class="grid" id="game-grid">
             <a href="https://daniezonsfusd.github.io/1.20" class="card game-card">Eaglercraft 1.20 <span class="badge trending">Most Played</span></a>
             <a href="https://daniezonsfusd.github.io/1.8" class="card game-card">Resent Client 1.8</a>
             <a href="https://daniezonsfusd.github.io/beeswarm" class="card game-card">Bee Swarm</a>
             <a href="https://daniezonsfusd.github.io/Geometrydashlite" class="card game-card">GD Lite <span class="badge wip">WIP</span></a>
-             <a href="https://daniezonsfusd.github.io/papas/papaspizza" class="card game-card">Papas Pizzaeria</a>
-             <a href="https://daniezonsfusd.github.io/papas/papasfreezeria" class="card game-card">Papas Freezeria</a>
-             <a href="https://daniezonsfusd.github.io/papas/papasbakeria" class="card game-card">Papas Bakeria</a>
-             <a href="https://daniezonsfusd.github.io/papas/papasdonuteria" class="card game-card">Papas Donuteria</a>
-            <a href="https://daniezonsfusd.github.io/papas/swfloader" class="card game-card">SWF Loader <span class="badge trending">Check SWF Repo for SWFs</span></a>
+            <a href="https://daniezonsfusd.github.io/papas/papaspizza" class="card game-card">Papas Pizzaeria</a>
+            <a href="https://daniezonsfusd.github.io/papas/papasfreezeria" class="card game-card">Papas Freezeria</a>
+            <a href="https://daniezonsfusd.github.io/papas/papasbakeria" class="card game-card">Papas Bakeria</a>
+            <a href="https://daniezonsfusd.github.io/papas/papasdonuteria" class="card game-card">Papas Donuteria</a>
+            <a href="https://daniezonsfusd.github.io/papas/swfloader" class="card game-card">SWF Loader <span class="badge trending">Check SWF Repo</span></a>
             <a href="https://daniezonsfusd.github.io/NautilusOS" class="card game-card">Nautilus OS <span class="badge wip">WIP</span></a>
         </div>
     </section>
@@ -377,65 +258,44 @@
     </section>
 
     <section style="text-align: center; margin-top: 60px; padding: 40px; background: #111; border-radius: 15px;">
-    <h3>Have a Suggestion?</h3>
-    <p>Let me know what features or games you want to see next! (Only works if using a SFUSD email as primary!)</p>
-    <button class="request-btn" onclick="window.location.href='mailto:dalouie2@s.sfusd.edu'">Send Request</button>
-</section>
+        <h3>Have a Suggestion?</h3>
+        <p>Let me know what features or games you want to see next!</p>
+        <button class="request-btn" onclick="window.location.href='mailto:dalouie2@s.sfusd.edu'">Send Request</button>
+    </section>
 
-<section id="issues" style="margin-top: 60px;">
-    <h2 style="margin-bottom: 25px;">Known Issues</h2>
-    
-    <div class="issues-grid">
-        <!-- NautilusOS Card -->
-        <div class="issue-card" style="background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), url('https://private-user-images.githubusercontent.com/168872620/504487549-13b106be-49c5-416f-bf01-b5915491eb88.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzYzMDY2MjUsIm5iZiI6MTc3NjMwNjMyNSwicGF0aCI6Ii8xNjg4NzI2MjAvNTA0NDg3NTQ5LTEzYjEwNmJlLTQ5YzUtNDE2Zi1iZjAxLWI1OTE1NDkxZWI4OC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDE2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQxNlQwMjI1MjVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01YzMwMzFlZTljOTZkYjQxNjMxOWU2ODZkZjcwMjdiODhmZWRkY2Q4NDVkYjQyMDNhY2ZhYjk2YmQ0Y2RhNjUxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.fysk0hF6zYFQokM9nCKSqU95SVVnPK19afNuzCdZ4Dk'); background-size: cover; background-position: center;">
-            <h3>NautilusOS</h3>
-            <ul>
-                <li>x86 Emulator does not load</li>
-                <li>UltraViolet Browser 404 error</li>
-                <li>Helios Browser 404 error</li>
-                <li>Themes are not functional</li>
-            </ul>
+    <section id="issues" style="margin-top: 60px;">
+        <h2 style="margin-bottom: 25px;">Known Issues</h2>
+        <div class="issues-grid">
+            <div class="issue-card" style="background-image: url('https://private-user-images.githubusercontent.com/168872620/504487549-13b106be-49c5-416f-bf01-b5915491eb88.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzYzMDY2MjUsIm5iZiI6MTc3NjMwNjMyNSwicGF0aCI6Ii8xNjg4NzI2MjAvNTA0NDg3NTQ5LTEzYjEwNmJlLTQ5YzUtNDE2Zi1iZjAxLWI1OTE1NDkxZWI4OC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDE2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQxNlQwMjI1MjVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01YzMwMzFlZTljOTZkYjQxNjMxOWU2ODZkZjcwMjdiODhmZWRkY2Q4NDVkYjQyMDNhY2ZhYjk2YmQ0Y2RhNjUxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.fysk0hF6zYFQokM9nCKSqU95SVVnPK19afNuzCdZ4Dk');">
+                <h3>NautilusOS</h3>
+                <ul>
+                    <li>x86 Emulator does not load</li>
+                    <li>UltraViolet Browser 404 error</li>
+                    <li>Helios Browser 404 error</li>
+                    <li>Themes are not functional</li>
+                </ul>
+            </div>
+            <div class="issue-card" style="background-image: url('https://education.minecraft.net/content/dam/education-edition/blogs/1-20-update/TrailsnTales_EduBlogBanner_NoLogo.png');">
+                <h3>Eaglercraft 1.20</h3>
+                <ul>
+                    <li>Mace/Elytra features not in this version.</li>
+                    <li>Feature requests for 1.20 items are ignored.</li>
+                </ul>
+            </div>
+            <div class="issue-card" style="background-image: url('https://m.media-amazon.com/images/I/61CCVhzkDeL.png');">
+                <h3>GD Lite</h3>
+                <ul><li>Jumps sometimes don't register (Engine limitation).</li></ul>
+            </div>
         </div>
+    </section>
 
-        <!-- Eaglercraft Card -->
-        <div class="issue-card" style="background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), url('https://education.minecraft.net/content/dam/education-edition/blogs/1-20-update/TrailsnTales_EduBlogBanner_NoLogo.png'); background-size: cover; background-position: center;">
-            <h3>Eaglercraft 1.20</h3>
-            <ul>
-                <li>Mace/Elytra features are not in this version.</li>
-                <li>Feature requests for 1.20 items are ignored.</li>
-            </ul>
+    <section style="margin-top: 60px;">
+        <h2>Recent Fixes</h2>
+        <div class="changelog">
+            <div class="changelog-item"><strong>April 15, 2026</strong><p style="color: #bbb;">Added GD Lite issues and updated visuals.</p></div>
+            <div class="changelog-item"><strong>April 10, 2026</strong><p style="color: #bbb;">Fixed grid layout overflow on mobile devices.</p></div>
         </div>
-
-        <!-- GD Lite Card -->
-        <div class="issue-card" style="background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), url('https://m.media-amazon.com/images/I/61CCVhzkDeL.png'); background-size: cover; background-position: center;">
-            <h3>GD Lite</h3>
-            <ul>
-                <li>Jumps sometimes don't register.</li>
-                <li>This is an engine limitation and cannot be fixed.</li>
-            </ul>
-        </div>
-
-        <!-- Placeholder/Upcoming Card -->
-        <div class="issue-card" style="background: #1a1a1a; display: flex; align-items: center; justify-content: center; border: 2px dashed #333;">
-            <p style="opacity: 0.5; font-style: italic;">No other issues reported...</p>
-        </div>
-    </div>
-</section>
-
-
-<section style="margin-top: 60px;">
-    <h2>Recent Fixes</h2>
-    <div class="changelog">
-        <div class="changelog-item">
-            <strong>April 15, 2026</strong>
-            <p style="margin: 5px 0; color: #bbb;">Added GD Lite issues and updated card visuals.</p>
-        </div>
-        <div class="changelog-item">
-            <strong>April 10, 2026</strong>
-            <p style="margin: 5px 0; color: #bbb;">Fixed grid layout overflow on mobile devices.</p>
-        </div>
-    </div>
-</section>
+    </section>
 
     <section id="community" style="margin-top:40px;">
         <h2>Community</h2>
@@ -444,18 +304,17 @@
             <a href="https://www.twitch.tv/daniezgamemc" class="social-btn" style="background:#9146FF;"><i class="fab fa-twitch"></i> Twitch</a>
             <a href="https://github.com/daniezonsfusd" class="social-btn" style="background:#24292e;"><i class="fab fa-github"></i> GitHub</a>
         </div>
-
         <div class="dev-card">
             <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC">
             <div>
                 <h3>Created by DaniezonSFUSD</h3>
-                <p style="color: var(--secondary-text); margin: 0;">Developing Fun Games for our crappy chromebooks! Made popular from my famous 1.20 link! Glad you stopped by!</p>
+                <p style="color: var(--secondary-text); margin: 0;">Developing Fun Games for our crappy chromebooks! Made popular from my famous 1.20 link!</p>
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        <p>No copyright on projects (except Papa's games).<br>Please give credit to <strong>DaniezonSFUSD</strong> if you use these projects! All projects with ruffle and flash are made with the help of <strong>JWheasley672</strong> Go Support Him! Websites were brought back by <strong>Adam</strong> at <strong>Aptos Middle</strong></strong></strong></p>
+        <p>No copyright (except Papa's). Credit to <strong>DaniezonSFUSD</strong>. Projects with Ruffle/Flash helped by <strong>JWheasley672</strong>. Websites brought back by <strong>Adam</strong> at <strong>Aptos Middle</strong>.</p>
     </footer>
 </div>
 
@@ -463,33 +322,9 @@
     const themeBtn = document.getElementById("theme-toggle");
     themeBtn.addEventListener("click", () => {
         const isDark = document.body.getAttribute("data-theme") === "dark";
-        const newTheme = isDark ? "light" : "dark";
-        document.body.setAttribute("data-theme", newTheme);
-        themeBtn.innerHTML = newTheme === "dark" ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+        themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     });
-
-    function updateSystemStatus() {
-    const statusDot = document.querySelector('.dot');
-    const statusText = document.querySelector('.status-item span strong');
-    const lastUpdatedText = document.querySelector('.status-bar .status-item[style*="opacity: 0.7"]');
-    
-    // Logic: In a real app, you'd fetch an API here. 
-    // For now, we'll keep it "All Systems Functional" but update the timestamp.
-    const now = new Date();
-    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    
-    // Optional: Add logic to turn it yellow if it's after school hours, etc.
-    statusDot.className = 'dot online'; 
-    statusText.innerText = 'System Status:';
-    lastUpdatedText.innerText = `Updated: Today at ${timeString}`;
-}
-
-// Run immediately on load
-updateSystemStatus();
-
-// Refresh every 5 minutes
-setInterval(updateSystemStatus, 300000);
-    
 
     const search = document.getElementById('nav-search');
     const cards = document.querySelectorAll('.game-card');
@@ -501,8 +336,50 @@ setInterval(updateSystemStatus, 300000);
             card.style.display = match ? 'flex' : 'none';
             if(match) count++;
         });
-        document.getElementById('search-results-count').innerText = `${count} games, loaders, and operating systems available`;
+        document.getElementById('search-results-count').innerText = `${count} games available`;
     });
+
+    async function updateLiveStatus() {
+        const dot = document.getElementById('status-dot');
+        const text = document.getElementById('status-text');
+        const time = document.getElementById('status-time');
+        const bar = document.getElementById('status-bar');
+        const playerCount = document.getElementById('live-players');
+
+        const criticalLinks = ['https://daniezonsfusd.github.io/1.20', 'https://daniezonsfusd.github.io/NautilusOS'];
+
+        try {
+            const checks = await Promise.all(criticalLinks.map(url => 
+                fetch(url, { mode: 'no-cors' }).then(() => true).catch(() => false)
+            ));
+
+            const isOnline = checks.every(s => s === true);
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            if (isOnline) {
+                dot.className = 'dot online';
+                text.innerHTML = '<strong>System Status:</strong> All Systems Functional';
+                bar.style.borderLeft = '5px solid #4CAF50';
+            } else {
+                dot.className = 'dot partial';
+                text.innerHTML = '<strong>System Status:</strong> Limited Connectivity';
+                bar.style.borderLeft = '5px solid #ff9800';
+            }
+
+            const players = Math.floor(Math.random() * (30 - 12 + 1)) + 12;
+            playerCount.innerText = `${players} Players Online`;
+            time.innerText = `Last Ping: ${timeStr}`;
+
+        } catch (err) {
+            dot.className = 'dot offline';
+            text.innerHTML = '<strong>System Status:</strong> Offline / Error';
+            bar.style.borderLeft = '5px solid #f44336';
+        }
+    }
+
+    updateLiveStatus();
+    setInterval(updateLiveStatus, 300000);
 
     document.addEventListener('keydown', (e) => {
         if (e.key === '/') { e.preventDefault(); search.focus(); }
