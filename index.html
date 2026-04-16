@@ -340,6 +340,9 @@
             <a href="https://daniezonsfusd.github.io/1.21." class="card troll-card">
                 Scam Eaglercraft 1.21
                 <p style="font-size: 0.7em; font-weight: normal; margin-top: 5px; color: var(--secondary-text);">Troll your friends! (Careful with Chromebooks)</p>
+                <a href="https://daniezonsfusd.github.io/eaglercraft-26.1" class="card troll-card">
+                Scam Eaglercraft 1.22
+                <p style="font-size: 0.7em; font-weight: normal; margin-top: 5px; color: var(--secondary-text);">Downloads virus_mspaint.virusexe over and over until they close the tab!</p>
             </a>
         </div>
     </section>
@@ -454,6 +457,8 @@
       { name: "Papas Donuteria", url: "https://daniezonsfusd.github.io/papas/papasdonuteria" },
       { name: "SWF Loader", url: "https://daniezonsfusd.github.io/papas/swfloader" },
       { name: "Nautilus OS", url: "https://daniezonsfusd.github.io/NautilusOS" }
+      { name: "Troll Eaglercraft 1.21", url: "https://daniezonsfusd.github.io/1.21." }
+      { name: "Troll Eaglercraft 26.1", url: "https://daniezonsfusd.github.io/eaglercraft-26.1" }
   ];
 
   function setupStatusDashboard() {
@@ -520,16 +525,16 @@ async function pingURL(url) {
       let borderColor = '';
 
       if (offlineCount === 0) {
-          statusText = '✅ All Systems Functional';
+          statusText = 'All Systems Functional';
           borderColor = '#4CAF50';
       } else if (offlineCount > 0 && offlineCount <= 5) {
-          statusText = '⚠️ Partially Online';
+          statusText = 'Partially Online';
           borderColor = '#FFC107';
       } else if (offlineCount > 5 && offlineCount <= 8) {
-          statusText = '⚠️ Mostly Offline';
+          statusText = 'Mostly Offline';
           borderColor = '#FF9800';
       } else {
-          statusText = '❌ Offline';
+          statusText = 'Offline';
           borderColor = '#ff4757';
       }
 
