@@ -468,23 +468,25 @@
   }
 
   // Ping a URL with 20-second timeout
-  async function pingURL(url) {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 20000); // 20 second timeout
+async function pingURL(url) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
 
-      try {
-          const response = await fetch(url, {
-              method: 'HEAD',
-              mode: 'no-cors',
-              signal: controller.signal
-          });
-          clearTimeout(timeoutId);
-          return true; // Online
-      } catch (error) {
-          clearTimeout(timeoutId);
-          return false; // Offline or timeout
-      }
-  }
+    try {
+        // Add a query parameter to bypass cache
+        const checkUrl = url.includes('?') ? url + '&_t=' + Date.now() : url + '?_t=' + Date.now();
+        
+        const response = await fetch(checkUrl, {
+            method: 'HEAD',
+            signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        return response.ok; // Returns true for 2xx status codes
+    } catch (error) {
+        clearTimeout(timeoutId);
+        return false;
+    }
+}
 
   async function runPingChecks() {
       let offlineCount = 0;
