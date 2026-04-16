@@ -398,54 +398,52 @@
         <p>No copyright (except Papa's). Developed for the SFUSD Community. <br>Please give credit to <strong>DaniezonSFUSD</strong>! Flash help by <strong>JWheasley672</strong>. Restored by <strong>Adam</strong> at <strong>Aptos Middle</strong>.</p>
     </footer>
 </div>
+ <script>
+    // --- 1. CORE THEME ENGINE ---
+    const themeBtn = document.getElementById('theme-toggle');
 
-<script>
-        // 1. UPDATED THEME LOGIC
     function setTheme(t) { 
         document.body.setAttribute("data-theme", t); 
         localStorage.setItem("site-theme", t); 
         
-        // Update the icon inside the button if it exists
-        const themeBtn = document.getElementById('theme-toggle');
+        // Update the main toggle icon
         if (themeBtn) {
             themeBtn.innerHTML = t === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-        } 
+        }
+    }
 
-    // Initialize theme
+    // Initialize on load
     const savedTheme = localStorage.getItem("site-theme") || "dark";
     setTheme(savedTheme);
 
-    // Add the click listener after the page loads to be safe
-    document.addEventListener('DOMContentLoaded', () => {
-        const themeBtn = document.getElementById('theme-toggle');
-        if (themeBtn) {
-            themeBtn.addEventListener('click', () => {
-                const current = document.body.getAttribute("data-theme");
-                setTheme(current === "dark" ? "light" : "dark");
+    // Event Listeners for Buttons
+    if (themeBtn) {
+        themeBtn.onclick = () => {
+            const current = document.body.getAttribute("data-theme");
+            setTheme(current === "dark" ? "light" : "dark");
+        };
+    }
+
+    // --- 2. SEARCH ENGINE ---
+    const searchInput = document.getElementById('nav-search');
+    const gameCards = document.querySelectorAll('.game-card');
+    
+    if (searchInput) {
+        searchInput.oninput = (e) => {
+            const val = e.target.value.toLowerCase();
+            let count = 0;
+            gameCards.forEach(card => {
+                const match = card.textContent.toLowerCase().includes(val);
+                card.style.display = match ? 'flex' : 'none';
+                if(match) count++;
             });
-        }
-    });
-    
-    setTheme(localStorage.getItem("site-theme") || "dark");
+            const counter = document.getElementById('search-results-count');
+            if(counter) counter.innerText = `${count} games available`;
+        };
+    }
 
-    // 2. SEARCH LOGIC
-    const search = document.getElementById('nav-search');
-    const cards = document.querySelectorAll('.game-card');
-    
-    search.addEventListener('input', (e) => {
-        const val = e.target.value.toLowerCase();
-        let count = 0;
-        cards.forEach(card => {
-            const match = card.textContent.toLowerCase().includes(val);
-            card.style.display = match ? 'flex' : 'none';
-            if(match) count++;
-        });
-        const countText = document.getElementById('search-results-count');
-        if(countText) countText.innerText = `${count} games available`;
-    });
-
-    // 3. GAME STATUS CONFIGURATION
-    const gameList = [
+    // --- 3. LIVE STATUS ENGINE ---
+    const gameData = [
         { name: "Eaglercraft 1.20", url: "1.20" },
         { name: "Resent Client 1.8", url: "1.8" },
         { name: "Bee Swarm", url: "beeswarm" },
@@ -458,76 +456,75 @@
         { name: "Nautilus OS", url: "NautilusOS" }
     ];
 
-    // Build the Dashboard UI
-    function initStatusGrid() {
-        const container = document.getElementById('status-checker-grid');
-        if(!container) return;
-        container.innerHTML = gameList.map(game => `
+    function setupStatusDashboard() {
+        const grid = document.getElementById('status-checker-grid');
+        if(!grid) return;
+        grid.innerHTML = gameData.map(game => `
             <div class="card" style="flex-direction: row; justify-content: space-between; padding: 15px; text-align: left;">
                 <span style="font-size: 0.9em;">${game.name}</span>
-                <span id="status-${game.url.replace(/\//g, '-')}" style="font-weight: bold; font-size: 0.8em;">Checking...</span>
+                <span id="stat-${game.url.replace(/\//g, '-')}" style="font-weight: bold; font-size: 0.8em; color: #888;">WAITING...</span>
             </div>
         `).join('');
     }
 
-    // Actual Status Checking Logic
-    async function checkSystemStatus() {
-        const statusText = document.getElementById('master-status');
-        const timeText = document.getElementById('last-updated-time');
-        if(statusText) statusText.innerText = "Scanning Github Servers...";
+    async function runPingChecks() {
+        const masterStatus = document.getElementById('master-status');
+        const updateTime = document.getElementById('last-updated-time');
+        
+        if(masterStatus) masterStatus.innerText = "Checking Links...";
 
-        for (let game of gameList) {
-            const label = document.getElementById(`status-${game.url.replace(/\//g, '-')}`);
-            const mainCardLabel = document.querySelector(`.site-status-label[data-url="${game.url}"]`);
-            
-            // Fixed Root URL
-            const fullURL = `https://daniezonsfusd.github.io/${game.url}/`;
+        for (let game of gameData) {
+            const display = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
+            const target = `https://daniezonsfusd.github.io/${game.url}/`;
 
             try {
-                await fetch(fullURL, { mode: 'no-cors', cache: 'no-store' });
-                const statusHtml = `<span style="color: #4CAF50;">● ONLINE</span>`;
-                if(label) label.innerHTML = statusHtml;
-                if(mainCardLabel) {
-                    mainCardLabel.innerHTML = "● Online";
-                    mainCardLabel.style.color = "#4CAF50";
+                // Fetch with a timeout so it doesn't hang forever
+                const controller = new AbortController();
+                const id = setTimeout(() => controller.abort(), 5000);
+                
+                await fetch(target, { mode: 'no-cors', signal: controller.signal });
+                clearTimeout(id);
+                
+                if(display) {
+                    display.innerHTML = '<span style="color: #4CAF50;">● ONLINE</span>';
                 }
-            } catch (e) {
-                const statusHtml = `<span style="color: #ff4757;">● OFFLINE</span>`;
-                if(label) label.innerHTML = statusHtml;
-                if(mainCardLabel) {
-                    mainCardLabel.innerHTML = "● Offline";
-                    mainCardLabel.style.color = "#ff4757";
+            } catch (err) {
+                if(display) {
+                    display.innerHTML = '<span style="color: #ff4757;">● OFFLINE</span>';
                 }
             }
         }
-        if(statusText) statusText.innerText = "All Systems Functional";
-        if(timeText) timeText.innerText = "Updated: " + new Date().toLocaleTimeString();
+        
+        if(masterStatus) masterStatus.innerText = "All Systems Functional";
+        if(updateTime) updateTime.innerText = "Updated: " + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     }
 
-    // 4. KEYBOARD SHORTCUTS
-    document.addEventListener('keydown', (e) => {
+    // --- 4. CONTROLS & HOTKEYS ---
+    document.onkeydown = (e) => {
         // Stealth Mode
         if (e.key === '[') { 
             document.getElementById('stealth-mode').style.display = 'block'; 
-            document.title = "Unit 4: Nervous System Research"; 
+            document.title = "Nervous System Research"; 
         }
         if (e.key === ']') { 
             document.getElementById('stealth-mode').style.display = 'none'; 
             document.title = "DaniezOnSFUSD's Homepage"; 
         }
         // Search Focus
-        if (e.key === '/') { e.preventDefault(); search.focus(); }
-        // Random Game
-        if (e.key.toLowerCase() === 'r' && document.activeElement !== search) {
-            const links = Array.from(cards).map(c => c.href);
-            window.location.href = links[Math.floor(Math.random() * links.length)];
+        if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
+        // Random Game (only if not typing in search)
+        if (e.key.toLowerCase() === 'r' && document.activeElement !== searchInput) {
+            const visibleLinks = Array.from(gameCards).filter(c => c.style.display !== 'none');
+            if(visibleLinks.length > 0) {
+                window.location.href = visibleLinks[Math.floor(Math.random() * visibleLinks.length)].href;
+            }
         }
-    });
+    };
 
-    // 5. RUN ON START
-    initStatusGrid();
-    checkSystemStatus();
-    setInterval(checkSystemStatus, 300000); // Re-check every 5 minutes
-</script>
+    // --- 5. EXECUTION ---
+    setupStatusDashboard();
+    runPingChecks();
+    setInterval(runPingChecks, 300000); // Check every 5 mins
+ </script>
 </body>
 </html>
