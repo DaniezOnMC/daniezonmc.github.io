@@ -206,28 +206,28 @@
 }
 
 .issue-card {
-    position: relative;
-    overflow: hidden;
-    min-height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: 25px;
+    min-height: 350px;
+    position: relative;
     
+    border-radius: 24px;   /* Adjust this number for more or less rounding */
+    overflow: hidden;      /* CRITICAL: This clips the image to the rounded shape */
+    /* ----------------------------------- */
 
-    background-color: #1a1a1a; 
     background-size: cover;
     background-position: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease;
 }
 
-
 .issue-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
     z-index: 1;
 }
 
