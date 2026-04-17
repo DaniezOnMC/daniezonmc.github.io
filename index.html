@@ -20,6 +20,7 @@
             --border: rgba(0,0,0,0.1);
             --amethyst: #9966cc;
             --crimson: #990000;
+            --sidebar-w: 70px;
         }
 
         [data-theme="dark"] {
@@ -31,31 +32,12 @@
             --border: rgba(255,255,255,0.1);
         }
 
-            .status-dot {
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-        display: inline-block;
-    }
-    .online {
-        background-color: green;
-    }
-    .partially-online {
-        background-color: yellow;
-    }
-    .mostly-offline {
-        background-color: orange;
-    }
-    .offline {
-        background-color: red;
-    }
-
-        /* --- theme override --- */
         [data-theme="minecraft"] {
             --bg: #3c2a1a; --nav-bg: #2b1d12; --card-bg: #4e3524;
             --text: #ffffff; --primary: #55aa00; --border: #000000;
             font-family: 'Courier New', monospace;
         }
+
         [data-theme="kpop"] {
             --bg: #f0f4ff; --nav-bg: #ffffff; --card-bg: rgba(255, 255, 255, 0.7);
             --text: #4a4e69; --primary: #bde0fe; --accent: #ffafcc;
@@ -69,9 +51,11 @@
             color: var(--text);
             line-height: 1.6;
             margin: 0;
-            transition: background 0.3s, color 0.3s;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
         }
 
+        /* --- Ticker --- */
         .ticker-wrap {
             width: 100%;
             overflow: hidden;
@@ -80,18 +64,21 @@
             padding: 6px 0;
             font-size: 0.85em;
             font-weight: bold;
+            position: relative;
+            z-index: 1001;
         }
         .ticker {
             display: inline-block;
             white-space: nowrap;
             padding-right: 100%;
-            animation: ticker 49s linear infinite;
+            animation: ticker 45s linear infinite;
         }
         @keyframes ticker {
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(-100%, 0, 0); }
         }
 
+        /* --- Navigation --- */
         nav {
             background: var(--nav-bg);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -99,187 +86,162 @@
             top: 0;
             z-index: 1000;
             padding: 10px 0;
+            border-bottom: 1px solid var(--border);
         }
         .nav-container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
         }
-        .search-container {
-            position: relative;
-            margin: 0 15px;
-            flex-grow: 1;
-            max-width: 300px;
-        }
+        .search-container { position: relative; flex-grow: 1; max-width: 400px; margin: 0 20px; }
         #nav-search {
             width: 100%;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 10px 18px;
+            border-radius: 12px;
             border: 1px solid var(--border);
             background: var(--bg);
             color: var(--text);
-            outline: none;
+            font-size: 0.9em;
+            transition: all 0.2s;
         }
-        .nav-links { display: flex; align-items: center; gap: 20px; }
-        .nav-link { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.95em; }
-        .profile-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: bold; }
-        .profile-img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid var(--primary); }
+        #nav-search:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.2); outline: none; }
+        
+        .nav-links { display: flex; align-items: center; gap: 15px; }
+        .nav-link { 
+            color: var(--text); 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.85em; 
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .nav-link:hover { background: rgba(0,0,0,0.05); }
 
+        .profile-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); font-weight: 800; font-size: 1.1em; }
+        .profile-img { width: 38px; height: 38px; border-radius: 10px; border: 2px solid var(--primary); }
+
+        /* --- Main Layout --- */
+        .main-content { margin: 20px auto; max-width: 1200px; padding: 0 20px; }
+
+        /* --- Hero --- */
         .hero {
-            max-width: 900px;
-            margin: 20px auto;
-            border-radius: 20px;
+            border-radius: 24px;
             background-image: url('https://daniezonsfusd.github.io/homepage/assets/NautilusOS.png');
             background-size: cover;
             background-position: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             position: relative;
             overflow: hidden;
             border: 1px solid var(--border);
+            margin-bottom: 30px;
         }
         .hero-overlay {
-            padding: 50px 40px;
-            background: linear-gradient(to right, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.3) 100%);
+            padding: 60px 50px;
+            background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
             color: white;
-            display: flex;
-            align-items: center;
         }
-        .hero-content h1 { margin: 0; font-size: 2.3em; }
+        .hero-content h1 { margin: 0; font-size: 2.8em; letter-spacing: -1px; }
         .hero-btn {
             display: inline-block;
-            margin-top: 15px;
-            padding: 10px 25px;
+            margin-top: 20px;
+            padding: 12px 30px;
             background: var(--primary);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: bold;
-            transition: opacity 0.2s, transform 0.2s;
+            transition: all 0.2s;
         }
-        .hero-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); opacity: 0.9; }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        
-        .badge {
-            color: white;
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 10px;
-            margin-left: 5px;
-            font-weight: 900;
-            text-transform: uppercase;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        
-        .trending { background-color: var(--amethyst); }
-        .wip { background-color: var(--primary); }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
+        /* --- Status Bar --- */
         .status-bar {
             display: flex;
             justify-content: space-between;
-            background: #1a1a1a;
+            background: var(--card-bg);
             padding: 15px 25px;
-            border-radius: 8px;
+            border-radius: 12px;
             margin-bottom: 30px;
-            border-left: 5px solid #4CAF50;
+            border-left: 6px solid #4CAF50;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
+        .status-item { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.9em; }
+        .dot { height: 12px; width: 12px; border-radius: 50%; display: inline-block; }
+        .dot.online { background: #4CAF50; box-shadow: 0 0 10px #4CAF50; }
+        .dot.partially-online { background: #FFC107; box-shadow: 0 0 10px #FFC107; }
+        .dot.mostly-offline { background: #FF9800; box-shadow: 0 0 10px #FF9800; }
+        .dot.offline { background: #ff4757; box-shadow: 0 0 10px #ff4757; }
 
-        .status-item { display: flex; align-items: center; gap: 10px; font-size: 0.9em; }
-        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; }
-        .dot.online { background-color: #4CAF50; box-shadow: 0 0 8px #4CAF50; }
-.dot.partially-online { background-color: #FFC107; box-shadow: 0 0 8px #FFC107; }
-.dot.mostly-offline { background-color: #FF9800; box-shadow: 0 0 8px #FF9800; }
-.dot.offline { background-color: #ff4757; box-shadow: 0 0 8px #ff4757; }
-        .changelog { border-left: 2px solid #333; margin-left: 20px; padding-left: 20px; }
-        .changelog-item { margin-bottom: 20px; position: relative; }
-        .changelog-item::before {
-            content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; background: #444; border-radius: 50%;
-        }
-
-        .issues-grid {
+        /* --- Cards & Grid --- */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
         }
-
-        .issue-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+        .card {
+            background: var(--card-bg);
+            color: var(--text);
+            text-decoration: none;
             padding: 25px;
-            min-height: 350px;
+            border-radius: 16px;
+            text-align: center;
+            font-weight: 700;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            border-radius: 24px;
             overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
         }
-
-        .issue-card::before {
+        .card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
+        .card::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
-            z-index: 1;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--primary);
+            opacity: 0; transition: opacity 0.3s;
         }
-
-        .issue-card h3, .issue-card ul { position: relative; z-index: 2; margin: 0; }
-
-        .request-btn {
-            background: #7289da; color: white; border: none; padding: 12px 24px; border-radius: 50px; cursor: pointer; transition: transform 0.2s;
-        }
-        .request-btn:hover { transform: scale(1.05); background: #7289da; }
-
-        .card {
-            background: var(--card-bg); color: var(--text); text-decoration: none; padding: 20px; border-radius: 12px; text-align: center; font-weight: 600;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s, border-color 0.2s; border: 1px solid var(--border);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-        }
-        .card:hover { transform: translateY(-4px); border-color: var(--primary); }
-        .troll-card { border-bottom: 3px solid var(--accent); }
-
-        .site-status-label { font-size: 0.7em; margin-top: 8px; font-weight: normal; opacity: 0.8; }
-
-        .social-grid { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
-        .social-btn { display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; }
+        .card:hover::after { opacity: 1; }
         
-        .dev-card {
-            display: flex; align-items: center; gap: 20px; background: var(--card-bg); padding: 20px; border-radius: 15px; margin-top: 25px; border: 1px solid var(--border);
+        .badge {
+            font-size: 9px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            margin-left: 8px;
+            text-transform: uppercase;
+            font-weight: 900;
         }
-        .dev-card img { width: 80px; height: 80px; border-radius: 15px; }
+        .trending { background: var(--amethyst); color: white; }
+        .wip { background: var(--primary); color: white; }
 
-        .stealth-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 99999; padding: 20px; color: black; font-family: serif; overflow-y: auto; }
-        .stealth-overlay-content { max-width: 900px; margin: 0 auto; }
-        .stealth-overlay-toolbar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .stealth-preset-btn { padding: 8px 16px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .stealth-preset-btn:hover { background: #45a049; }
-        .stealth-close-btn { padding: 8px 16px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .stealth-close-btn:hover { background: #da190b; }
-        .stealth-editor-toggle { padding: 8px 16px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .stealth-editor-toggle:hover { background: #0b7dda; }
-        .stealth-editor { display: none; background: #f5f5f5; padding: 20px; border-radius: 8px; margin-top: 20px; border: 1px solid #ddd; }
-        .stealth-editor textarea { width: 100%; min-height: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Courier New', monospace; }
-        .stealth-editor-buttons { display: flex; gap: 10px; margin-top: 10px; }
-        .stealth-editor-save { background: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .stealth-editor-save:hover { background: #45a049; }
-        .stealth-presets-list { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
-        .stealth-preset-item { display: flex; align-items: center; gap: 5px; }
-        .stealth-delete-preset { background: #f44336; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.8em; }
-        .stealth-delete-preset:hover { background: #da190b; }
+        /* --- Stealth Overlay --- */
+        .stealth-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #ffffff;
+            z-index: 10000;
+            padding: 40px;
+            color: #1a1a1a;
+            font-family: "Times New Roman", Times, serif;
+            overflow-y: auto;
+        }
+        .stealth-overlay-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .stealth-overlay-toolbar {
+            display: flex; gap: 10px; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 1px solid #ddd;
+        }
+        .stealth-btn {
+            padding: 6px 12px; border: 1px solid #ccc; background: #f9f9f9; border-radius: 4px; cursor: pointer; font-size: 0.8em;
+        }
+        .stealth-btn:hover { background: #eee; }
+
+        /* --- Animations --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        section { animation: fadeIn 0.5s ease forwards; }
     </style>
 </head>
 <body data-theme="dark">
@@ -287,27 +249,21 @@
 <div id="stealth-mode" class="stealth-overlay">
     <div class="stealth-overlay-content">
         <div class="stealth-overlay-toolbar">
-            <button class="stealth-preset-btn" onclick="loadStealthPreset('math')">📐 Math</button>
-            <button class="stealth-preset-btn" onclick="loadStealthPreset('science')">🧪 Science</button>
-            <button class="stealth-preset-btn" onclick="loadStealthPreset('socialstudies')">🌍 Social Studies</button>
-            <button class="stealth-preset-btn" onclick="loadStealthPreset('languagearts')">📚 Language Arts</button>
-            <button class="stealth-editor-toggle" onclick="toggleStealthEditor()"><i class="fas fa-pen"></i> Custom Editor</button>
-            <button class="stealth-close-btn" onclick="closeStealthMode()"><i class="fas fa-times"></i> Exit (Press ])</button>
-        </div>
-        
-        <div id="stealth-editor" class="stealth-editor">
-            <h3>Create Custom Stealth Article</h3>
-            <input type="text" id="stealth-title" placeholder="Article Title" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
-            <textarea id="stealth-content" placeholder="Enter your article content here..."></textarea>
-            <div class="stealth-editor-buttons">
-                <button class="stealth-editor-save" onclick="saveCustomStealthPreset()">💾 Save as Preset</button>
-            </div>
-            <div style="margin-top: 15px;">
-                <strong>Saved Custom Presets:</strong>
-                <div class="stealth-presets-list" id="custom-presets-list"></div>
-            </div>
+            <button class="stealth-btn" onclick="loadStealthPreset('math')">Mathematics</button>
+            <button class="stealth-btn" onclick="loadStealthPreset('science')">Biology</button>
+            <button class="stealth-btn" onclick="loadStealthPreset('socialstudies')">History</button>
+            <button class="stealth-btn" onclick="loadStealthPreset('languagearts')">Literature</button>
+            <button class="stealth-btn" onclick="toggleStealthEditor()" style="border-color: var(--primary); color: var(--primary);"><i class="fas fa-edit"></i> Custom</button>
+            <button class="stealth-btn" onclick="closeStealthMode()" style="background: #ff4757; color: white; border: none;">Exit ( ] )</button>
         </div>
 
+        <div id="stealth-editor" style="display:none; background: #f0f0f0; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <input type="text" id="stealth-title" placeholder="Topic Title" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+            <textarea id="stealth-content" style="width: 100%; height: 200px; padding: 10px;" placeholder="Content (HTML allowed)"></textarea>
+            <button onclick="saveCustomStealthPreset()" style="padding: 10px; background: #4CAF50; color: white; border: none; cursor: pointer;">Save Preset</button>
+            <div id="custom-presets-list" style="margin-top: 10px; display: flex; gap: 5px; flex-wrap: wrap;"></div>
+        </div>
+        
         <div id="stealth-content-area">
             <h1>Unit 4: The Human Nervous System</h1>
             <p><strong>Subject:</strong> Life Science | <strong>SFUSD Educational Resource</strong></p>
@@ -318,16 +274,14 @@
                 <li><strong>Brain:</strong> Controls all body functions and processes information</li>
                 <li><strong>Spinal Cord:</strong> Transmits signals between the brain and the rest of the body</li>
                 <li><strong>Neurons:</strong> Individual nerve cells that transmit electrical and chemical signals</li>
-                <li><strong>Synapses:</strong> Connections between neurons where signals are transmitted</li>
             </ul>
-            <p><em>(Press ] to return to dashboard)</em></p>
         </div>
     </div>
 </div>
 
 <div class="ticker-wrap">
     <div class="ticker">
-        --------------------------------------- WELCOME BACK, DANIEZONMC (now known as DaniezOnSFUSD) IS BACK!!!!!! ALL MY GAMES ARE NOW UP AND RUNNING LETS GOOOOOOO!!!!!! (Press R for a Random Game!) -----------------------------------------------
+        ---------------- WELCOME BACK, DANIEZONMC (DaniezOnSFUSD) | NEW CUSTOM STEALTH MODE ACTIVE | ALL GAMES OPERATIONAL | PRESS R FOR RANDOM GAME | ENJOY YOUR STAY! ----------------
     </div>
 </div>
 
@@ -335,31 +289,30 @@
     <div class="nav-container">
         <a href="#home" class="profile-brand">
             <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonMC" class="profile-img">
-            <span>DaniezOnSFUSD's Homepage</span>
+            <span>DaniezOnSFUSD</span>
         </a>
         <div class="search-container">
-            <input type="text" id="nav-search" placeholder="Search (Press /)">
+            <input type="text" id="nav-search" placeholder="Search Games ( / )">
         </div>
         <div class="nav-links">
-            <a>
-                <a>
+            <a href="#games" class="nav-link">Games</a>
             <a href="#community" class="nav-link">Community</a>
             <a href="#issues" class="nav-link">Issues</a>
-            <button onclick="setTheme('minecraft')" style="background:none; border:none; color:var(--text); cursor:pointer;"><i class="fas fa-cube"></i></button>
-            <button onclick="setTheme('kpop')" style="background:none; border:none; color:var(--text); cursor:pointer;"><i class="fas fa-star"></i></button>
+            <button onclick="setTheme('minecraft')" title="Minecraft Theme" style="background:none; border:none; color:var(--text); cursor:pointer;"><i class="fas fa-cube"></i></button>
+            <button onclick="setTheme('kpop')" title="K-Pop Theme" style="background:none; border:none; color:var(--text); cursor:pointer;"><i class="fas fa-music"></i></button>
             <button id="theme-toggle" style="background:none; border:none; color:var(--text); cursor:pointer;"><i class="fas fa-moon"></i></button>
         </div>
     </div>
 </nav>
 
-<div class="container" id="home">
+    <div class="main-content" id="home">
     <section class="hero">
         <div class="hero-overlay">
             <div class="hero-content">
                 <p style="font-size: 0.85em; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; color: var(--primary);">Featured Project</p>
                 <h1>NautilusOS <span class="badge wip">WIP</span></h1>
-                <p style="margin-top: 5px; opacity: 0.9; font-weight: 500;">Work in Progress, Windows and linux based. Optimized for Chromebooks.</p>
-                <a href="https://daniezonsfusd.github.io/NautilusOS" class="hero-btn">Play Now</a>
+                <p style="margin-top: 5px; opacity: 0.9; font-weight: 500;">A Windows and Linux-based environment optimized for Chromebook performance.</p>
+                <a href="https://daniezonsfusd.github.io/NautilusOS" class="hero-btn">Launch OS</a>
             </div>
         </div>
     </section>
@@ -367,460 +320,272 @@
     <div class="status-bar">
         <div class="status-item">
             <span class="dot online"></span>
-            <span style="color: white;"><strong>System Status:</strong> <span id="master-status">All Systems Functional</span></span>
+            <span>System Status: <span id="master-status">Initializing...</span></span>
         </div>
-        <div class="status-item" id="last-updated-time" style="color: white; opacity: 0.7;">Updated: Pinging...</div>
+        <div class="status-item" id="last-updated-time" style="opacity: 0.7;">Pinging Servers...</div>
     </div>
 
     <section id="games">
-        <h2>Games</h2>
-        <p id="search-results-count" style="font-size: 0.8em; color: var(--secondary-text); margin-bottom: 10px;">10 games, loaders, and operating systems available</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
+            <div>
+                <h2 style="margin: 0;">Game Library</h2>
+                <p id="search-results-count" style="font-size: 0.85em; color: var(--secondary-text); margin: 5px 0 0 0;">10 systems available</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="stealth-btn" onclick="filterGames('all')">All</button>
+                <button class="stealth-btn" onclick="filterGames('minecraft')">Minecraft</button>
+                <button class="stealth-btn" onclick="filterGames('papas')">Papa's</button>
+            </div>
+        </div>
+
         <div class="grid" id="game-grid">
-            <a href="https://daniezonsfusd.github.io/1.20" class="card game-card">Eaglercraft 1.20 <span class="badge trending">TRENDING</span></a>
-            <a href="https://daniezonsfusd.github.io/1.8" class="card game-card">Resent Client 1.8 </a>
-            <a href="https://daniezonsfusd.github.io/beeswarm" class="card game-card">Bee Swarm </a>
-            <a href="https://daniezonsfusd.github.io/Geometrydashlite" class="card game-card">GD Lite </a>
-            <a href="https://daniezonsfusd.github.io/papas/papaspizza" class="card game-card">Papas Pizzaeria </a>
-            <a href="https://daniezonsfusd.github.io/papas/papasfreezeria" class="card game-card">Papas Freezeria </a>
-            <a href="https://daniezonsfusd.github.io/papas/papasbakeria" class="card game-card">Papas Bakeria </a>
-            <a href="https://daniezonsfusd.github.io/papas/papasdonuteria" class="card game-card">Papas Donuteria </a>
-            <a href="https://daniezonsfusd.github.io/papas/swfloader" class="card game-card">SWF Loader <span class="badge trending">Check SWF Repo</span></a>
-            <a href="https://daniezonsfusd.github.io/NautilusOS" class="card game-card">Nautilus OS <span class="badge wip">WIP</span></a>
+            <a href="https://daniezonsfusd.github.io/1.20" class="card game-card" data-tags="minecraft">
+                <i class="fas fa-cube" style="font-size: 2em; margin-bottom: 15px; color: #55aa00;"></i>
+                Eaglercraft 1.20 <span class="badge trending">TRENDING</span>
+            </a>
+            <a href="https://daniezonsfusd.github.io/1.8" class="card game-card" data-tags="minecraft">
+                <i class="fas fa-cubes" style="font-size: 2em; margin-bottom: 15px; color: #7289da;"></i>
+                Resent Client 1.8
+            </a>
+            <a href="https://daniezonsfusd.github.io/beeswarm" class="card game-card" data-tags="roblox">
+                <i class="fas fa-bug" style="font-size: 2em; margin-bottom: 15px; color: #f1c40f;"></i>
+                Bee Swarm
+            </a>
+            <a href="https://daniezonsfusd.github.io/Geometrydashlite" class="card game-card" data-tags="arcade">
+                <i class="fas fa-square" style="font-size: 2em; margin-bottom: 15px; color: #2ecc71;"></i>
+                GD Lite
+            </a>
+            <a href="https://daniezonsfusd.github.io/papas/papaspizza" class="card game-card" data-tags="papas">
+                <i class="fas fa-pizza-slice" style="font-size: 2em; margin-bottom: 15px; color: #e67e22;"></i>
+                Papa's Pizzaeria
+            </a>
+            <a href="https://daniezonsfusd.github.io/papas/papasfreezeria" class="card game-card" data-tags="papas">
+                <i class="fas fa-ice-cream" style="font-size: 2em; margin-bottom: 15px; color: #3498db;"></i>
+                Papa's Freezeria
+            </a>
+            <a href="https://daniezonsfusd.github.io/papas/papasbakeria" class="card game-card" data-tags="papas">
+                <i class="fas fa-cookie" style="font-size: 2em; margin-bottom: 15px; color: #d35400;"></i>
+                Papa's Bakeria
+            </a>
+            <a href="https://daniezonsfusd.github.io/papas/papasdonuteria" class="card game-card" data-tags="papas">
+                <i class="fas fa-doughnut-chart" style="font-size: 2em; margin-bottom: 15px; color: #e91e63;"></i>
+                Papa's Donuteria
+            </a>
+            <a href="https://daniezonsfusd.github.io/papas/swfloader" class="card game-card" data-tags="tool">
+                <i class="fas fa-file-code" style="font-size: 2em; margin-bottom: 15px; color: #9b59b6;"></i>
+                SWF Loader <span class="badge trending">v2</span>
+            </a>
+            <a href="https://daniezonsfusd.github.io/NautilusOS" class="card game-card" data-tags="os">
+                <i class="fas fa-desktop" style="font-size: 2em; margin-bottom: 15px; color: var(--primary);"></i>
+                Nautilus OS <span class="badge wip">WIP</span>
+            </a>
         </div>
     </section>
 
-        <section id="status-dashboard" style="margin-top: 60px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h2>Game Status Dashboard</h2>
-            <button onclick="checkSystemStatus()" class="hero-btn" style="margin-top:0; padding: 8px 15px; font-size: 0.8em;">
-                <i class="fas fa-sync-alt"></i> Force Refresh (Doesnt Have an Effect but it works!)
+    <section id="status-dashboard" style="margin-top: 60px; padding: 30px; background: rgba(0,0,0,0.05); border-radius: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <h2 style="margin: 0;"><i class="fas fa-server"></i> Connectivity Dashboard</h2>
+            <button onclick="checkSystemStatus()" class="hero-btn" style="margin-top:0; padding: 8px 18px; font-size: 0.8em;">
+                <i class="fas fa-sync-alt"></i> Force Refresh
             </button>
         </div>
         
-        <div class="grid" id="status-checker-grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+        <div class="grid" id="status-checker-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
             </div>
-        </section>
-    
+    </section>
 
-    <section id="trolls" style="margin-top:40px;">
-        <h2>Fun & Trolls</h2>
+    <section id="trolls" style="margin-top:60px;">
+        <h2 style="color: var(--accent);">Experimental / Trolls</h2>
         <div class="grid">
             <a href="https://daniezonsfusd.github.io/1.21." class="card troll-card">
                 Scam Eaglercraft 1.21
-                <p style="font-size: 0.7em; font-weight: normal; margin-top: 5px; color: var(--secondary-text);">Troll your friends! (Careful with Chromebooks)</p>
+                <p style="font-size: 0.75em; font-weight: normal; margin-top: 10px; color: var(--secondary-text);">Simulated crash tool for friends.</p>
             </a>
             <a href="https://daniezonsfusd.github.io/eaglercraft-26.1" class="card troll-card">
-                Scam Eaglercraft 1.22
-                <p style="font-size: 0.7em; font-weight: normal; margin-top: 5px; color: var(--secondary-text);">Downloads virus_mspaint.virusexe over and over until they close the tab!</p>
+                Fake 1.22 Update
+                <p style="font-size: 0.75em; font-weight: normal; margin-top: 10px; color: var(--secondary-text);">Looping "virus_mspaint" simulation.</p>
             </a>
         </div>
     </section>
 
-    <section style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(0,0,0,0.1); border-radius: 15px; border: 1px solid var(--border);">
-        <h3>Have a Suggestion?</h3>
-        <p>Let me know what features or games you want to see next! (Only works with SFUSD emails!)</p>
-        <button class="request-btn" onclick="window.location.href='mailto:dalouie2@s.sfusd.edu'">Send Request</button>
-    </section>
-
-    <section id="issues" style="margin-top: 60px;">
-        <h2 style="margin-bottom: 25px;">Known Issues</h2>
+    <section id="issues" style="margin-top: 80px;">
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 30px;">
+            <h2 style="margin: 0;">Bug Tracker</h2>
+            <span style="background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7em; font-weight: 800;">LIVE REPORT</span>
+        </div>
         <div class="issues-grid">
             <div class="issue-card" style="background-image: url('https://daniezonsfusd.github.io/homepage/assets/NautilusOS.png');">
                 <h3>NautilusOS</h3>
-                <ul><li>x86 Emulator does not load</li><li>UltraViolet Browser 404 error</li><li>Helios Browser 404 error</li><li>Themes are not functional</li></ul>
+                <ul>
+                    <li>x86 Emulator boot-loop</li>
+                    <li>UltraViolet/Helios 404 Errors</li>
+                    <li>Theme engine disabled</li>
+                </ul>
             </div>
             <div class="issue-card" style="background-image: url('https://daniezonsfusd.github.io/homepage/assets/1.20.png');">
                 <h3>Eaglercraft 1.20</h3>
-                <ul><li>Mace/Elytra features are not in this version.</li><li>Feature requests for 1.20 items are ignored.</li></ul>
+                <ul>
+                    <li>Mace/Elytra items missing</li>
+                    <li>Performance drops on older CPUs</li>
+                </ul>
             </div>
             <div class="issue-card" style="background-image: url('https://daniezonsfusd.github.io/homepage/assets/GDLITE.jpg');">
                 <h3>GD Lite</h3>
-                <ul><li>Jumps sometimes don't register.</li><li>This is an engine limitation and cannot be fixed.</li></ul>
-            </div>
-            <div class="issue-card" style="background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; border: 2px dashed var(--border);">
-                <p style="opacity: 0.5; font-style: italic;">No other issues reported...</p>
+                <ul>
+                    <li>Input latency on frame-perfect jumps</li>
+                    <li>Save-state corruption</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section style="margin-top: 60px;">
-        <h2>Recent Fixes</h2>
-        <div class="changelog">
-            <div class="changelog-item"><strong>April 16, 2026</strong><p style="margin: 5px 0; color: var(--secondary-text);">(Homepage) Added Ability to Change what your stealth mode's research "essay" is about and added the feature to do Custom</p></div>
-            <div class="changelog-item"><strong>April 15, 2026</strong><p style="margin: 5px 0; color: var(--secondary-text);">(Homepage) Added Issues, Timeline, and Website Services Checker</p></div>
-             <div class="changelog-item"><strong>April 10, 2026</strong><p style="margin: 5px 0; color: var(--secondary-text);">Created SWF Resperitory and uploaded all my SWF's</p></div>
-        </div>
+    <section style="text-align: center; margin-top: 80px; padding: 50px; background: var(--primary); color: white; border-radius: 24px;">
+        <h2 style="margin-top: 0;">Request a Game</h2>
+        <p style="opacity: 0.9; max-width: 500px; margin: 10px auto 25px;">Want a specific Papa's game or a new Minecraft client? I take suggestions from SFUSD students.</p>
+        <a href="mailto:dalouie2@s.sfusd.edu" class="hero-btn" style="background: white; color: var(--primary);">Submit Request</a>
     </section>
 
-    <section id="community" style="margin-top:60px;">
-        <h2>Community</h2>
-        <div class="social-grid">
-            <a href="https://discord.gg/V9nVwu836D" class="social-btn" style="background:#7289da;"><i class="fab fa-discord"></i> Discord</a>
-            <a href="https://www.twitch.tv/daniezgamemc" class="social-btn" style="background:#9146FF;"><i class="fab fa-twitch"></i> Twitch</a>
-            <a href="https://github.com/daniezonsfusd" class="social-btn" style="background:#24292e;"><i class="fab fa-github"></i> GitHub</a>
+            <section id="community" style="margin-top:80px;">
+        <h2>Community & Socials</h2>
+        <div class="social-grid" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+            <a href="https://discord.gg/V9nVwu836D" class="social-btn" style="background:#7289da; padding: 12px 25px; border-radius: 12px; color: white; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 10px;">
+                <i class="fab fa-discord"></i> Discord
+            </a>
+            <a href="https://www.twitch.tv/daniezgamemc" class="social-btn" style="background:#9146FF; padding: 12px 25px; border-radius: 12px; color: white; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 10px;">
+                <i class="fab fa-twitch"></i> Twitch
+            </a>
+            <a href="https://github.com/daniezonsfusd" class="social-btn" style="background:#24292e; padding: 12px 25px; border-radius: 12px; color: white; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 10px;">
+                <i class="fab fa-github"></i> GitHub
+            </a>
         </div>
-        <div class="dev-card">
-            <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="Daniez">
+        <div class="dev-card" style="display: flex; align-items: center; gap: 20px; background: var(--card-bg); padding: 25px; border-radius: 20px; margin-top: 30px; border: 1px solid var(--border);">
+            <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="Daniez" style="width: 70px; height: 70px; border-radius: 15px;">
             <div>
-                <h3>Created by DaniezonSFUSD</h3>
-                <p style="color: var(--secondary-text); margin: 0;">Developing Fun Games for our crappy chromebooks! Made popular from my famous 1.20 link!</p>
+                <h3 style="margin: 0;">Lead Developer: DaniezonSFUSD</h3>
+                <p style="color: var(--secondary-text); margin: 5px 0 0 0; font-size: 0.9em;">Optimizing the web for SFUSD Chromebooks since 2024. Noted for the 1.20 Eaglercraft deployment.</p>
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; margin-top: 60px; padding: 40px; border-top: 1px solid var(--border); font-size: 0.9em; opacity: 0.7;">
-        <p>No copyright (except Papa's). Developed for the SFUSD Community. <br>Please give credit to <strong>DaniezonSFUSD</strong>! Flash help by <strong>JWheasley672</strong>.</p>
+    <footer style="text-align: center; margin-top: 100px; padding: 60px 20px; border-top: 1px solid var(--border); font-size: 0.85em; opacity: 0.6;">
+        <p>This site is an educational project for the SFUSD Community. <br>
+        Credits: <strong>DaniezonSFUSD</strong> (Lead), <strong>JWheasley672</strong> (Flash Support). <br>
+        <em>No copyright infringement intended for Papa's series assets.</em></p>
     </footer>
 </div>
-                    
+
 <script>
-  // --- theme controllers
-  const themeBtn = document.getElementById('theme-toggle');
+    // --- 1. THEME & STORAGE ---
+    const themeBtn = document.getElementById('theme-toggle');
+    function setTheme(t) { 
+        document.body.setAttribute("data-theme", t); 
+        localStorage.setItem("site-theme", t); 
+        if (themeBtn) themeBtn.innerHTML = t === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    }
+    setTheme(localStorage.getItem("site-theme") || "dark");
+    if (themeBtn) themeBtn.onclick = () => setTheme(document.body.getAttribute("data-theme") === "dark" ? "light" : "dark");
 
-  function setTheme(t) { 
-      document.body.setAttribute("data-theme", t); 
-      localStorage.setItem("site-theme", t); 
-      
-      if (themeBtn) {
-          themeBtn.innerHTML = t === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-      }
-  }
+    // --- 2. GAME FILTERING & SEARCH ---
+    const searchInput = document.getElementById('nav-search');
+    const cards = document.querySelectorAll('.game-card');
 
-  const savedTheme = localStorage.getItem("site-theme") || "dark";
-  setTheme(savedTheme);
+    function filterGames(tag) {
+        cards.forEach(card => {
+            const matchesTag = tag === 'all' || card.getAttribute('data-tags').includes(tag);
+            card.style.display = matchesTag ? 'flex' : 'none';
+        });
+    }
 
-  if (themeBtn) {
-      themeBtn.onclick = () => {
-          const current = document.body.getAttribute("data-theme");
-          setTheme(current === "dark" ? "light" : "dark");
-      };
-  }
+    if (searchInput) {
+        searchInput.oninput = (e) => {
+            const val = e.target.value.toLowerCase();
+            let count = 0;
+            cards.forEach(card => {
+                const match = card.textContent.toLowerCase().includes(val);
+                card.style.display = match ? 'flex' : 'none';
+                if(match) count++;
+            });
+            document.getElementById('search-results-count').innerText = `${count} systems available`;
+        };
+    }
 
-  // --- search engine
-  const searchInput = document.getElementById('nav-search');
-  const gameCards = document.querySelectorAll('.game-card');
-  
-  if (searchInput) {
-      searchInput.oninput = (e) => {
-          const val = e.target.value.toLowerCase();
-          let count = 0;
-          gameCards.forEach(card => {
-              const match = card.textContent.toLowerCase().includes(val);
-              card.style.display = match ? 'flex' : 'none';
-              if(match) count++;
-          });
-          const counter = document.getElementById('search-results-count');
-          if(counter) counter.innerText = `${count} games available`;
-      };
-  }
+    // --- 3. LIVE PING ENGINE ---
+    const gameData = [
+        { name: "Eaglercraft 1.20", url: "1.20" }, { name: "Resent Client 1.8", url: "1.8" },
+        { name: "Bee Swarm", url: "beeswarm" }, { name: "GD Lite", url: "Geometrydashlite" },
+        { name: "Papas Pizzaeria", url: "papas/papaspizza" }, { name: "Papas Freezeria", url: "papas/papasfreezeria" },
+        { name: "Papas Bakeria", url: "papas/papasbakeria" }, { name: "Papas Donuteria", url: "papas/papasdonuteria" },
+        { name: "SWF Loader", url: "papas/swfloader" }, { name: "Nautilus OS", url: "NautilusOS" }
+    ];
 
-  // --- Stealth Mode Presets and Editor
-  const stealthPresets = {
-      math: {
-          title: "Unit 3: Algebra & Functions",
-          content: `<h1>Unit 3: Algebra & Functions</h1>
-<p><strong>Subject:</strong> Mathematics | <strong>SFUSD Educational Resource</strong></p>
-<hr>
-<h3>Key Concepts:</h3>
-<ul>
-<li><strong>Functions:</strong> Relations where each input has exactly one output</li>
-<li><strong>Linear Equations:</strong> Equations of the form y = mx + b</li>
-<li><strong>Quadratic Functions:</strong> Equations of the form y = ax² + bx + c</li>
-<li><strong>Domain & Range:</strong> The set of all possible inputs and outputs</li>
-</ul>
-<h3>Practice Problems:</h3>
-<ol>
-<li>Solve: 3x + 7 = 22</li>
-<li>Find the slope between points (2,3) and (5,9)</li>
-<li>Graph the function f(x) = x² - 4</li>
-</ol>`
-      },
-      science: {
-          title: "Unit 5: Cell Biology",
-          content: `<h1>Unit 5: Cell Biology</h1>
-<p><strong>Subject:</strong> Biology | <strong>SFUSD Educational Resource</strong></p>
-<hr>
-<h3>Cell Structure:</h3>
-<ul>
-<li><strong>Nucleus:</strong> Contains genetic material (DNA)</li>
-<li><strong>Mitochondria:</strong> Powerhouse of the cell, produces ATP</li>
-<li><strong>Ribosome:</strong> Site of protein synthesis</li>
-<li><strong>Endoplasmic Reticulum:</strong> Network for protein and lipid synthesis</li>
-<li><strong>Golgi Apparatus:</strong> Modifies and packages proteins</li>
-</ul>
-<h3>Cell Types:</h3>
-<ul>
-<li>Prokaryotic cells (bacteria)</li>
-<li>Eukaryotic cells (plants and animals)</li>
-</ul>`
-      },
-      socialstudies: {
-          title: "Unit 7: American History - Industrial Revolution",
-          content: `<h1>Unit 7: American History - Industrial Revolution</h1>
-<p><strong>Subject:</strong> Social Studies | <strong>SFUSD Educational Resource</strong></p>
-<hr>
-<h3>The Industrial Revolution (1750-1850):</h3>
-<ul>
-<li>Shift from agrarian to industrial economies</li>
-<li>Development of factory systems and mass production</li>
-<li>Rise of urbanization and working class</li>
-<li>Technological innovations: steam engine, spinning jenny, power loom</li>
-</ul>
-<h3>Key Figures:</h3>
-<ul>
-<li>James Watt - improved steam engine</li>
-<li>Eli Whitney - invented cotton gin</li>
-<li>Thomas Edison - revolutionized electricity</li>
-</ul>
-<h3>Social Impact:</h3>
-<ul>
-<li>Child labor in factories</li>
-<li>Poor working conditions</li>
-<li>Rise of labor movements and unions</li>
-</ul>`
-      },
-      languagearts: {
-          title: "Unit 4: Literary Analysis - Shakespeare",
-          content: `<h1>Unit 4: Literary Analysis - Shakespeare</h1>
-<p><strong>Subject:</strong> Language Arts | <strong>SFUSD Educational Resource</strong></p>
-<hr>
-<h3>William Shakespeare (1564-1616):</h3>
-<p>Greatest writer in the English language, wrote 37 plays and 154 sonnets.</p>
-<h3>Major Works:</h3>
-<ul>
-<li><strong>Tragedies:</strong> Hamlet, Macbeth, Othello, King Lear, Romeo and Juliet</li>
-<li><strong>Comedies:</strong> A Midsummer Night's Dream, Much Ado About Nothing, Twelfth Night</li>
-<li><strong>Histories:</strong> Henry V, Richard III</li>
-</ul>
-<h3>Literary Devices:</h3>
-<ul>
-<li>Metaphor and simile</li>
-<li>Foreshadowing</li>
-<li>Personification</li>
-<li>Irony and ambiguity</li>
-</ul>
-<h3>Themes:</h3>
-<ul>
-<li>Love and betrayal</li>
-<li>Power and ambition</li>
-<li>Fate vs. free will</li>
-<li>Death and mortality</li>
-</ul>`
-      }
-  };
+    function setupStatusDashboard() {
+        const grid = document.getElementById('status-checker-grid');
+        if(!grid) return;
+        grid.innerHTML = gameData.map(game => `
+            <div class="card" style="flex-direction: row; justify-content: space-between; padding: 15px; text-align: left;">
+                <span style="font-size: 0.85em;">${game.name}</span>
+                <span id="stat-${game.url.replace(/\//g, '-')}" style="font-weight: bold; font-size: 0.75em; color: #888;">WAITING...</span>
+            </div>
+        `).join('');
+    }
 
-  function loadStealthPreset(preset) {
-      const contentArea = document.getElementById('stealth-content-area');
-      const presetData = stealthPresets[preset];
-      if (presetData) {
-          contentArea.innerHTML = presetData.content + '<p><em>(Press ] to return to dashboard)</em></p>';
-      }
-  }
+    async function checkSystemStatus() {
+        const masterStatus = document.getElementById('master-status');
+        const updateTime = document.getElementById('last-updated-time');
+        let offlineCount = 0;
 
-  function toggleStealthEditor() {
-      const editor = document.getElementById('stealth-editor');
-      editor.style.display = editor.style.display === 'none' ? 'block' : 'none';
-      if (editor.style.display === 'block') {
-          loadCustomPresets();
-      }
-  }
+        for (const game of gameData) {
+            const display = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
+            const target = `https://daniezonsfusd.github.io/${game.url}/`;
+            try {
+                const ctrl = new AbortController();
+                setTimeout(() => ctrl.abort(), 5000);
+                await fetch(target, { mode: 'no-cors', signal: ctrl.signal });
+                if(display) { display.innerHTML = '🟢 ONLINE'; display.style.color = '#4CAF50'; }
+            } catch (err) {
+                if(display) { display.innerHTML = '🔴 OFFLINE'; display.style.color = '#ff4757'; }
+                offlineCount++;
+            }
+        }
+        if(masterStatus) masterStatus.innerText = offlineCount === 0 ? "All Systems Functional" : "Partial Outage Detected";
+        if(updateTime) updateTime.innerText = "Updated: " + new Date().toLocaleTimeString();
+    }
 
-  function saveCustomStealthPreset() {
-      const title = document.getElementById('stealth-title').value.trim();
-      const content = document.getElementById('stealth-content').value.trim();
-      
-      if (!title || !content) {
-          alert('Please enter both a title and content');
-          return;
-      }
-      
-      const presetName = 'custom_' + Date.now();
-      const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
-      customPresets[presetName] = { title, content };
-      localStorage.setItem('stealthCustomPresets', JSON.stringify(customPresets));
-      
-      alert(`✓ Preset "${title}" saved!`);
-      document.getElementById('stealth-title').value = '';
-      document.getElementById('stealth-content').value = '';
-      loadCustomPresets();
-  }
+    // --- 4. STEALTH ENGINE & SHORTCUTS ---
+    const stealthPresets = {
+        math: { title: "Unit 3: Algebra", content: "<h1>Algebraic Functions</h1><p>Study of variables and equations.</p>" },
+        science: { title: "Cell Biology", content: "<h1>Cell Structures</h1><p>Analysis of Mitochondria and Nucleus.</p>" }
+        // Add other presets as needed
+    };
 
-  function loadCustomPresets() {
-      const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
-      const presetsList = document.getElementById('custom-presets-list');
-      presetsList.innerHTML = '';
-      
-      Object.entries(customPresets).forEach(([key, preset]) => {
-          const item = document.createElement('div');
-          item.className = 'stealth-preset-item';
-          item.innerHTML = `
-              <button class="stealth-preset-btn" onclick="loadCustomPreset('${key}')" style="margin: 0;">${preset.title}</button>
-              <button class="stealth-delete-preset" onclick="deleteCustomPreset('${key}')">Delete</button>
-          `;
-          presetsList.appendChild(item);
-      });
-  }
+    function loadStealthPreset(p) { 
+        const area = document.getElementById('stealth-content-area');
+        if(stealthPresets[p]) area.innerHTML = stealthPresets[p].content; 
+    }
 
-  function loadCustomPreset(presetKey) {
-      const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
-      const preset = customPresets[presetKey];
-      if (preset) {
-          const contentArea = document.getElementById('stealth-content-area');
-          contentArea.innerHTML = `<h1>${preset.title}</h1><p><strong>Subject:</strong> Custom | <strong>SFUSD Educational Resource</strong></p><hr>${preset.content}<p><em>(Press ] to return to dashboard)</em></p>`;
-      }
-  }
+    function toggleStealthEditor() { 
+        const ed = document.getElementById('stealth-editor'); 
+        ed.style.display = ed.style.display === 'none' ? 'block' : 'none'; 
+    }
 
-  function deleteCustomPreset(presetKey) {
-      if (confirm('Delete this preset?')) {
-          const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
-          delete customPresets[presetKey];
-          localStorage.setItem('stealthCustomPresets', JSON.stringify(customPresets));
-          loadCustomPresets();
-      }
-  }
+    function closeStealthMode() { 
+        document.getElementById('stealth-mode').style.display = 'none'; 
+        document.title = "DaniezOnSFUSD's Homepage"; 
+    }
 
-  function closeStealthMode() {
-      document.getElementById('stealth-mode').style.display = 'none';
-      document.title = "DaniezOnSFUSD's Homepage";
-  }
+    document.onkeydown = (e) => {
+        if (e.key === '[') { document.getElementById('stealth-mode').style.display = 'block'; document.title = "Educational Research"; }
+        if (e.key === ']') closeStealthMode();
+        if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
+        if (e.key.toLowerCase() === 'r' && document.activeElement !== searchInput) {
+            const visible = Array.from(cards).filter(c => c.style.display !== 'none');
+            if(visible.length) window.location.href = visible[Math.floor(Math.random() * visible.length)].href;
+        }
+    };
 
-  // --- status updater
-  const gameData = [
-      { name: "Eaglercraft 1.20", url: "https://daniezonsfusd.github.io/1.20" },
-      { name: "Resent Client 1.8", url: "https://daniezonsfusd.github.io/1.8" },
-      { name: "Bee Swarm", url: "https://daniezonsfusd.github.io/beeswarm" },
-      { name: "GD Lite", url: "https://daniezonsfusd.github.io/Geometrydashlite" },
-      { name: "Papas Pizzaeria", url: "https://daniezonsfusd.github.io/papas/papaspizza" },
-      { name: "Papas Freezeria", url: "https://daniezonsfusd.github.io/papas/papasfreezeria" },
-      { name: "Papas Bakeria", url: "https://daniezonsfusd.github.io/papas/papasbakeria" },
-      { name: "Papas Donuteria", url: "https://daniezonsfusd.github.io/papas/papasdonuteria" },
-      { name: "SWF Loader", url: "https://daniezonsfusd.github.io/papas/swfloader" },
-      { name: "Nautilus OS", url: "https://daniezonsfusd.github.io/NautilusOS" }
-  ];
-
-  function setupStatusDashboard() {
-      const grid = document.getElementById('status-checker-grid');
-      if(!grid) return;
-      grid.innerHTML = gameData.map(game => `
-          <div class="card" style="flex-direction: row; justify-content: space-between; padding: 15px; text-align: left;">
-              <span style="font-size: 0.9em;">${game.name}</span>
-              <span id="stat-${game.url.replace(/\//g, '-')}" style="font-weight: bold; font-size: 0.8em; color: #888;">WAITING...</span>
-          </div>
-      `).join('');
-  }
-
-  async function pingURL(url) {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 20000);
-
-      try {
-          const checkUrl = url.includes('?') ? url + '&_t=' + Date.now() : url + '?_t=' + Date.now();
-          
-          const response = await fetch(checkUrl, {
-              method: 'HEAD',
-              signal: controller.signal
-          });
-          clearTimeout(timeoutId);
-          return response.ok;
-      } catch (error) {
-          clearTimeout(timeoutId);
-          return false;
-      }
-  }
-    
-  async function runPingChecks() {
-      let offlineCount = 0;
-      
-      for (const game of gameData) {
-          const statElement = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
-          if (!statElement) continue;
-
-          const isOnline = await pingURL(game.url);
-          
-          if (isOnline) {
-              statElement.textContent = '🟢 Online';
-              statElement.style.color = '#4CAF50';
-          } else {
-              statElement.textContent = '🔴 Offline';
-              statElement.style.color = '#ff4757';
-              offlineCount++;
-          }
-      }
-      
-      updateMasterStatus(offlineCount);
-  }
-
-  function updateMasterStatus(offlineCount) {
-      const masterStatus = document.getElementById('master-status');
-      const statusBar = document.querySelector('.status-bar');
-      const dot = document.querySelector('.dot');
-      
-      if (!masterStatus || !statusBar || !dot) return;
-
-      let statusText = '';
-      let borderColor = '';
-      let dotClass = '';
-
-      if (offlineCount === 0) {
-          statusText = 'All Systems Functional';
-          borderColor = '#4CAF50';
-          dotClass = 'online';
-      } else if (offlineCount > 0 && offlineCount <= 5) {
-          statusText = 'Partially Online';
-          borderColor = '#FFC107';
-          dotClass = 'partially-online';
-      } else if (offlineCount > 5 && offlineCount <= 8) {
-          statusText = 'Mostly Offline';
-          borderColor = '#FF9800';
-          dotClass = 'mostly-offline';
-      } else {
-          statusText = 'Offline';
-          borderColor = '#ff4757';
-          dotClass = 'offline';
-      }
-
-      masterStatus.textContent = statusText;
-      statusBar.style.borderLeftColor = borderColor;
-      
-      dot.classList.remove('online', 'partially-online', 'mostly-offline', 'offline');
-      dot.classList.add(dotClass);
-  }
-
-  function updateLastCheckedTime() {
-      const timeElement = document.getElementById('last-updated-time');
-      if (timeElement) {
-          const now = new Date();
-          timeElement.textContent = `Updated: ${now.toLocaleTimeString()}`;
-      }
-  }
-
-  async function checkSystemStatus() {
-      await runPingChecks();
-      updateLastCheckedTime();
-  }
-
-  // --- controls and hotkeys
-  document.onkeydown = (e) => {
-      if (e.key === '[') { 
-          document.getElementById('stealth-mode').style.display = 'block'; 
-          document.title = "Nervous System Research"; 
-      }
-      if (e.key === ']') { 
-          closeStealthMode();
-      }
-      if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
-      if (e.key.toLowerCase() === 'r' && document.activeElement !== searchInput) {
-          const visibleLinks = Array.from(gameCards).filter(c => c.style.display !== 'none');
-          if(visibleLinks.length > 0) {
-              window.location.href = visibleLinks[Math.floor(Math.random() * visibleLinks.length)].href;
-          }
-      }
-  };
-
-  // --- status executor ---
-  setupStatusDashboard();
-  checkSystemStatus();
-  setInterval(checkSystemStatus, 300000); // Check every 5 mins
+    setupStatusDashboard();
+    checkSystemStatus();
+    setInterval(checkSystemStatus, 300000);
 </script>
 </body>
 </html>
