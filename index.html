@@ -510,26 +510,30 @@ async function pingURL(url) {
         clearTimeout(timeoutId);
         return false;
     }
+
+async function runPingChecks() {
+    let offlineCount = 0;
+    
+    for (const game of gameData) {
+        const statElement = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
+        if (!statElement) continue;
+
+        const isOnline = await pingURL(game.url);
+        
+        if (isOnline) {
+            statElement.textContent = '🟢 Online';
+            statElement.style.color = '#4CAF50';
+        } else {
+            statElement.textContent = '🔴 Offline';
+            statElement.style.color = '#ff4757';
+            offlineCount++;
+        }
+    }
+    
+    updateMasterStatus(offlineCount); // ← Call it AFTER the loop
 }
 
-  async function runPingChecks() {
-      let offlineCount = 0;
-      
-      for (const game of gameData) {
-          const statElement = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
-          if (!statElement) continue;
-
-          const isOnline = await pingURL(game.url);
-          
-          if (isOnline) {
-              statElement.textContent = '🟢 Online';
-              statElement.style.color = '#4CAF50';
-          } else {
-              statElement.textContent = '🔴 Offline';
-              statElement.style.color = '#ff4757';
-              offlineCount++;
-          }
-      
+// Move this function OUTSIDE the loop
 function updateMasterStatus(offlineCount) {
     const masterStatus = document.getElementById('master-status');
     const statusBar = document.querySelector('.status-bar');
@@ -562,9 +566,9 @@ function updateMasterStatus(offlineCount) {
     masterStatus.textContent = statusText;
     statusBar.style.borderLeftColor = borderColor;
     
-    // Remove all status classes and add the new one
     dot.classList.remove('online', 'partially-online', 'mostly-offline', 'offline');
     dot.classList.add(dotClass);
+
 }
 
   // Update last-checked time
