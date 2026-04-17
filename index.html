@@ -485,7 +485,6 @@
 
 async function pingURL(url) {
     const controller = new AbortController();
-    // Sets the timeout to exactly 10 seconds (10000ms)
     const timeoutId = setTimeout(() => controller.abort(), 10000);
     
     try {
@@ -494,16 +493,26 @@ async function pingURL(url) {
         const text = await response.text();
         clearTimeout(timeoutId);
 
-        // Returns false (Offline) if status is not OK OR if the page contains "404"
-        if (!response.ok || text.includes("404")) {
+        // 1. Check if the server officially sent a 404 status code
+        if (!response.ok) return false;
+
+        // 2. SMART TEXT CHECK: Only trigger "Offline" if 404 is in the <title> or a Header <h1>
+        // This prevents the code from breaking if the number "404" just happens to be on the page text.
+        const isErrorPage = text.toLowerCase().includes("<title>404") || 
+                            text.toLowerCase().includes("<h1>404") ||
+                            text.toLowerCase().includes("<title>not found");
+
+        if (isErrorPage) {
             return false;
         }
+
         return true;
     } catch (error) {
         clearTimeout(timeoutId);
         return false;
     }
 }
+        
         
     async function runPingChecks() {
         let offlineCount = 0;
