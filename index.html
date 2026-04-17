@@ -262,25 +262,72 @@
         }
         .dev-card img { width: 80px; height: 80px; border-radius: 15px; }
 
-        .stealth-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 99999; padding: 60px; color: black; font-family: serif; overflow-y: auto; }
+        .stealth-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 99999; padding: 20px; color: black; font-family: serif; overflow-y: auto; }
+        .stealth-overlay-content { max-width: 900px; margin: 0 auto; }
+        .stealth-overlay-toolbar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .stealth-preset-btn { padding: 8px 16px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .stealth-preset-btn:hover { background: #45a049; }
+        .stealth-close-btn { padding: 8px 16px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .stealth-close-btn:hover { background: #da190b; }
+        .stealth-editor-toggle { padding: 8px 16px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .stealth-editor-toggle:hover { background: #0b7dda; }
+        .stealth-editor { display: none; background: #f5f5f5; padding: 20px; border-radius: 8px; margin-top: 20px; border: 1px solid #ddd; }
+        .stealth-editor textarea { width: 100%; min-height: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Courier New', monospace; }
+        .stealth-editor-buttons { display: flex; gap: 10px; margin-top: 10px; }
+        .stealth-editor-save { background: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .stealth-editor-save:hover { background: #45a049; }
+        .stealth-presets-list { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+        .stealth-preset-item { display: flex; align-items: center; gap: 5px; }
+        .stealth-delete-preset { background: #f44336; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.8em; }
+        .stealth-delete-preset:hover { background: #da190b; }
     </style>
 </head>
 <body data-theme="dark">
 
 <div id="stealth-mode" class="stealth-overlay">
-    <div style="max-width: 800px; margin: 0 auto;">
-        <h1>Unit 4: The Human Nervous System</h1>
-        <p><strong>Subject:</strong> Life Science | <strong>SFUSD Educational Resource</strong></p>
-        <hr>
-        <p>The nervous system is a complex network of nerves and cells that carry messages to and from the brain and spinal cord to various parts of the body. It includes both the Central Nervous System (CNS) and the Peripheral Nervous System (PNS).</p>
-        [attachment_0](attachment)
-        <p><em>(Press ] to return to dashboard)</em></p>
+    <div class="stealth-overlay-content">
+        <div class="stealth-overlay-toolbar">
+            <button class="stealth-preset-btn" onclick="loadStealthPreset('math')">📐 Math</button>
+            <button class="stealth-preset-btn" onclick="loadStealthPreset('science')">🧪 Science</button>
+            <button class="stealth-preset-btn" onclick="loadStealthPreset('socialstudies')">🌍 Social Studies</button>
+            <button class="stealth-preset-btn" onclick="loadStealthPreset('languagearts')">📚 Language Arts</button>
+            <button class="stealth-editor-toggle" onclick="toggleStealthEditor()"><i class="fas fa-pen"></i> Custom Editor</button>
+            <button class="stealth-close-btn" onclick="closeStealthMode()"><i class="fas fa-times"></i> Exit (Press ])</button>
+        </div>
+        
+        <div id="stealth-editor" class="stealth-editor">
+            <h3>Create Custom Stealth Article</h3>
+            <input type="text" id="stealth-title" placeholder="Article Title" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+            <textarea id="stealth-content" placeholder="Enter your article content here..."></textarea>
+            <div class="stealth-editor-buttons">
+                <button class="stealth-editor-save" onclick="saveCustomStealthPreset()">💾 Save as Preset</button>
+            </div>
+            <div style="margin-top: 15px;">
+                <strong>Saved Custom Presets:</strong>
+                <div class="stealth-presets-list" id="custom-presets-list"></div>
+            </div>
+        </div>
+
+        <div id="stealth-content-area">
+            <h1>Unit 4: The Human Nervous System</h1>
+            <p><strong>Subject:</strong> Life Science | <strong>SFUSD Educational Resource</strong></p>
+            <hr>
+            <p>The nervous system is a complex network of nerves and cells that carry messages to and from the brain and spinal cord to various parts of the body. It includes both the Central Nervous System (CNS) and the Peripheral Nervous System (PNS).</p>
+            <h3>Key Components:</h3>
+            <ul>
+                <li><strong>Brain:</strong> Controls all body functions and processes information</li>
+                <li><strong>Spinal Cord:</strong> Transmits signals between the brain and the rest of the body</li>
+                <li><strong>Neurons:</strong> Individual nerve cells that transmit electrical and chemical signals</li>
+                <li><strong>Synapses:</strong> Connections between neurons where signals are transmitted</li>
+            </ul>
+            <p><em>(Press ] to return to dashboard)</em></p>
+        </div>
     </div>
 </div>
 
 <div class="ticker-wrap">
     <div class="ticker">
-        --------------------------------------- WELCOME BACK, DANIEZONMC (now known as DaniezOnSFUSD) IS BACK!!!!!! ALL MY GAMES ARE NOW UP AND RUNNING LETS GOOOOOOO!!!!!! (Press R for a Random Game!) ---------------------------------------
+        --------------------------------------- WELCOME BACK, DANIEZONMC (now known as DaniezOnSFUSD) IS BACK!!!!!! ALL MY GAMES ARE NOW UP AND RUNNING LETS GOOOOOOO!!!!!! (Press R for a Random Game!) -----------------------------------------------
     </div>
 </div>
 
@@ -294,8 +341,6 @@
             <input type="text" id="nav-search" placeholder="Search (Press /)">
         </div>
         <div class="nav-links">
-            <a>
-                <a>
             <a href="#community" class="nav-link">Community</a>
             <a href="#issues" class="nav-link">Issues</a>
             <button onclick="setTheme('minecraft')" style="background:none; border:none; color:var(--text); cursor:pointer;"><i class="fas fa-cube"></i></button>
@@ -361,7 +406,8 @@
             <a href="https://daniezonsfusd.github.io/1.21." class="card troll-card">
                 Scam Eaglercraft 1.21
                 <p style="font-size: 0.7em; font-weight: normal; margin-top: 5px; color: var(--secondary-text);">Troll your friends! (Careful with Chromebooks)</p>
-                <a href="https://daniezonsfusd.github.io/eaglercraft-26.1" class="card troll-card">
+            </a>
+            <a href="https://daniezonsfusd.github.io/eaglercraft-26.1" class="card troll-card">
                 Scam Eaglercraft 1.22
                 <p style="font-size: 0.7em; font-weight: normal; margin-top: 5px; color: var(--secondary-text);">Downloads virus_mspaint.virusexe over and over until they close the tab!</p>
             </a>
@@ -421,7 +467,7 @@
     </section>
 
     <footer style="text-align: center; margin-top: 60px; padding: 40px; border-top: 1px solid var(--border); font-size: 0.9em; opacity: 0.7;">
-        <p>No copyright (except Papa's). Developed for the SFUSD Community. <br>Please give credit to <strong>DaniezonSFUSD</strong>! Flash help by <strong>JWheasley672</strong>.  Shout out to <strong>Adam</strong> at <strong>Aptos Middle</strong>.</p>
+        <p>No copyright (except Papa's). Developed for the SFUSD Community. <br>Please give credit to <strong>DaniezonSFUSD</strong>! Flash help by <strong>JWheasley672</strong>.</p>
     </footer>
 </div>
                     
@@ -466,6 +512,176 @@
       };
   }
 
+  // --- Stealth Mode Presets and Editor
+  const stealthPresets = {
+      math: {
+          title: "Unit 3: Algebra & Functions",
+          content: `<h1>Unit 3: Algebra & Functions</h1>
+<p><strong>Subject:</strong> Mathematics | <strong>SFUSD Educational Resource</strong></p>
+<hr>
+<h3>Key Concepts:</h3>
+<ul>
+<li><strong>Functions:</strong> Relations where each input has exactly one output</li>
+<li><strong>Linear Equations:</strong> Equations of the form y = mx + b</li>
+<li><strong>Quadratic Functions:</strong> Equations of the form y = ax² + bx + c</li>
+<li><strong>Domain & Range:</strong> The set of all possible inputs and outputs</li>
+</ul>
+<h3>Practice Problems:</h3>
+<ol>
+<li>Solve: 3x + 7 = 22</li>
+<li>Find the slope between points (2,3) and (5,9)</li>
+<li>Graph the function f(x) = x² - 4</li>
+</ol>`
+      },
+      science: {
+          title: "Unit 5: Cell Biology",
+          content: `<h1>Unit 5: Cell Biology</h1>
+<p><strong>Subject:</strong> Biology | <strong>SFUSD Educational Resource</strong></p>
+<hr>
+<h3>Cell Structure:</h3>
+<ul>
+<li><strong>Nucleus:</strong> Contains genetic material (DNA)</li>
+<li><strong>Mitochondria:</strong> Powerhouse of the cell, produces ATP</li>
+<li><strong>Ribosome:</strong> Site of protein synthesis</li>
+<li><strong>Endoplasmic Reticulum:</strong> Network for protein and lipid synthesis</li>
+<li><strong>Golgi Apparatus:</strong> Modifies and packages proteins</li>
+</ul>
+<h3>Cell Types:</h3>
+<ul>
+<li>Prokaryotic cells (bacteria)</li>
+<li>Eukaryotic cells (plants and animals)</li>
+</ul>`
+      },
+      socialstudies: {
+          title: "Unit 7: American History - Industrial Revolution",
+          content: `<h1>Unit 7: American History - Industrial Revolution</h1>
+<p><strong>Subject:</strong> Social Studies | <strong>SFUSD Educational Resource</strong></p>
+<hr>
+<h3>The Industrial Revolution (1750-1850):</h3>
+<ul>
+<li>Shift from agrarian to industrial economies</li>
+<li>Development of factory systems and mass production</li>
+<li>Rise of urbanization and working class</li>
+<li>Technological innovations: steam engine, spinning jenny, power loom</li>
+</ul>
+<h3>Key Figures:</h3>
+<ul>
+<li>James Watt - improved steam engine</li>
+<li>Eli Whitney - invented cotton gin</li>
+<li>Thomas Edison - revolutionized electricity</li>
+</ul>
+<h3>Social Impact:</h3>
+<ul>
+<li>Child labor in factories</li>
+<li>Poor working conditions</li>
+<li>Rise of labor movements and unions</li>
+</ul>`
+      },
+      languagearts: {
+          title: "Unit 4: Literary Analysis - Shakespeare",
+          content: `<h1>Unit 4: Literary Analysis - Shakespeare</h1>
+<p><strong>Subject:</strong> Language Arts | <strong>SFUSD Educational Resource</strong></p>
+<hr>
+<h3>William Shakespeare (1564-1616):</h3>
+<p>Greatest writer in the English language, wrote 37 plays and 154 sonnets.</p>
+<h3>Major Works:</h3>
+<ul>
+<li><strong>Tragedies:</strong> Hamlet, Macbeth, Othello, King Lear, Romeo and Juliet</li>
+<li><strong>Comedies:</strong> A Midsummer Night's Dream, Much Ado About Nothing, Twelfth Night</li>
+<li><strong>Histories:</strong> Henry V, Richard III</li>
+</ul>
+<h3>Literary Devices:</h3>
+<ul>
+<li>Metaphor and simile</li>
+<li>Foreshadowing</li>
+<li>Personification</li>
+<li>Irony and ambiguity</li>
+</ul>
+<h3>Themes:</h3>
+<ul>
+<li>Love and betrayal</li>
+<li>Power and ambition</li>
+<li>Fate vs. free will</li>
+<li>Death and mortality</li>
+</ul>`
+      }
+  };
+
+  function loadStealthPreset(preset) {
+      const contentArea = document.getElementById('stealth-content-area');
+      const presetData = stealthPresets[preset];
+      if (presetData) {
+          contentArea.innerHTML = presetData.content + '<p><em>(Press ] to return to dashboard)</em></p>';
+      }
+  }
+
+  function toggleStealthEditor() {
+      const editor = document.getElementById('stealth-editor');
+      editor.style.display = editor.style.display === 'none' ? 'block' : 'none';
+      if (editor.style.display === 'block') {
+          loadCustomPresets();
+      }
+  }
+
+  function saveCustomStealthPreset() {
+      const title = document.getElementById('stealth-title').value.trim();
+      const content = document.getElementById('stealth-content').value.trim();
+      
+      if (!title || !content) {
+          alert('Please enter both a title and content');
+          return;
+      }
+      
+      const presetName = 'custom_' + Date.now();
+      const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
+      customPresets[presetName] = { title, content };
+      localStorage.setItem('stealthCustomPresets', JSON.stringify(customPresets));
+      
+      alert(`✓ Preset "${title}" saved!`);
+      document.getElementById('stealth-title').value = '';
+      document.getElementById('stealth-content').value = '';
+      loadCustomPresets();
+  }
+
+  function loadCustomPresets() {
+      const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
+      const presetsList = document.getElementById('custom-presets-list');
+      presetsList.innerHTML = '';
+      
+      Object.entries(customPresets).forEach(([key, preset]) => {
+          const item = document.createElement('div');
+          item.className = 'stealth-preset-item';
+          item.innerHTML = `
+              <button class="stealth-preset-btn" onclick="loadCustomPreset('${key}')" style="margin: 0;">${preset.title}</button>
+              <button class="stealth-delete-preset" onclick="deleteCustomPreset('${key}')">Delete</button>
+          `;
+          presetsList.appendChild(item);
+      });
+  }
+
+  function loadCustomPreset(presetKey) {
+      const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
+      const preset = customPresets[presetKey];
+      if (preset) {
+          const contentArea = document.getElementById('stealth-content-area');
+          contentArea.innerHTML = `<h1>${preset.title}</h1><p><strong>Subject:</strong> Custom | <strong>SFUSD Educational Resource</strong></p><hr>${preset.content}<p><em>(Press ] to return to dashboard)</em></p>`;
+      }
+  }
+
+  function deleteCustomPreset(presetKey) {
+      if (confirm('Delete this preset?')) {
+          const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
+          delete customPresets[presetKey];
+          localStorage.setItem('stealthCustomPresets', JSON.stringify(customPresets));
+          loadCustomPresets();
+      }
+  }
+
+  function closeStealthMode() {
+      document.getElementById('stealth-mode').style.display = 'none';
+      document.title = "DaniezOnSFUSD's Homepage";
+  }
+
   // --- status updater
   const gameData = [
       { name: "Eaglercraft 1.20", url: "https://daniezonsfusd.github.io/1.20" },
@@ -491,88 +707,83 @@
       `).join('');
   }
 
-  // Ping a URL with 20-second timeout
-async function pingURL(url) {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 20000);
+  async function pingURL(url) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 20000);
 
-    try {
-        // Add a query parameter to bypass cache
-        const checkUrl = url.includes('?') ? url + '&_t=' + Date.now() : url + '?_t=' + Date.now();
-        
-        const response = await fetch(checkUrl, {
-            method: 'HEAD',
-            signal: controller.signal
-        });
-        clearTimeout(timeoutId);
-        return response.ok; // Returns true for 2xx status codes
-    } catch (error) {
-        clearTimeout(timeoutId);
-        return false;
-    }
-}
+      try {
+          const checkUrl = url.includes('?') ? url + '&_t=' + Date.now() : url + '?_t=' + Date.now();
+          
+          const response = await fetch(checkUrl, {
+              method: 'HEAD',
+              signal: controller.signal
+          });
+          clearTimeout(timeoutId);
+          return response.ok;
+      } catch (error) {
+          clearTimeout(timeoutId);
+          return false;
+      }
+  }
     
-async function runPingChecks() {
-    let offlineCount = 0;
-    
-    for (const game of gameData) {
-        const statElement = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
-        if (!statElement) continue;
+  async function runPingChecks() {
+      let offlineCount = 0;
+      
+      for (const game of gameData) {
+          const statElement = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
+          if (!statElement) continue;
 
-        const isOnline = await pingURL(game.url);
-        
-        if (isOnline) {
-            statElement.textContent = '🟢 Online';
-            statElement.style.color = '#4CAF50';
-        } else {
-            statElement.textContent = '🔴 Offline';
-            statElement.style.color = '#ff4757';
-            offlineCount++;
-        }
-    }
-    
-    updateMasterStatus(offlineCount); // ← Call it AFTER the loop
-}
+          const isOnline = await pingURL(game.url);
+          
+          if (isOnline) {
+              statElement.textContent = '🟢 Online';
+              statElement.style.color = '#4CAF50';
+          } else {
+              statElement.textContent = '🔴 Offline';
+              statElement.style.color = '#ff4757';
+              offlineCount++;
+          }
+      }
+      
+      updateMasterStatus(offlineCount);
+  }
 
-// Move this function OUTSIDE the loop
-function updateMasterStatus(offlineCount) {
-    const masterStatus = document.getElementById('master-status');
-    const statusBar = document.querySelector('.status-bar');
-    const dot = document.querySelector('.dot');
-    
-    if (!masterStatus || !statusBar || !dot) return;
+  function updateMasterStatus(offlineCount) {
+      const masterStatus = document.getElementById('master-status');
+      const statusBar = document.querySelector('.status-bar');
+      const dot = document.querySelector('.dot');
+      
+      if (!masterStatus || !statusBar || !dot) return;
 
-    let statusText = '';
-    let borderColor = '';
-    let dotClass = '';
+      let statusText = '';
+      let borderColor = '';
+      let dotClass = '';
 
-    if (offlineCount === 0) {
-        statusText = 'All Systems Functional';
-        borderColor = '#4CAF50';
-        dotClass = 'online';
-    } else if (offlineCount > 0 && offlineCount <= 5) {
-        statusText = 'Partially Online';
-        borderColor = '#FFC107';
-        dotClass = 'partially-online';
-    } else if (offlineCount > 5 && offlineCount <= 8) {
-        statusText = 'Mostly Offline';
-        borderColor = '#FF9800';
-        dotClass = 'mostly-offline';
-    } else {
-        statusText = 'Offline';
-        borderColor = '#ff4757';
-        dotClass = 'offline';
-    }
+      if (offlineCount === 0) {
+          statusText = 'All Systems Functional';
+          borderColor = '#4CAF50';
+          dotClass = 'online';
+      } else if (offlineCount > 0 && offlineCount <= 5) {
+          statusText = 'Partially Online';
+          borderColor = '#FFC107';
+          dotClass = 'partially-online';
+      } else if (offlineCount > 5 && offlineCount <= 8) {
+          statusText = 'Mostly Offline';
+          borderColor = '#FF9800';
+          dotClass = 'mostly-offline';
+      } else {
+          statusText = 'Offline';
+          borderColor = '#ff4757';
+          dotClass = 'offline';
+      }
 
-    masterStatus.textContent = statusText;
-    statusBar.style.borderLeftColor = borderColor;
-    
-    dot.classList.remove('online', 'partially-online', 'mostly-offline', 'offline');
-    dot.classList.add(dotClass);
+      masterStatus.textContent = statusText;
+      statusBar.style.borderLeftColor = borderColor;
+      
+      dot.classList.remove('online', 'partially-online', 'mostly-offline', 'offline');
+      dot.classList.add(dotClass);
+  }
 
-}
-
-  // Update last-checked time
   function updateLastCheckedTime() {
       const timeElement = document.getElementById('last-updated-time');
       if (timeElement) {
@@ -593,8 +804,7 @@ function updateMasterStatus(offlineCount) {
           document.title = "Nervous System Research"; 
       }
       if (e.key === ']') { 
-          document.getElementById('stealth-mode').style.display = 'none'; 
-          document.title = "DaniezOnSFUSD's Homepage"; 
+          closeStealthMode();
       }
       if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
       if (e.key.toLowerCase() === 'r' && document.activeElement !== searchInput) {
