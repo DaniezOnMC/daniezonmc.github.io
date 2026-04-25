@@ -1,3 +1,9 @@
+
+
+ <img width="677" height="369" alt="websitelogo" src="https://github.com/user-attachments/assets/476a3a45-3fb3-4490-b226-bcac549eb3db" />
+
+
+
 This project is Source-Available but is NOT Open Source.
 
 Copyright © 2026 DaniezOnSFUSD. All Rights Reserved.
