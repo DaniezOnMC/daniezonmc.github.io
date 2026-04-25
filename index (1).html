@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaniezOnSFUSD | Community Homepage</title>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/204815157?v=4" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* Core Variables */
+            --primary: #7289da; --bg: #0f1115; --nav-bg: #1a1c22; --card-bg: #1a1c22;
+            --text: #e0e0e0; --secondary-text: #a0a0a0; --border: rgba(255,255,255,0.08);
+            --amethyst: #9966cc; --accent: #ff4757; --sidebar-w: 70px;
+        }
+
+        /* Themes */
+        [data-theme="light"] {
+            --bg: #f0f2f5; --nav-bg: #ffffff; --card-bg: #ffffff;
+            --text: #2c3e50; --secondary-text: #5f676d; --border: rgba(0,0,0,0.1);
+        }
+        [data-theme="minecraft"] {
+            --bg: #3c2a1a; --nav-bg: #2b1d12; --card-bg: #4e3524;
+            --text: #ffffff; --primary: #55aa00; --border: #000000;
+            font-family: 'Courier New', monospace;
+        }
+        [data-theme="kpop"] {
+            --bg: #fff0f6; --nav-bg: #ffffff; --card-bg: rgba(255, 255, 255, 0.85);
+            --text: #4a4e69; --primary: #ffafcc; --accent: #bde0fe;
+            background: linear-gradient(135deg, #e0e7ff 0%, #ffafcc 100%) fixed;
+        }
+
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; transition: 0.3s; overflow-x: hidden; }
+        
+        /* Layout & UI */
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 16px; }
+        .badge { font-size: 10px; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; font-weight: 900; margin-left: 8px; }
+        .trending { background: var(--amethyst); color: white; }
+        .wip { background: var(--primary); color: white; }
+
+        /* Status Dots */
+        .dot { height: 12px; width: 12px; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px currentColor; }
+        .online { background-color: #4CAF50; color: #4CAF50; }
+        .partially-online { background-color: #FFC107; color: #FFC107; }
+        .mostly-offline { background-color: #FF9800; color: #FF9800; }
+        .offline { background-color: #ff4757; color: #ff4757; }
+
+        /* Ticker */
+        .ticker-wrap { width: 100%; overflow: hidden; background: var(--primary); color: white; padding: 10px 0; font-weight: bold; font-size: 0.9em; z-index: 2000; position: relative; }
+        .ticker { display: inline-block; white-space: nowrap; animation: ticker 40s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* Side Dock */
+        .side-dock { position: fixed; left: 0; top: 0; height: 100%; width: var(--sidebar-w); background: var(--nav-bg); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; padding-top: 80px; gap: 25px; z-index: 1001; }
+        .dock-item { color: var(--secondary-text); font-size: 1.3em; cursor: pointer; transition: 0.3s; }
+        .dock-item:hover { color: var(--primary); transform: scale(1.1); }
+
+        /* Nav */
+        nav { background: var(--nav-bg); padding: 15px 30px 15px calc(var(--sidebar-w) + 30px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; }
+        .nav-search { flex-grow: 1; max-width: 400px; margin: 0 30px; position: relative; }
+        .nav-search input { width: 100%; padding: 12px 20px 12px 40px; border-radius: 30px; border: 1px solid var(--border); background: var(--bg); color: var(--text); outline: none; }
+        .nav-search i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+
+        /* Main Content Area */
+        .main-content { margin-left: var(--sidebar-w); padding: 30px; max-width: 1200px; margin-right: auto; }
+
+        /* Hero */
+        .hero { border-radius: 30px; background: url('https://daniezonsfusd.github.io/homepage/assets/NautilusOS.png') center/cover; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid var(--border); margin-bottom: 40px; }
+        .hero-overlay { padding: 80px 60px; background: linear-gradient(90deg, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.2) 100%); color: white; }
+        .hero-btn { display: inline-block; margin-top: 20px; padding: 12px 30px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; transition: 0.2s; border: none; cursor: pointer; }
+        .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+
+        /* Grids */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+        .card { background: var(--card-bg); padding: 25px; border-radius: 20px; border: 1px solid var(--border); transition: 0.3s; text-decoration: none; color: var(--text); display: flex; flex-direction: column; align-items: center; text-align: center; font-weight: bold; }
+        .card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .troll-card { border-bottom: 3px solid var(--accent); }
+
+        /* Issues & Bug Tracker */
+        .issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .issue-card { border-radius: 24px; min-height: 350px; padding: 30px; background-size: cover; background-position: center 20%; position: relative; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid var(--border); overflow: hidden; }
+        .issue-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; }
+        .issue-card h3, .issue-card ul { position: relative; z-index: 2; color: white; margin: 0; }
+        .issue-card ul { padding-left: 20px; margin-top: 10px; font-size: 0.9em; opacity: 0.9; }
+
+        /* Custom Stealth Editor */
+        .stealth-overlay { display: none; position: fixed; inset: 0; background: #ffffff; z-index: 100000; padding: 40px; color: #1a1a1a; font-family: "Georgia", serif; overflow-y: auto; }
+        .stealth-overlay-content { max-width: 900px; margin: 0 auto; line-height: 1.8; }
+        .stealth-overlay-toolbar { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .stealth-preset-btn { padding: 10px 18px; background: #f0f0f0; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .stealth-preset-btn:hover { background: #e0e0e0; }
+        .stealth-editor-toggle { padding: 10px 18px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .stealth-close-btn { padding: 10px 18px; background: #ff4757; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-left: auto; }
+        
+        .stealth-editor { display: none; background: #f8f9fa; padding: 25px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #dee2e6; }
+        .stealth-editor input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; }
+        .stealth-editor textarea { width: 100%; min-height: 250px; padding: 15px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Courier New', monospace; resize: vertical; }
+        .stealth-editor-save { background: #4CAF50; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+        .stealth-presets-list { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+        .stealth-delete-preset { background: #ff4757; color: white; padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85em; }
+
+        /* Changelog */
+        .changelog { border-left: 3px solid var(--primary); margin-left: 10px; padding-left: 25px; }
+        .changelog-item { margin-bottom: 25px; position: relative; }
+        .changelog-item::before { content: ''; position: absolute; left: -35px; top: 4px; width: 16px; height: 16px; background: var(--bg); border: 4px solid var(--primary); border-radius: 50%; }
+    </style>
+</head>
+<body data-theme="dark">
+
+<div id="stealth-mode" class="stealth-overlay">
+    <div class="stealth-overlay-content">
+        <div class="stealth-overlay-toolbar">
+            <button class="stealth-preset-btn" onclick="loadStealthPreset('math')">📐 Math</button>
+            <button class="stealth-preset-btn" onclick="loadStealthPreset('science')">🧪 Science</button>
+            <button class="stealth-preset-btn" onclick="loadStealthPreset('socialstudies')">🌍 History</button>
+            <button class="stealth-preset-btn" onclick="loadStealthPreset('languagearts')">📚 English</button>
+            <button class="stealth-editor-toggle" onclick="toggleStealthEditor()"><i class="fas fa-pen"></i> Custom Editor</button>
+            <button class="stealth-close-btn" onclick="closeStealthMode()">Exit ( ] )</button>
+        </div>
+        
+        <div id="stealth-editor" class="stealth-editor">
+            <h3 style="margin-top: 0;">Create Custom Stealth Article</h3>
+            <input type="text" id="stealth-title" placeholder="Article Title (e.g., Biology Chapter 4)">
+            <textarea id="stealth-content" placeholder="Enter your article content here (HTML allowed)..."></textarea>
+            <div>
+                <button class="stealth-editor-save" onclick="saveCustomStealthPreset()">💾 Save as Preset</button>
+            </div>
+            <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd;">
+                <strong>Saved Custom Presets:</strong>
+                <div class="stealth-presets-list" id="custom-presets-list"></div>
+            </div>
+        </div>
+
+        <div id="stealth-content-area">
+            <h1>Unit 4: The Human Nervous System</h1>
+            <p><strong>Subject:</strong> Life Science | <strong>SFUSD Educational Resource</strong></p>
+            <hr>
+            <p>The nervous system is a complex network of nerves and cells that carry messages to and from the brain and spinal cord to various parts of the body. It includes both the Central Nervous System (CNS) and the Peripheral Nervous System (PNS).</p>
+            <h3>Key Components:</h3>
+            <ul>
+                <li><strong>Brain:</strong> Controls all body functions and processes information</li>
+                <li><strong>Spinal Cord:</strong> Transmits signals between the brain and the rest of the body</li>
+                <li><strong>Neurons:</strong> Individual nerve cells that transmit electrical and chemical signals</li>
+                <li><strong>Synapses:</strong> Connections between neurons where signals are transmitted</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="side-dock">
+    <i class="fas fa-home dock-item" title="Home" onclick="window.location.href='#home'"></i>
+    <i class="fas fa-gamepad dock-item" title="Library" onclick="window.location.href='#games'"></i>
+    <i class="fas fa-server dock-item" title="Dashboard" onclick="window.location.href='#status-dashboard'"></i>
+    <i class="fas fa-bug dock-item" title="Tracker" onclick="window.location.href='#issues'"></i>
+</div>
+
+    <div class="ticker-wrap">
+    <div class="ticker">
+        ---------------- WELCOME BACK | ALL GAMES ARE NOW UP AND RUNNING! | PRESS [ FOR CUSTOM STEALTH MODE | PRESS R FOR RANDOM GAME | CHECK OUT THE NEW STATUS DASHBOARD ----------------
+    </div>
+</div>
+
+<nav>
+    <a href="#home" style="display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--text);">
+        <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="DaniezonSFUSD" style="width: 40px; border-radius: 12px; border: 2px solid var(--primary);">
+        <span style="font-weight: 900; font-size: 1.2em;">DaniezOnSFUSD <span style="color: var(--primary);">HOMEPAGE</span></span>
+    </a>
+    
+    <div class="nav-search">
+        <i class="fas fa-search"></i>
+        <input type="text" id="nav-search" placeholder="Search systems or games ( / )">
+    </div>
+
+    <div style="display: flex; gap: 15px; align-items: center;">
+        <i class="fas fa-cube" title="Minecraft Theme" onclick="setTheme('minecraft')" style="cursor:pointer; font-size: 1.2em;"></i>
+        <i class="fas fa-heart" title="K-Pop Theme" onclick="setTheme('kpop')" style="cursor:pointer; font-size: 1.2em;"></i>
+        <i class="fas fa-moon" id="theme-toggle" title="Toggle Dark/Light" style="cursor:pointer; font-size: 1.2em;"></i>
+    </div>
+</nav>
+
+<div class="main-content" id="home">
+    <section class="hero">
+        <div class="hero-overlay">
+            <div>
+                <p style="font-size: 0.9em; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; color: var(--primary); letter-spacing: 1px;">Featured Project</p>
+                <h1 style="margin: 0; font-size: 3.5em; line-height: 1.1;">NautilusOS <span class="badge wip" style="vertical-align: middle;">WIP</span></h1>
+                <p style="font-size: 1.2em; opacity: 0.9; max-width: 600px; margin: 15px 0 25px;">Windows and Linux based environment. Fully optimized for SFUSD Chromebook performance.</p>
+                <a href="https://daniezonsfusd.github.io/NautilusOS" class="hero-btn">Launch OS</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="glass" style="display: flex; justify-content: space-between; padding: 20px 30px; margin-bottom: 40px; border-left: 5px solid #4CAF50;" id="global-status-bar">
+        <div style="display: flex; align-items: center; gap: 12px; font-weight: bold;">
+            <span class="dot online" id="global-dot"></span>
+            <span>Network Status: <span id="master-status" style="color: var(--primary);">All Systems Functional</span></span>
+        </div>
+        <div id="last-updated-time" style="opacity: 0.6; font-size: 0.9em;">Updated: Pinging...</div>
+    </div>
+
+    <section id="games">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
+            <h2 style="font-size: 2em; margin: 0;">Game Library</h2>
+            <p id="search-results-count" style="opacity: 0.6; margin: 0;">12 assets loaded</p>
+        </div>
+        <div class="grid" id="game-grid">
+            <a href="https://daniezonsfusd.github.io/1.20" class="card game-card">
+                Eaglercraft 1.20 <span class="badge trending">TRENDING</span>
+            </a>
+            <a href="https://daniezonsfusd.github.io/1.8" class="card game-card">
+                Resent Client 1.8
+            </a>
+            <a href="https://daniezonsfusd.github.io/beeswarm" class="card game-card">
+                Bee Swarm
+            </a>
+            <a href="https://daniezonsfusd.github.io/Geometrydashlite" class="card game-card">
+                GD Lite
+            </a>
+            <a href="https://daniezonsfusd.github.io/papas/papaspizza" class="card game-card">
+                Papas Pizzaeria
+            </a>
+            <a href="https://daniezonsfusd.github.io/papas/papasfreezeria" class="card game-card">
+                Papas Freezeria
+            </a>
+            <a href="https://daniezonsfusd.github.io/papas/papasbakeria" class="card game-card">
+                Papas Bakeria
+            </a>
+            <a href="https://daniezonsfusd.github.io/papas/papasdonuteria" class="card game-card">
+                Papas Donuteria
+            </a>
+            <a href="https://daniezonsfusd.github.io/papas/swfloader" class="card game-card">
+                SWF Loader
+            </a>
+            <a href="https://daniezonsfusd.github.io/NautilusOS" class="card game-card">
+                Nautilus OS <span class="badge wip">WIP</span>
+
+                <a href="https://daniezonsfusd.github.io/subzero" class="card game-card">
+                GD Subzero <span class="badge wip">Laggy</span>
+            </a>   
+                     <a href="https://daniezonsfusd.github.io/Slope" class="card game-card">
+                Slope <span class="badge wip">NEW AND FIXED!</span>
+            </a>
+        </div>
+    </section>
+
+    <section id="status-dashboard" style="margin-top: 80px; padding: 40px; border-radius: 24px; border: 1px solid var(--border);" class="glass">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h2 style="margin: 0;"><i class="fas fa-server"></i> Website Diagnostics (Depends on your Network Strength if it Works or Not)</h2>
+            <button onclick="checkSystemStatus()" class="hero-btn" style="margin: 0; padding: 10px 20px;">
+                <i class="fas fa-sync-alt"></i> Force Refresh
+            </button>
+        </div>
+        <div class="grid" id="status-checker-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+        </div>
+    </section>
+
+    <section id="trolls" style="margin-top: 80px;">
+        <h2>Experimental / Trolls</h2>
+        <div class="grid">
+            <a href="https://daniezonsfusd.github.io/1.21." class="card troll-card">
+                Scam Eaglercraft 1.21
+                <p style="font-size: 0.8em; font-weight: normal; margin-top: 10px; color: var(--secondary-text);">Troll your friends! (Careful with Chromebooks)</p>
+            </a>
+            <a href="https://daniezonsfusd.github.io/eaglercraft-26.1" class="card troll-card">
+                Scam Eaglercraft 1.22
+                <p style="font-size: 0.8em; font-weight: normal; margin-top: 10px; color: var(--secondary-text);">Downloads virus_mspaint.virusexe repeatedly!</p>
+            </a>
+        </div>
+    </section>
+
+    <section id="issues" style="margin-top: 80px;">
+        <h2 style="margin-bottom: 30px;">Bug Tracker & Known Issues</h2>
+        <div class="issues-grid">
+            <div class="issue-card" style="background-image: url('https://daniezonsfusd.github.io/homepage/assets/NautilusOS.png');">
+                <div style="background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); padding: 20px; border-radius: 16px;">
+                    <h3><i class="fas fa-desktop"></i> NautilusOS</h3>
+                    <ul>
+                        <li>x86 Emulator does not load</li>
+                        <li>UltraViolet/Helios Browser 404 error</li>
+                        <li>Themes are not functional</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="issue-card" style="background-image: url('https://daniezonsfusd.github.io/homepage/assets/1.20.png');">
+                <div style="background: rgba(0,0,0,0.5); backdrop-filter: blur(3px); padding: 20px; border-radius: 16px;">
+                    <h3><i class="fas fa-cube"></i> Eaglercraft 1.20</h3>
+                    <ul>
+                        <li>Mace/Elytra features are missing.</li>
+                        <li>Feature requests for 1.20 items are ignored.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="issue-card" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2HXY67NSbyMMpzlnSbBWUpcSmNMDM3CPoEA&s');">
+                <div style="background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); padding: 20px; border-radius: 16px;">
+                    <h3><i class="fas fa-play"></i> Slope</h3>
+                    <ul>
+                        <li>Game shows ads when I coded it not to.</li>
+                        <li>This is Client side and will not be fixed!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 80px;">
+        <section>
+            <h2>Dev Changelog</h2>
+            <div class="changelog">
+                <div class="changelog-item">
+                    <strong>April 16, 2026</strong>
+                    <p style="margin: 5px 0; color: var(--secondary-text);">Added ability to change what your stealth mode's research "essay" is about and added the Custom Editor feature. Also redisgned whole Homepage AGAIN!</p>
+                </div>
+                <div class="changelog-item">
+                    <strong>April 15, 2026</strong>
+                    <p style="margin: 5px 0; color: var(--secondary-text);">Added Issues, Timeline, and Website Services Checker dashboard.</p>
+                </div>
+                <div class="changelog-item">
+                    <strong>April 10, 2026</strong>
+                    <p style="margin: 5px 0; color: var(--secondary-text);">Created SWF Repository and uploaded all SWF files.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="glass" style="padding: 40px;">
+            <h2 style="margin-top: 0;">Community</h2>
+            <p style="opacity: 0.8;">Have a suggestion? Let me know what features or games you want to see next! (SFUSD emails only)</p>
+            <button class="hero-btn" onclick="window.location.href='mailto:dalouie2@s.sfusd.edu'" style="margin-bottom: 25px;"><i class="fas fa-envelope"></i> Send Request</button>
+            
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="https://discord.gg/V9nVwu836D" class="hero-btn" style="background:#7289da; margin: 0;"><i class="fab fa-discord"></i> Discord</a>
+                <a href="https://www.twitch.tv/daniezgamemc" class="hero-btn" style="background:#9146FF; margin: 0;"><i class="fab fa-twitch"></i> Twitch</a>
+                <a href="https://github.com/daniezonsfusd" class="hero-btn" style="background:#24292e; margin: 0;"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 20px; margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--border);">
+                <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="Daniez" style="width: 70px; border-radius: 16px;">
+                <div>
+                    <h3 style="margin: 0;">DaniezonSFUSD</h3>
+                    <p style="color: var(--secondary-text); margin: 5px 0 0 0; font-size: 0.9em;">Developing fun systems for our Chromebooks! Known for the 1.20 link.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer style="text-align: center; margin-top: 80px; padding: 40px; border-top: 1px solid var(--border); opacity: 0.6; font-size: 0.9em;">
+        <p>Shortcuts: [ = Stealth | ] = Exit | / = Search | R = Random Game</p>
+        <p>No copyright (except Papa's Gamerias). Developed for the SFUSD Community. <br>Credits: <strong>DaniezonSFUSD</strong>. Flash help by <strong>JWheasley672</strong>. Shout out to <strong>Adam</strong> at <strong>Aptos Middle</strong>. Credits for games that aare not mine! (Slope) <strong>SZGames</strong>, (Papa's Gamerias) <strong>Flipline Studios and Armor Games</strong>, (EaglerCraft 1.20) <strong>lax1dude and chocofush</strong>, (EaglerCraft Resent) <strong>lax1dude and elite4r</strong>.</p>
+    </footer>
+</div>
+
+    <script>
+    // --- Theme Controllers ---
+    const themeBtn = document.getElementById('theme-toggle');
+    function setTheme(t) { 
+        document.body.setAttribute("data-theme", t); 
+        localStorage.setItem("site-theme", t); 
+        if (themeBtn) themeBtn.className = t === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+    setTheme(localStorage.getItem("site-theme") || "dark");
+    if (themeBtn) themeBtn.onclick = () => setTheme(document.body.getAttribute("data-theme") === "dark" ? "light" : "dark");
+
+    // --- Search Engine ---
+    const searchInput = document.getElementById('nav-search');
+    const gameCards = document.querySelectorAll('.game-card');
+    if (searchInput) {
+        searchInput.oninput = (e) => {
+            const val = e.target.value.toLowerCase();
+            let count = 0;
+            gameCards.forEach(card => {
+                const match = card.textContent.toLowerCase().includes(val);
+                card.style.display = match ? 'flex' : 'none';
+                if(match) count++;
+            });
+            const counter = document.getElementById('search-results-count');
+            if(counter) counter.innerText = `${count} assets loaded`;
+        };
+    }
+
+    // --- Stealth Mode Presets and Editor (User's Exact Logic) ---
+    const stealthPresets = {
+        math: {
+            title: "Unit 3: Algebra & Functions",
+            content: `<h1>Unit 3: Algebra & Functions</h1><p><strong>Subject:</strong> Mathematics | <strong>SFUSD Educational Resource</strong></p><hr><h3>Key Concepts:</h3><ul><li><strong>Functions:</strong> Relations where each input has exactly one output</li><li><strong>Linear Equations:</strong> Equations of the form y = mx + b</li><li><strong>Quadratic Functions:</strong> Equations of the form y = ax² + bx + c</li><li><strong>Domain & Range:</strong> The set of all possible inputs and outputs</li></ul><h3>Practice Problems:</h3><ol><li>Solve: 3x + 7 = 22</li><li>Find the slope between points (2,3) and (5,9)</li><li>Graph the function f(x) = x² - 4</li></ol>`
+        },
+        science: {
+            title: "Unit 5: Cell Biology",
+            content: `<h1>Unit 5: Cell Biology</h1><p><strong>Subject:</strong> Biology | <strong>SFUSD Educational Resource</strong></p><hr><h3>Cell Structure:</h3><ul><li><strong>Nucleus:</strong> Contains genetic material (DNA)</li><li><strong>Mitochondria:</strong> Powerhouse of the cell, produces ATP</li><li><strong>Ribosome:</strong> Site of protein synthesis</li><li><strong>Endoplasmic Reticulum:</strong> Network for protein and lipid synthesis</li><li><strong>Golgi Apparatus:</strong> Modifies and packages proteins</li></ul><h3>Cell Types:</h3><ul><li>Prokaryotic cells (bacteria)</li><li>Eukaryotic cells (plants and animals)</li></ul>`
+        },
+        socialstudies: {
+            title: "Unit 7: American History - Industrial Revolution",
+            content: `<h1>Unit 7: American History - Industrial Revolution</h1><p><strong>Subject:</strong> Social Studies | <strong>SFUSD Educational Resource</strong></p><hr><h3>The Industrial Revolution (1750-1850):</h3><ul><li>Shift from agrarian to industrial economies</li><li>Development of factory systems and mass production</li><li>Rise of urbanization and working class</li><li>Technological innovations: steam engine, spinning jenny, power loom</li></ul><h3>Key Figures:</h3><ul><li>James Watt - improved steam engine</li><li>Eli Whitney - invented cotton gin</li><li>Thomas Edison - revolutionized electricity</li></ul>`
+        },
+        languagearts: {
+            title: "Unit 4: Literary Analysis - Shakespeare",
+            content: `<h1>Unit 4: Literary Analysis - Shakespeare</h1><p><strong>Subject:</strong> Language Arts | <strong>SFUSD Educational Resource</strong></p><hr><h3>William Shakespeare (1564-1616):</h3><p>Greatest writer in the English language, wrote 37 plays and 154 sonnets.</p><h3>Major Works:</h3><ul><li><strong>Tragedies:</strong> Hamlet, Macbeth, Othello, King Lear, Romeo and Juliet</li><li><strong>Comedies:</strong> A Midsummer Night's Dream, Much Ado About Nothing, Twelfth Night</li><li><strong>Histories:</strong> Henry V, Richard III</li></ul><h3>Literary Devices:</h3><ul><li>Metaphor and simile</li><li>Foreshadowing</li><li>Personification</li><li>Irony and ambiguity</li></ul>`
+        }
+    };
+
+    function loadStealthPreset(preset) {
+        const contentArea = document.getElementById('stealth-content-area');
+        const presetData = stealthPresets[preset];
+        if (presetData) {
+            contentArea.innerHTML = presetData.content;
+            document.title = presetData.title + " - Research";
+        }
+    }
+
+    function toggleStealthEditor() {
+        const editor = document.getElementById('stealth-editor');
+        editor.style.display = editor.style.display === 'none' ? 'block' : 'none';
+        if (editor.style.display === 'block') loadCustomPresets();
+    }
+
+    function saveCustomStealthPreset() {
+        const title = document.getElementById('stealth-title').value.trim();
+        const content = document.getElementById('stealth-content').value.trim();
+        if (!title || !content) { alert('Please enter both a title and content'); return; }
+        const presetName = 'custom_' + Date.now();
+        const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
+        customPresets[presetName] = { title, content };
+        localStorage.setItem('stealthCustomPresets', JSON.stringify(customPresets));
+        alert(`✓ Preset "${title}" saved!`);
+        document.getElementById('stealth-title').value = '';
+        document.getElementById('stealth-content').value = '';
+        loadCustomPresets();
+    }
+
+    function loadCustomPresets() {
+        const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
+        const presetsList = document.getElementById('custom-presets-list');
+        presetsList.innerHTML = '';
+        Object.entries(customPresets).forEach(([key, preset]) => {
+            const item = document.createElement('div');
+            item.style.display = 'flex'; item.style.gap = '5px';
+            item.innerHTML = `
+                <button class="stealth-preset-btn" onclick="loadCustomPreset('${key}')" style="margin: 0;">${preset.title}</button>
+                <button class="stealth-delete-preset" onclick="deleteCustomPreset('${key}')">Delete</button>
+            `;
+            presetsList.appendChild(item);
+        });
+    }
+
+    function loadCustomPreset(presetKey) {
+        const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
+        const preset = customPresets[presetKey];
+        if (preset) {
+            const contentArea = document.getElementById('stealth-content-area');
+            contentArea.innerHTML = `<h1>${preset.title}</h1><p><strong>Subject:</strong> Custom | <strong>SFUSD Educational Resource</strong></p><hr>${preset.content}`;
+            document.title = preset.title;
+        }
+    }
+
+    function deleteCustomPreset(presetKey) {
+        if (confirm('Delete this preset?')) {
+            const customPresets = JSON.parse(localStorage.getItem('stealthCustomPresets') || '{}');
+            delete customPresets[presetKey];
+            localStorage.setItem('stealthCustomPresets', JSON.stringify(customPresets));
+            loadCustomPresets();
+        }
+    }
+
+    function closeStealthMode() {
+        document.getElementById('stealth-mode').style.display = 'none';
+        document.title = "DaniezOnSFUSD | Community Hub";
+    }
+
+    // --- Status Updater (User's AbortController Ping Logic) ---
+    const gameData = [
+        { name: "Eaglercraft 1.20", url: "https://daniezonsfusd.github.io/1.20" },
+        { name: "Resent Client 1.8", url: "https://daniezonsfusd.github.io/1.8" },
+        { name: "Bee Swarm", url: "https://daniezonsfusd.github.io/beeswarm" },
+        { name: "GD Lite", url: "https://daniezonsfusd.github.io/Geometrydashlite" },
+        { name: "Papas Pizzaeria", url: "https://daniezonsfusd.github.io/papas/papaspizza" },
+        { name: "Papas Freezeria", url: "https://daniezonsfusd.github.io/papas/papasfreezeria" },
+        { name: "Papas Bakeria", url: "https://daniezonsfusd.github.io/papas/papasbakeria" },
+        { name: "Papas Donuteria", url: "https://daniezonsfusd.github.io/papas/papasdonuteria" },
+        { name: "SWF Loader", url: "https://daniezonsfusd.github.io/papas/swfloader" },
+        { name: "Nautilus OS", url: "https://daniezonsfusd.github.io/NautilusOS" }
+    ];
+
+    function setupStatusDashboard() {
+        const grid = document.getElementById('status-checker-grid');
+        if(!grid) return;
+        grid.innerHTML = gameData.map(game => `
+            <div class="glass" style="display: flex; justify-content: space-between; padding: 20px; align-items: center;">
+                <span style="font-weight: bold;">${game.name}</span>
+                <span id="stat-${game.url.replace(/\//g, '-')}" style="font-size: 0.8em; color: var(--secondary-text); font-weight: bold; background: rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 8px;">WAITING...</span>
+            </div>
+        `).join('');
+    }
+
+async function pingURL(url) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    
+    try {
+        const checkUrl = url.includes('?') ? url + '&_t=' + Date.now() : url + '?_t=' + Date.now();
+        const response = await fetch(checkUrl, { signal: controller.signal });
+        const text = await response.text();
+        clearTimeout(timeoutId);
+
+        // 1. Check if the server officially sent a 404 status code
+        if (!response.ok) return false;
+
+        // 2. SMART TEXT CHECK: Only trigger "Offline" if 404 is in the <title> or a Header <h1>
+        // This prevents the code from breaking if the number "404" just happens to be on the page text.
+        const isErrorPage = text.toLowerCase().includes("<title>404") || 
+                            text.toLowerCase().includes("<h1>404") ||
+                            text.toLowerCase().includes("<title>not found");
+
+        if (isErrorPage) {
+            return false;
+        }
+
+        return true;
+    } catch (error) {
+        clearTimeout(timeoutId);
+        return false;
+    }
+}
+        
+        
+    async function runPingChecks() {
+        let offlineCount = 0;
+        for (const game of gameData) {
+            const statElement = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
+            if (!statElement) continue;
+            const isOnline = await pingURL(game.url);
+            if (isOnline) {
+                statElement.innerHTML = '<i class="fas fa-check-circle"></i> Online';
+                statElement.style.color = '#4CAF50';
+            } else {
+                statElement.innerHTML = '<i class="fas fa-times-circle"></i> Offline';
+                statElement.style.color = '#ff4757';
+                offlineCount++;
+            }
+        }
+        updateMasterStatus(offlineCount);
+    }
+
+    function updateMasterStatus(offlineCount) {
+        const masterStatus = document.getElementById('master-status');
+        const statusBar = document.getElementById('global-status-bar');
+        const dot = document.getElementById('global-dot');
+        if (!masterStatus || !statusBar || !dot) return;
+
+        let statusText = '', borderColor = '', dotClass = '';
+        if (offlineCount === 0) { statusText = 'All Systems Functional'; borderColor = '#4CAF50'; dotClass = 'online'; } 
+        else if (offlineCount <= 5) { statusText = 'Partially Online'; borderColor = '#FFC107'; dotClass = 'partially-online'; } 
+        else if (offlineCount <= 8) { statusText = 'Mostly Offline'; borderColor = '#FF9800'; dotClass = 'mostly-offline'; } 
+        else { statusText = 'Critical Outage'; borderColor = '#ff4757'; dotClass = 'offline'; }
+
+        masterStatus.textContent = statusText;
+        masterStatus.style.color = borderColor;
+        statusBar.style.borderLeftColor = borderColor;
+        dot.className = 'dot ' + dotClass;
+    }
+
+    async function checkSystemStatus() {
+        await runPingChecks();
+        document.getElementById('last-updated-time').textContent = `Verified: ${new Date().toLocaleTimeString()}`;
+    }
+
+    // --- Controls and Hotkeys ---
+    document.onkeydown = (e) => {
+        if (e.key === '[') { 
+            document.getElementById('stealth-mode').style.display = 'block'; 
+            loadStealthPreset('math'); 
+        }
+        if (e.key === ']') closeStealthMode();
+        if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
+        if (e.key.toLowerCase() === 'r' && document.activeElement !== searchInput && document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'INPUT') {
+            const visibleLinks = Array.from(gameCards).filter(c => c.style.display !== 'none');
+            if(visibleLinks.length > 0) window.location.href = visibleLinks[Math.floor(Math.random() * visibleLinks.length)].href;
+        }
+    };
+
+    // --- Initialization ---
+    setupStatusDashboard();
+    checkSystemStatus();
+    setInterval(checkSystemStatus, 300000);
+</script>
+</body>
+</html>
