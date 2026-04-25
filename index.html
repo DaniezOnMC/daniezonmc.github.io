@@ -399,6 +399,41 @@
         };
     }
 
+        // --- The New Message List ---
+    const loadingMessages = [
+        "Bypassing SFUSD SecureFilter...", "Locating hidden Eaglercraft nodes...",
+        "Warming up the Ruffle emulator...", "Mining diamonds in the background...",
+        "Feeding the Papa's Freezeria customers...", "Downloading aespa's latest comeback...",
+        "Baking secret Papa's Pizzeria dough...", "Syncing Hearts2Hearts member status...",
+        "Optimizing for school Chromebook RAM...", "Scraping GitHub for update logs...",
+        "Loading NewJeans bunny assets...", "Checking Slope high scores...",
+        "Verifying Minecraft 1.20 textures...", "Evading the district IT department...",
+        "Gathering Bee Swarm Simulator honey...", "Applying custom GitHub CSS themes...",
+        "Calibrating the stealth-mode math preset...", "Fetching 1.8 Resent Client data...",
+        "Rerouting through Aptos Middle servers...", "Injecting Geometry Dash Lite levels..."
+    ];
+
+    // --- The Updated Function ---
+    async function checkSystemStatus() {
+        const masterStatus = document.getElementById('master-status');
+        
+        // Pick a random message
+        const randomMsg = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
+        
+        // Show it immediately while the pings run
+        if (masterStatus) {
+            masterStatus.textContent = randomMsg;
+            masterStatus.style.color = "var(--secondary-text)";
+        }
+
+        await runPingChecks();
+        
+        const updateTime = document.getElementById('last-updated-time');
+        if (updateTime) {
+            updateTime.textContent = `Verified: ${new Date().toLocaleTimeString()}`;
+        }
+    }
+
     // --- Stealth Mode Presets and Editor (User's Exact Logic) ---
     const stealthPresets = {
         math: {
@@ -583,11 +618,7 @@ async function pingURL(url) {
         masterStatus.style.color = borderColor;
         statusBar.style.borderLeftColor = borderColor;
         dot.className = 'dot ' + dotClass;
-    }
 
-    async function checkSystemStatus() {
-        await runPingChecks();
-        document.getElementById('last-updated-time').textContent = `Verified: ${new Date().toLocaleTimeString()}`;
     }
 
     // --- Controls and Hotkeys ---
