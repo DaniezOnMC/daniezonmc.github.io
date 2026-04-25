@@ -24,10 +24,16 @@
             --text: #ffffff; --primary: #55aa00; --border: #000000;
             font-family: 'Courier New', monospace;
         }
-        [data-theme="kpop"] {
-            --bg: #fff0f6; --nav-bg: #ffffff; --card-bg: rgba(255, 255, 255, 0.85);
-            --text: #4a4e69; --primary: #ffafcc; --accent: #bde0fe;
-            background: linear-gradient(135deg, #e0e7ff 0%, #ffafcc 100%) fixed;
+       [data-theme="aespa"] {
+    --bg: #000000; --nav-bg: #111; --card-bg: #1a1a1a;
+    --text: #ffffff; --primary: #ae91ff; --accent: #00f2ff;
+    background: linear-gradient(135deg, #000 0%, #1a0b2e 100%) fixed;
+}
+[data-theme="njz"] {
+    --bg: #ffffff; --nav-bg: #f8f9fa; --card-bg: #ffffff;
+    --text: #222; --primary: #bde0fe; --accent: #ffafcc;
+    font-family: 'Comic Sans MS', cursive; /* For that Y2K Bunny vibe */
+}
         }
 
         body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; transition: 0.3s; overflow-x: hidden; }
@@ -173,7 +179,8 @@
 
     <div style="display: flex; gap: 15px; align-items: center;">
         <i class="fas fa-cube" title="Minecraft Theme" onclick="setTheme('minecraft')" style="cursor:pointer; font-size: 1.2em;"></i>
-        <i class="fas fa-heart" title="K-Pop Theme" onclick="setTheme('kpop')" style="cursor:pointer; font-size: 1.2em;"></i>
+        <i class="fas fa-star" title="aespa Theme" onclick="setTheme('aespa')" style="cursor:pointer;"></i>
+        <i class="fas fa-rabbit" title="NewJeans Theme" onclick="setTheme('njz')" style="cursor:pointer;"></i>
         <i class="fas fa-moon" id="theme-toggle" title="Toggle Dark/Light" style="cursor:pointer; font-size: 1.2em;"></i>
     </div>
 </nav>
