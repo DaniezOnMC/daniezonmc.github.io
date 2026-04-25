@@ -1,34 +1,63 @@
+PROPRIETARY LICENSE AGREEMENT
+
 Copyright (c) 2026 DaniezOnSFUSD. All Rights Reserved.
-This license applies exclusively to the homepage source code, custom
-assets, and site architecture developed by DaniezOnSFUSD. All rights
-to these specific components are strictly reserved. By accessing this
-repository, you acknowledge that no ownership rights are transferred
-to you for the proprietary homepage content, and all rights not
-expressly granted under the GitHub Terms of Service remain with the
-copyright owner.
 
-It is explicitly noted that this repository also contains third-party
-software, including but not limited to games and engines such as
-Slope, Papa's Gamerias, and EaglerCraft. These specific components
-are not owned by DaniezOnSFUSD. Ownership and copyright for these
-items remain with their respective creators and studios, including
-RenzorsRevenge1, Flipline Studios, Armor Games, lax1dude, chocofush, and
-elite4r. Your use of these third-party materials is governed by
-their own specific licenses and original terms of service.
-Except for the limited rights to view and fork the repository within
-the GitHub platform as required by its service terms, you are
-prohibited from copying, reproducing, distributing, or transmitting
-the proprietary homepage code in any form or by any means without
-prior written authorization. You may not modify, transform, or create
-derivative works based on the proprietary code, nor may you
-redistribute, sub-license, or sell the software to any third party
-for any reason. Furthermore, any use of the proprietary software for
-commercial purposes or profit-generating activities is strictly
-forbidden.
+-------------------------------------------------------------------------------
 
-Any unauthorized use of the proprietary components of this software
-may result in civil or criminal penalties. For inquiries regarding
-permission requests or the acquisition of additional usage rights
-for the homepage assets, please contact the repository owner
-directly through the GitHub platform.
+1. DEFINITIONS AND SCOPE
+This license applies exclusively to the original works created, authored, and 
+maintained by DaniezOnSFUSD, hereafter referred to as "Proprietary Components." 
+These components include:
+    - The unique site architecture, directory structures, and navigational logic.
+    - All custom source code (including but not limited to HTML, CSS, and 
+      JavaScript) associated with the homepage and user interface.
+    - Custom visual assets, graphics, branding, and icons developed 
+      specifically for this project.
 
+2. THIRD-PARTY SOFTWARE AND INTELLECTUAL PROPERTY
+This repository contains third-party software, games, and engines, including 
+but not limited to Slope, Papa's Gamerias, and EaglerCraft.
+    - OWNERSHIP: Ownership and copyright for these materials remain solely 
+      with the original creators and studios, including RenzorsRevenge1, 
+      Flipline Studios, Armor Games, lax1dude, chocofush, and elite4r.
+    - LICENSING: Your use of these third-party materials is governed by their 
+      own specific licenses and original terms of service. DaniezOnSFUSD 
+      expressly disclaims ownership of these assets.
+
+3. GRANT OF LIMITED LICENSE
+Subject to your compliance with this Agreement and the GitHub Terms of Service, 
+you are granted a limited, non-exclusive, and revocable license to:
+    - View the source code and assets via the GitHub platform.
+    - Fork the repository within the GitHub ecosystem for personal, 
+      non-commercial use, provided all original copyright notices remain intact.
+
+4. RESTRICTIONS AND PROHIBITED USES
+Except as expressly permitted in Section 3, all rights are reserved. 
+You are strictly prohibited from:
+    - REPRODUCTION: Copying, mirroring, or reproducing the Proprietary 
+      Components on any other server, website, or digital platform.
+    - MODIFICATION: Altering, transforming, or creating derivative works 
+      based on the proprietary homepage architecture.
+    - COMMERCIAL USE: Utilizing any portion of the Proprietary Components for 
+      profit-generating activities, advertisements, or commercial services.
+    - DISTRIBUTION: Selling, leasing, sub-licensing, or redistributing the 
+      proprietary code to any third party.
+
+5. DISCLAIMER OF WARRANTY
+THE PROPRIETARY COMPONENTS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO 
+EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, 
+OR OTHER LIABILITY, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE.
+
+6. TERMINATION AND ENFORCEMENT
+Failure to comply with these terms automatically terminates your license to 
+use the Proprietary Components. Unauthorized use may constitute copyright 
+infringement and may result in civil or criminal penalties. DaniezOnSFUSD 
+reserves the right to protect its intellectual property through all 
+available legal channels.
+
+7. CONTACT INFORMATION
+For inquiries regarding permission requests or the acquisition of additional 
+usage rights, please contact the repository owner directly through the 
+GitHub platform.
