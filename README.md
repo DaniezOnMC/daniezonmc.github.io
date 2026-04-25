@@ -46,14 +46,14 @@ Diagnostics: Real-time system status dashboard to track network performance and 
 
 R: Launch Random Game
 
-Built With
+### Built With
 HTML5 / CSS3
 
 JavaScript (Vanilla)
 
 Font Awesome for iconography
 
-Community and Support
+### Community and Support
 Developing fun systems for our Chromebooks!
 
 GitHub: [DaniezOnSFUSD](https://github.com/daniezonsfusd)
