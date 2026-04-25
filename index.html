@@ -464,7 +464,7 @@
         document.title = "DaniezOnSFUSD | Community Hub";
     }
 
-    // --- Status Updater (User's AbortController Ping Logic) ---
+ // --- Status Updater (Updated with New Games & Trolls) ---
     const gameData = [
         { name: "Eaglercraft 1.20", url: "https://daniezonsfusd.github.io/1.20" },
         { name: "Resent Client 1.8", url: "https://daniezonsfusd.github.io/1.8" },
@@ -475,9 +475,15 @@
         { name: "Papas Bakeria", url: "https://daniezonsfusd.github.io/papas/papasbakeria" },
         { name: "Papas Donuteria", url: "https://daniezonsfusd.github.io/papas/papasdonuteria" },
         { name: "SWF Loader", url: "https://daniezonsfusd.github.io/papas/swfloader" },
-        { name: "Nautilus OS", url: "https://daniezonsfusd.github.io/NautilusOS" }
+        { name: "Nautilus OS", url: "https://daniezonsfusd.github.io/NautilusOS" },
+        // New Games Added
+        { name: "GD Subzero", url: "https://daniezonsfusd.github.io/subzero" },
+        { name: "Slope", url: "https://daniezonsfusd.github.io/Slope" },
+        // Trolls / Experimental Added
+        { name: "Scam Eagler 1.21", url: "https://daniezonsfusd.github.io/1.21." },
+        { name: "Scam Eagler 1.22", url: "https://daniezonsfusd.github.io/eaglercraft-26.1" }
     ];
-
+        
     function setupStatusDashboard() {
         const grid = document.getElementById('status-checker-grid');
         if(!grid) return;
