@@ -1,63 +1,52 @@
-PROPRIETARY LICENSE AGREEMENT
+AMENDED AND RESTATED PROPRIETARY SOURCE-AVAILABLE LICENSE AND INTELLECTUAL PROPERTY INDENTURE
+
+--------------------------------------------------------------------------------
 
 Copyright (c) 2026 DaniezOnSFUSD. All Rights Reserved.
 
--------------------------------------------------------------------------------
+I. PREAMBLE AND SCOPE OF JURISDICTION
+This Proprietary License Agreement (the "Agreement") constitutes a legally binding contractual instrument between the Licensee (hereafter "the User") and DaniezOnSFUSD (hereafter "the Licensor"). By accessing, viewing, forking, or otherwise interacting with the digital repository, the User acknowledges and stipulates to be bound by the exhaustive terms herein. This Agreement governs the "Proprietary Components," defined as the totality of original intellectual property, including but not limited to:
 
-1. DEFINITIONS AND SCOPE
-This license applies exclusively to the original works created, authored, and 
-maintained by DaniezOnSFUSD, hereafter referred to as "Proprietary Components." 
-These components include:
-    - The unique site architecture, directory structures, and navigational logic.
-    - All custom source code (including but not limited to HTML, CSS, and 
-      JavaScript) associated with the homepage and user interface.
-    - Custom visual assets, graphics, branding, and icons developed 
-      specifically for this project.
+Architectural Logic: Unique directory hierarchies, navigational schematics, and structural metadata.
 
-2. THIRD-PARTY SOFTWARE AND INTELLECTUAL PROPERTY
-This repository contains third-party software, games, and engines, including 
-but not limited to Slope, Papa's Gamerias, and EaglerCraft.
-    - OWNERSHIP: Ownership and copyright for these materials remain solely 
-      with the original creators and studios, including RenzorsRevenge1, 
-      Flipline Studios, Armor Games, lax1dude, chocofush, and elite4r.
-    - LICENSING: Your use of these third-party materials is governed by their 
-      own specific licenses and original terms of service. DaniezOnSFUSD 
-      expressly disclaims ownership of these assets.
+Codebase: All custom HTML5, CSS3, ECMAScript-compliant JavaScript, and backend logic facilitating the User Interface (UI).
 
-3. GRANT OF LIMITED LICENSE
-Subject to your compliance with this Agreement and the GitHub Terms of Service, 
-you are granted a limited, non-exclusive, and revocable license to:
-    - View the source code and assets via the GitHub platform.
-    - Fork the repository within the GitHub ecosystem for personal, 
-      non-commercial use, provided all original copyright notices remain intact.
+Visual Assets: Proprietary iconography, trade dress, vector graphics, and branding motifs.
 
-4. RESTRICTIONS AND PROHIBITED USES
-Except as expressly permitted in Section 3, all rights are reserved. 
-You are strictly prohibited from:
-    - REPRODUCTION: Copying, mirroring, or reproducing the Proprietary 
-      Components on any other server, website, or digital platform.
-    - MODIFICATION: Altering, transforming, or creating derivative works 
-      based on the proprietary homepage architecture.
-    - COMMERCIAL USE: Utilizing any portion of the Proprietary Components for 
-      profit-generating activities, advertisements, or commercial services.
-    - DISTRIBUTION: Selling, leasing, sub-licensing, or redistributing the 
-      proprietary code to any third party.
+II. THIRD-PARTY ASSET ATTRIBUTION AND INDEMNIFICATION
+The repository incorporates distinct "Third-Party Modules" (e.g., Slope, Papa’s Gamerias, EaglerCraft).
 
-5. DISCLAIMER OF WARRANTY
-THE PROPRIETARY COMPONENTS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO 
-EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, 
-OR OTHER LIABILITY, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE.
+Retention of Title: Licensor asserts no claim of ownership over assets authored by RenzorsRevenge1, Flipline Studios, Armor Games, lax1dude, chocofush, elite4r, or associated entities.
 
-6. TERMINATION AND ENFORCEMENT
-Failure to comply with these terms automatically terminates your license to 
-use the Proprietary Components. Unauthorized use may constitute copyright 
-infringement and may result in civil or criminal penalties. DaniezOnSFUSD 
-reserves the right to protect its intellectual property through all 
-available legal channels.
+External Governance: The User’s interaction with Third-Party Modules is subject to the lex loci and the respective End User License Agreements (EULA) of the original creators. The Licensor is held harmless against any claims arising from the User's misuse of these third-party materials.
 
-7. CONTACT INFORMATION
-For inquiries regarding permission requests or the acquisition of additional 
-usage rights, please contact the repository owner directly through the 
-GitHub platform.
+III. RESTRICTIVE GRANT OF NON-TRANSFERABLE LICENSE
+Subject to the condition precedent of strict adherence to this Agreement and the GitHub Terms of Service (ToS), the Licensor grants a Limited, Revocable, Non-Sublicensable, and Non-Exclusive License to:
+
+Render and inspect the Proprietary Components via the GitHub web interface.
+
+Execute a "Fork" within the GitHub ecosystem for strictly non-commercial, personal, and archival purposes, provided that all copyright headers and digital watermarks remain un-obfuscated.
+
+IV. COVENANTS AND PROHIBITED EXPLOITATIONS
+Any exercise of rights not explicitly enumerated in Section III is strictly ultra vires. The User is perpetually enjoined from:
+
+Unauthorized Replication: The mirroring, scraping, or deployment of Proprietary Components on external servers, Content Delivery Networks (CDNs), or InterPlanetary File Systems (IPFS).
+
+Derivative Transformation: The creation of "fork-styled" modifications that substantially replicate the "Look and Feel" (Trade Dress) of the original interface.
+
+Commercial Monetization: Any deployment involving programmatic advertising, paywalled access, or the solicitation of donations utilizing the Proprietary Components.
+
+Secondary Distribution: The act of selling, leasing, or assigning the proprietary source code to any natural or legal person.
+
+V. LIMITATION OF LIABILITY AND "AS-IS" PROVISO
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE PROPRIETARY COMPONENTS ARE PROVIDED "AS IS" AND "WITH ALL FAULTS." The Licensor disclaims all warranties, whether express, implied, or statutory, including but not limited to the implied warranties of merchantability and fitness for a particular purpose. In no event—whether in contract, tort (including negligence), or strict liability—shall the Licensor be liable for any indirect, incidental, or consequential damages arising from the use or inability to use the software.
+
+VI. TERMINATION, INJUNCTIVE RELIEF, AND LIQUIDATED DAMAGES
+Automatic Rescission: Any breach of the Covenants in Section IV shall result in the immediate and automatic termination of this License ipso facto, without the necessity of formal notice.
+
+Legal Recourse: The Licensor reserves the right to seek injunctive relief to restrain further infringement and to pursue statutory damages under the Digital Millennium Copyright Act (DMCA) and relevant international intellectual property treaties.
+
+VII. GOVERNING LAW AND CONTACT
+This Agreement shall be governed by and construed in accordance with the laws of the jurisdiction in which the Licensor resides, without regard to conflict of law principles.
+
+For formal requests regarding sub-licensing or commercial dispensation, submit an inquiry via the official GitHub communication channels of DaniezOnSFUSD.
