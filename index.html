@@ -399,7 +399,7 @@
         };
     }
 
-        // --- The New Message List ---
+// --- Diagnostic Messages ---
     const loadingMessages = [
         "Bypassing SFUSD SecureFilter...", "Locating hidden Eaglercraft nodes...",
         "Warming up the Ruffle emulator...", "Mining diamonds in the background...",
@@ -413,7 +413,25 @@
         "Rerouting through Aptos Middle servers...", "Injecting Geometry Dash Lite levels..."
     ];
 
-    // --- The Updated Function ---
+    async function checkSystemStatus() {
+        const masterStatus = document.getElementById('master-status');
+        const updateTime = document.getElementById('last-updated-time');
+        
+        // 1. Pick and show random message
+        const randomMsg = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
+        if (masterStatus) {
+            masterStatus.textContent = randomMsg;
+            masterStatus.style.color = "var(--secondary-text)";
+        }
+
+        // 2. Run the pings
+        await runPingChecks();
+        
+        // 3. Update the timestamp
+        if (updateTime) {
+            updateTime.textContent = `Verified: ${new Date().toLocaleTimeString()}`;
+        }
+    }
     async function checkSystemStatus() {
         const masterStatus = document.getElementById('master-status');
         
