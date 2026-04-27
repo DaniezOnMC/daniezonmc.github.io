@@ -15,7 +15,7 @@ This project is Source-Available but is NOT Open Source.
 
 Copyright (c) 2026 DaniezOnSFUSD. All Rights Reserved.
 
-Proprietary Components: All original UI/UX design, site architecture, and custom source code are the exclusive intellectual property of the author. While the code is public for transparency and personal forking within the GitHub ecosystem, these components are not for redistribution, mirroring, or commercial exploitation.
+Proprietary Components: All original UI/UX design, site architecture, and custom source code are the exclusive intellectual property of DaniezonSFUSD. While the code is public for transparency and personal forking within the GitHub ecosystem, these components are not for redistribution, mirroring, or commercial exploitation.
 
 Third-Party Assets: Specific modules, including but not limited to Slope, Papa's Gamerias, and EaglerCraft, remain the property of their respective creators—including Flipline Studios, RenzorsRevenge1, Armor Games, lax1dude, chocofush, and elite4r—and are governed by their original licensing terms.
 
