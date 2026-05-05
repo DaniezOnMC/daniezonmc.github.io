@@ -203,7 +203,12 @@
         </div>
         <div id="last-updated-time" style="opacity: 0.6; font-size: 0.9em;">Updated: Pinging...</div>
     </div>
-
+<section id="recent-play" style="margin-bottom: 40px; display: none;">
+    <h3 style="opacity: 0.7; font-size: 0.9em; text-transform: uppercase;">Jump Back In</h3>
+    <div class="grid" id="recent-grid" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+        </div>
+</section>
+    
     <section id="games">
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
             <h2 style="font-size: 2em; margin: 0;">Game Library</h2>
@@ -358,21 +363,27 @@
         </section>
 
 <section id="community" class="glass" style="padding: 40px;">
-  <h2 style="margin-top: 0;">Community</h2>
-  <p style="opacity: 0.8;">Have a suggestion? Let me know what features or games you want to see next! (SFUSD emails only)</p>
+  <h2 style="margin-top: 0;">Community & Requests</h2>
   
-  <button class="hero-btn" onclick="window.location.href='mailto:dalouie2@s.sfusd.edu'" style="margin-bottom: 25px;">
-    <i class="fas fa-envelope"></i> Send Request
-  </button>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid var(--border);">
+    <div>
+        <button class="hero-btn" onclick="window.location.href='https://forms.gle/t5S82BMnueXmizKZ9'" style="width: 100%;">
+            <i class="fas fa-school"></i> SFUSD Student Form
+        </button>
+        <p style="font-size: 0.8em; opacity: 0.6; margin-top: 8px;">Fastest response for district requests.</p>
+    </div>
+    <div>
+        <button class="hero-btn" onclick="window.location.href='https://forms.gle/4YwCSBwsb3HeEPAw7'" style="width: 100%; background: #444;">
+            <i class="fas fa-globe"></i> External Form
+        </button>
+        <p style="font-size: 0.8em; opacity: 0.6; margin-top: 8px; color: var(--accent);">Checked less frequently.</p>
+    </div>
+  </div>
 
-  <div style="display: flex; flex-direction: column; gap: 15px;">
-    <p style="opacity: 0.8; margin-bottom: 0;">For non-SFUSD email inquiries:</p>
-    
-    <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+  <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
       <button class="hero-btn" onclick="window.location.href='mailto:daniez1@proton.me'">
         <i class="fas fa-envelope"></i> E-Mail
       </button>
-      
       <a href="https://discord.gg/V9nVwu836D" class="hero-btn" style="background:#7289da;">
         <i class="fab fa-discord"></i> Discord
       </a>
@@ -382,9 +393,17 @@
       <a href="https://github.com/daniezonsfusd" class="hero-btn" style="background:#24292e;">
         <i class="fab fa-github"></i> GitHub
       </a>
-    </div>
   </div>
 
+  <div style="display: flex; align-items: center; gap: 20px; margin-top: 30px;">
+    <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="Daniez" style="width: 70px; border-radius: 16px;">
+    <div>
+      <h3 style="margin: 0;">DaniezonSFUSD</h3>
+      <p style="color: var(--secondary-text); margin: 5px 0 0 0; font-size: 0.9em;">Developing fun systems for our Chromebooks!</p>
+    </div>
+  </div>
+</section>
+        
   <div style="display: flex; align-items: center; gap: 20px; margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--border);">
     <img src="https://avatars.githubusercontent.com/u/204815157?v=4" alt="Daniez" style="width: 70px; border-radius: 16px;">
     <div>
@@ -673,7 +692,47 @@ async function pingURL(url) {
             if(visibleLinks.length > 0) window.location.href = visibleLinks[Math.floor(Math.random() * visibleLinks.length)].href;
         }
     };
+const gameData = [
+    { name: "Eaglercraft 1.20", url: "https://daniezonsfusd.github.io/1.20", ver: "v1.4" },
+    { name: "Resent Client", url: "https://daniezonsfusd.github.io/1.8", ver: "v1.0" },
+    { name: "Precision Client (1.8)", url: "https://daniezonsfusd.github.io/precisionclient", ver: "v1.0" },
+    { name: "Bee Swarm", url: "https://daniezonsfusd.github.io/beeswarm", ver: "v1.0" },
+    { name: "GD Lite", url: "https://daniezonsfusd.github.io/Geometrydashlite", ver: "v2.21.7" },
+    { name: "Papas Pizzaeria", url: "https://daniezonsfusd.github.io/papas/papaspizza", ver: "v2.0" },
+    { name: "Papas Freezeria", url: "https://daniezonsfusd.github.io/papas/papasfreezeria", ver: "v2.0" },
+    { name: "Papas Bakeria", url: "https://daniezonsfusd.github.io/papas/papasbakeria", ver: "v1.0.1" },
+    { name: "Papas Donuteria", url: "https://daniezonsfusd.github.io/papas/papasdonuteria", ver: "v1.0.2" },
+    { name: "Papas Burgeria", url: "https://daniezonsfusd.github.io/papas/papasburgeria", ver: "v2.0" },
+    { name: "Abduction!", url: "https://daniezonsfusd.github.io/abduction/abduction", ver: "v2.3.4" },
+    { name: "SWF Loader", url: "https://daniezonsfusd.github.io/papas/swfloader", ver: "v1.0" },
+    { name: "Nautilus OS", url: "https://daniezonsfusd.github.io/NautilusOS", ver: "v0.8.2-alpha" },
+    { name: "GD Subzero", url: "https://daniezonsfusd.github.io/subzero", ver: "v2.1" },
+    { name: "8 Ball Pool", url: "https://daniezonsfusd.github.io/8ballpool", ver: "v1.1" },
+    { name: "Slope", url: "https://daniezonsfusd.github.io/Slope", ver: "v3.0" },
+    { name: "BitLife", url: "https://daniezonsfusd.github.io/bitlife", ver: "v3.23.0" },
+    { name: "FNAF", url: "https://daniezonsfusd.github.io/fnaf/FNAF1.html", ver: "v1.0" },
+    { name: "FNAF 2", url: "https://daniezonsfusd.github.io/fnaf/FNAF2.html", ver: "v1.0" },
+    { name: "FNAF 3", url: "https://daniezonsfusd.github.io/fnaf/FNAF3.html", ver: "v1.0" },
+    { name: "Snek", url: "https://daniezonsfusd.github.io/snek", ver: "v4.0" },
+    { name: "Baldi's Basics", url: "https://daniezonsfusd.github.io/baldi", ver: "v1.4.3" }
+];
 
+function setupStatusDashboard() {
+    const grid = document.getElementById('status-checker-grid');
+    if(!grid) return;
+    grid.innerHTML = gameData.map(game => `
+        <div class="glass" style="display: flex; flex-direction: column; padding: 20px; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: bold;">${game.name}</span>
+                <span id="stat-${game.url.replace(/\//g, '-')}" style="font-size: 0.8em; font-weight: bold;">WAITING...</span>
+            </div>
+            <div style="font-size: 0.7em; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px;">
+                Build: ${game.ver}
+            </div>
+        </div>
+    `).join('');
+}
+        
     // --- Initialization ---
     setupStatusDashboard();
     checkSystemStatus();
