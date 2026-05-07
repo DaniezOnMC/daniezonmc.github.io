@@ -62,4 +62,4 @@ Discord: [Join our community](https://discord.gg/V9nVwu836D)
 
 Twitch: [DaniezGameMC](https://twitch.tv/daniezgamemc)
 
-For feature requests or game suggestions, please use your SFUSD email to contact [dalouie2@s.sfusd.edu](https://mail.google.com/mail/u/0/?fs=1&to=dalouie2@s.sfusd.edu&tf=cm).
+For feature requests or game suggestions, use the following forms based off who you are. [SFUSD Student Form](https://forms.gle/t5S82BMnueXmizKZ9), [External User Form](https://forms.gle/4YwCSBwsb3HeEPAw7).
