@@ -614,6 +614,10 @@ async function pingURL(url) {
         // This prevents the code from breaking if the number "404" just happens to be on the page text.
         const isErrorPage = text.toLowerCase().includes("<title>404") || 
                             text.toLowerCase().includes("<h1>404") ||
+                            text.toLowerCase().includes("<h1>503") ||
+                            text.toLowerCase().includes("<title>503") || 
+                            text.toLowerCase().includes("<title>410") || 
+                            text.toLowerCase().includes("<h1>410") ||
                             text.toLowerCase().includes("<title>not found");
 
         if (isErrorPage) {
