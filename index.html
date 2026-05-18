@@ -61,12 +61,12 @@
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
         /* Side Dock */
-        .side-dock { position: fixed; left: 0; top: 0; height: 100%; width: var(--sidebar-w); background: var(--nav-bg); border-right: 1px solid var(--border); display: flex; flex-direction: colum[...]
+        .side-dock { position: fixed; left: 0; top: 0; height: 100%; width: var(--sidebar-w); background: var(--nav-bg); border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: flex-start; align-items: center; gap: 30px; padding-top: 30px; }
         .dock-item { color: var(--secondary-text); font-size: 1.3em; cursor: pointer; transition: 0.3s; }
         .dock-item:hover { color: var(--primary); transform: scale(1.1); }
 
         /* Nav */
-        nav { background: var(--nav-bg); padding: 15px 30px 15px calc(var(--sidebar-w) + 30px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; display: flex; alig[...]
+        nav { background: var(--nav-bg); padding: 15px 30px 15px calc(var(--sidebar-w) + 30px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; }
         .nav-search { flex-grow: 1; max-width: 400px; margin: 0 30px; position: relative; }
         .nav-search input { width: 100%; padding: 12px 20px 12px 40px; border-radius: 30px; border: 1px solid var(--border); background: var(--bg); color: var(--text); outline: none; }
         .nav-search i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
@@ -75,20 +75,20 @@
         .main-content { margin-left: var(--sidebar-w); padding: 30px; max-width: 1200px; margin-right: auto; }
 
         /* Hero */
-        .hero { border-radius: 30px; background: url('https://daniezonsfusd.github.io/homepage/assets/CookieClicker.png') center/cover; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); b[...]
+        .hero { border-radius: 30px; background: url('https://daniezonsfusd.github.io/homepage/assets/CookieClicker.png') center/cover; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid var(--border); }
         .hero-overlay { padding: 80px 60px; background: linear-gradient(90deg, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.2) 100%); color: white; }
-        .hero-btn { display: inline-block; margin-top: 20px; padding: 12px 30px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; transition[...]
+        .hero-btn { display: inline-block; margin-top: 20px; padding: 12px 30px; background: var(--primary); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; transition: 0.3s; }
         .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
 
         /* Grids */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
-        .card { background: var(--card-bg); padding: 25px; border-radius: 20px; border: 1px solid var(--border); transition: 0.3s; text-decoration: none; color: var(--text); display: flex; flex-di[...]
+        .card { background: var(--card-bg); padding: 25px; border-radius: 20px; border: 1px solid var(--border); transition: 0.3s; text-decoration: none; color: var(--text); display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         .troll-card { border-bottom: 3px solid var(--accent); }
 
         /* Issues & Bug Tracker */
         .issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .issue-card { border-radius: 24px; min-height: 350px; padding: 30px; background-size: cover; background-position: center 20%; position: relative; display: flex; flex-direction: column; jus[...]
+        .issue-card { border-radius: 24px; min-height: 350px; padding: 30px; background-size: cover; background-position: center 20%; position: relative; display: flex; flex-direction: column; justify-content: flex-end; }
         .issue-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; }
         .issue-card h3, .issue-card ul { position: relative; z-index: 2; color: white; margin: 0; }
         .issue-card ul { padding-left: 20px; margin-top: 10px; font-size: 0.9em; opacity: 0.9; }
@@ -114,9 +114,8 @@
         .changelog-item { margin-bottom: 25px; position: relative; }
         .changelog-item::before { content: ''; position: absolute; left: -35px; top: 4px; width: 16px; height: 16px; background: var(--bg); border: 4px solid var(--primary); border-radius: 50%; }
 
-        /* Override Toggle Button */
-        .override-btn { padding: 4px 8px; font-size: 0.75em; background: #FFC107; color: #333; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .override-btn.forced-online { background: #4CAF50; color: white; }
+        .override-btn { padding: 4px 8px; font-size: 0.7em; background: #FFC107; color: #333; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .override-btn.forced { background: #4CAF50; color: white; }
     </style>
 </head>
 <body data-theme="dark">
@@ -149,7 +148,7 @@
             <h1>Unit 4: The Human Nervous System</h1>
             <p><strong>Subject:</strong> Life Science | <strong>SFUSD Educational Resource</strong></p>
             <hr>
-            <p>The nervous system is a complex network of nerves and cells that carry messages to and from the brain and spinal cord to various parts of the body. It includes both the Central Ner[...]
+            <p>The nervous system is a complex network of nerves and cells that carry messages to and from the brain and spinal cord to various parts of the body. It includes both the Central Nervous System (CNS) and Peripheral Nervous System (PNS).</p>
             <h3>Key Components:</h3>
             <ul>
                 <li><strong>Brain:</strong> Controls all body functions and processes information</li>
@@ -198,7 +197,7 @@
             <div>
                 <p style="font-size: 0.9em; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; color: var(--primary); letter-spacing: 1px;">Featured Project</p>
                 <h1 style="margin: 0; font-size: 3.5em; line-height: 1.1;">Cookie Clicker <span class="badge wip" style="vertical-align: middle;">NEW!</span></h1>
-                <p style="font-size: 1.2em; opacity: 0.9; max-width: 600px; margin: 15px 0 25px;">Click a giant cookie to earn cookies, using them to purchase automatic, exponential upgrades like[...]
+                <p style="font-size: 1.2em; opacity: 0.9; max-width: 600px; margin: 15px 0 25px;">Click a giant cookie to earn cookies, using them to purchase automatic, exponential upgrades like farms and factories!</p>
                 <a href="https://daniezonsfusd.github.io/multi2/games/cookieclicker" class="hero-btn">Play Now</a>
             </div>
         </div>
@@ -424,7 +423,7 @@
             <div class="changelog">
                 <div class="changelog-item">
                     <strong>May 18, 2026</strong>
-                    <p style="margin: 5px 0; color: var(--secondary-text);">Added manual status override toggles for games that are online but show as offline due to file size issues.</p>
+                    <p style="margin: 5px 0; color: var(--secondary-text);">Added manual status override toggles for games showing offline incorrectly due to file size (404/410/503).</p>
                 </div>
                 <div class="changelog-item">
                     <strong>April 24, 2026</strong>
@@ -563,19 +562,19 @@
     const stealthPresets = {
         math: {
             title: "Unit 3: Algebra & Functions",
-            content: `<h1>Unit 3: Algebra & Functions</h1><p><strong>Subject:</strong> Mathematics | <strong>SFUSD Educational Resource</strong></p><hr><h3>Key Concepts:</h3><ul><li><strong>Funct[...]
+            content: `<h1>Unit 3: Algebra & Functions</h1><p><strong>Subject:</strong> Mathematics | <strong>SFUSD Educational Resource</strong></p><hr><h3>Key Concepts:</h3><ul><li><strong>Functions:</strong> Relations between inputs and outputs</li><li><strong>Algebra:</strong> Math of symbols and rules</li></ul>`
         },
         science: {
             title: "Unit 5: Cell Biology",
-            content: `<h1>Unit 5: Cell Biology</h1><p><strong>Subject:</strong> Biology | <strong>SFUSD Educational Resource</strong></p><hr><h3>Cell Structure:</h3><ul><li><strong>Nucleus:</stro[...]
+            content: `<h1>Unit 5: Cell Biology</h1><p><strong>Subject:</strong> Biology | <strong>SFUSD Educational Resource</strong></p><hr><h3>Cell Structure:</h3><ul><li><strong>Nucleus:</strong> Controls cell activities</li><li><strong>Mitochondria:</strong> Powerhouse of the cell</li></ul>`
         },
         socialstudies: {
             title: "Unit 7: American History - Industrial Revolution",
-            content: `<h1>Unit 7: American History - Industrial Revolution</h1><p><strong>Subject:</strong> Social Studies | <strong>SFUSD Educational Resource</strong></p><hr><h3>The Industrial [...]
+            content: `<h1>Unit 7: American History - Industrial Revolution</h1><p><strong>Subject:</strong> Social Studies | <strong>SFUSD Educational Resource</strong></p><hr><h3>The Industrial Revolution:</h3><ul><li>Transformed society from agrarian to industrial</li><li>Mechanization of labor</li></ul>`
         },
         languagearts: {
             title: "Unit 4: Literary Analysis - Shakespeare",
-            content: `<h1>Unit 4: Literary Analysis - Shakespeare</h1><p><strong>Subject:</strong> Language Arts | <strong>SFUSD Educational Resource</strong></p><hr><h3>William Shakespeare (1564[...]
+            content: `<h1>Unit 4: Literary Analysis - Shakespeare</h1><p><strong>Subject:</strong> Language Arts | <strong>SFUSD Educational Resource</strong></p><hr><h3>William Shakespeare (1564-1616):</h3><ul><li>English playwright and poet</li><li>Works: Hamlet, Macbeth, Romeo & Juliet</li></ul>`
         }
     };
 
@@ -647,7 +646,7 @@
         document.title = "DaniezOnSFUSD | Community Hub";
     }
 
-  // --- Status Updater with Override Support ---
+    // --- Status Updater with Override Support ---
     const gameData = [
         { name: "Eaglercraft 1.20", url: "https://daniezonsfusd.github.io/1.20" },
         { name: "Resent Client 1.8", url: "https://daniezonsfusd.github.io/1.8" },
@@ -662,7 +661,6 @@
         { name: "Papas Donuteria", url: "https://daniezonsfusd.github.io/papas/papasdonuteria" },
         { name: "Abduction!", url: "https://daniezonsfusd.github.io/abduction/abduction" },
         { name: "Nautilus OS", url: "https://daniezonsfusd.github.io/NautilusOS" },
-        { name: "GD Subzero", url: "https://daniezonsfusd.github.io/subzero" },
         { name: "Slope", url: "https://daniezonsfusd.github.io/Slope" },
         { name: "Scam Eagler 1.21", url: "https://daniezonsfusd.github.io/1.21." },
         { name: "Scam Eagler 1.22", url: "https://daniezonsfusd.github.io/eaglercraft-26.1" },
@@ -699,18 +697,12 @@
         { name: "Kart Bros", url:"https://daniezonsfusd.github.io/multi3/offline/kartbros.html/", forceOnline: true },
     ];
 
-    // Load overrides from localStorage
     function loadOverrides() {
         const overrides = JSON.parse(localStorage.getItem('gameOverrides') || '{}');
-        gameData.forEach(game => {
-            if (overrides[game.url]) {
-                game.forceOnline = overrides[game.url];
-            }
-        });
+        gameData.forEach(game => { if (overrides[game.url]) game.forceOnline = overrides[game.url]; });
     }
 
-    // Save override to localStorage
-    function toggleGameOverride(url, index) {
+    function toggleOverride(url) {
         const game = gameData.find(g => g.url === url);
         if (game) {
             game.forceOnline = !game.forceOnline;
@@ -725,64 +717,39 @@
         const grid = document.getElementById('status-checker-grid');
         if(!grid) return;
         grid.innerHTML = gameData.map((game, idx) => `
-            <div class="glass" style="display: flex; justify-content: space-between; padding: 20px; align-items: center;">
-                <div style="flex: 1;">
-                    <span style="font-weight: bold;">${game.name}</span>
-                </div>
-                <div style="display: flex; gap: 8px; align-items: center;">
-                    <span id="stat-${game.url.replace(/\//g, '-')}" style="font-size: 0.8em; color: var(--secondary-text); font-weight: bold; background: rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 4px;">Checking...</span>
-                    <button class="override-btn ${game.forceOnline ? 'forced-online' : ''}" onclick="toggleGameOverride('${game.url.replace(/'/g, "\\'")}', ${idx})" title="Toggle manual override">
-                        ${game.forceOnline ? '✓ Online' : 'Force'}
-                    </button>
-                </div>
+            <div class="glass" style="display: flex; justify-content: space-between; padding: 20px; align-items: center; gap: 10px;">
+                <span style="font-weight: bold; flex: 1;">${game.name}</span>
+                <span id="stat-${idx}" style="font-size: 0.8em; color: var(--secondary-text); font-weight: bold; background: rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 4px; white-space: nowrap;">Checking...</span>
+                <button class="override-btn ${game.forceOnline ? 'forced' : ''}" onclick="toggleOverride('${game.url}')">Force</button>
             </div>
         `).join('');
     }
 
-async function pingURL(url) {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
-    
-    try {
-        const checkUrl = url.includes('?') ? url + '&_t=' + Date.now() : url + '?_t=' + Date.now();
-        const response = await fetch(checkUrl, { signal: controller.signal });
-        const text = await response.text();
-        clearTimeout(timeoutId);
-
-        // 1. Check if the server officially sent a 404 status code
-        if (!response.ok) return false;
-
-        // 2. SMART TEXT CHECK: Only trigger "Offline" if 404 is in the <title> or a Header <h1>
-        // This prevents the code from breaking if the number "404" just happens to be on the page text.
-        const isErrorPage = text.toLowerCase().includes("<title>404") || 
-                            text.toLowerCase().includes("<h1>404") ||
-                            text.toLowerCase().includes("<h1>503") ||
-                            text.toLowerCase().includes("<title>503") || 
-                            text.toLowerCase().includes("<title>410") || 
-                            text.toLowerCase().includes("<h1>410") ||
-                            text.toLowerCase().includes("<title>not found");
-
-        if (isErrorPage) {
+    async function pingURL(url) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        try {
+            const checkUrl = url.includes('?') ? url + '&_t=' + Date.now() : url + '?_t=' + Date.now();
+            const response = await fetch(checkUrl, { signal: controller.signal });
+            const text = await response.text();
+            clearTimeout(timeoutId);
+            if (!response.ok) return false;
+            const isErrorPage = text.toLowerCase().includes("<title>404") || text.toLowerCase().includes("<h1>404") || text.toLowerCase().includes("<h1>503") || text.toLowerCase().includes("<title>503") || text.toLowerCase().includes("<title>410") || text.toLowerCase().includes("<h1>410") || text.toLowerCase().includes("<title>not found");
+            return !isErrorPage;
+        } catch (error) {
+            clearTimeout(timeoutId);
             return false;
         }
-
-        return true;
-    } catch (error) {
-        clearTimeout(timeoutId);
-        return false;
     }
-}
-        
-        
+
     async function runPingChecks() {
         let offlineCount = 0;
-        for (const game of gameData) {
-            const statElement = document.getElementById(`stat-${game.url.replace(/\//g, '-')}`);
+        for (let i = 0; i < gameData.length; i++) {
+            const game = gameData[i];
+            const statElement = document.getElementById(`stat-${i}`);
             if (!statElement) continue;
-            
-            // Check override first
             if (game.forceOnline) {
-                statElement.innerHTML = '<i class="fas fa-check-circle"></i> Online (Override)';
+                statElement.innerHTML = '<i class="fas fa-check-circle"></i> Online';
                 statElement.style.color = '#4CAF50';
             } else {
                 const isOnline = await pingURL(game.url);
@@ -804,13 +771,11 @@ async function pingURL(url) {
         const statusBar = document.getElementById('global-status-bar');
         const dot = document.getElementById('global-dot');
         if (!masterStatus || !statusBar || !dot) return;
-
         let statusText = '', borderColor = '', dotClass = '';
         if (offlineCount === 0) { statusText = 'All Systems Functional'; borderColor = '#4CAF50'; dotClass = 'online'; } 
         else if (offlineCount <= 5) { statusText = 'Partially Online'; borderColor = '#FFC107'; dotClass = 'partially-online'; } 
         else if (offlineCount <= 8) { statusText = 'Mostly Offline'; borderColor = '#FF9800'; dotClass = 'mostly-offline'; } 
         else { statusText = 'Critical Outage'; borderColor = '#ff4757'; dotClass = 'offline'; }
-
         masterStatus.textContent = statusText;
         masterStatus.style.color = borderColor;
         statusBar.style.borderLeftColor = borderColor;
@@ -824,10 +789,7 @@ async function pingURL(url) {
 
     // --- Controls and Hotkeys ---
     document.onkeydown = (e) => {
-        if (e.key === '[') { 
-            document.getElementById('stealth-mode').style.display = 'block'; 
-            loadStealthPreset('math'); 
-        }
+        if (e.key === '[') { document.getElementById('stealth-mode').style.display = 'block'; loadStealthPreset('math'); }
         if (e.key === ']') closeStealthMode();
         if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
         if (e.key.toLowerCase() === 'r' && document.activeElement !== searchInput && document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'INPUT') {
