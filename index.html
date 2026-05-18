@@ -113,9 +113,6 @@
         .changelog { border-left: 3px solid var(--primary); margin-left: 10px; padding-left: 25px; }
         .changelog-item { margin-bottom: 25px; position: relative; }
         .changelog-item::before { content: ''; position: absolute; left: -35px; top: 4px; width: 16px; height: 16px; background: var(--bg); border: 4px solid var(--primary); border-radius: 50%; }
-
-        .override-btn { padding: 4px 8px; font-size: 0.7em; background: #FFC107; color: #333; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .override-btn.forced { background: #4CAF50; color: white; }
     </style>
 </head>
 <body data-theme="dark">
@@ -423,7 +420,7 @@
             <div class="changelog">
                 <div class="changelog-item">
                     <strong>May 18, 2026</strong>
-                    <p style="margin: 5px 0; color: var(--secondary-text);">Added manual status override toggles for games showing offline incorrectly due to file size (404/410/503).</p>
+                    <p style="margin: 5px 0; color: var(--secondary-text);">Added code-based status overrides for games showing offline due to file size (404/410/503). Edit the gameData array to set forceOnline: true.</p>
                 </div>
                 <div class="changelog-item">
                     <strong>April 24, 2026</strong>
@@ -646,7 +643,8 @@
         document.title = "DaniezOnSFUSD | Community Hub";
     }
 
-    // --- Status Updater with Override Support ---
+    // --- Status Updater with Code-Based Overrides ---
+    // EDIT forceOnline: true HERE TO MARK GAMES AS ONLINE
     const gameData = [
         { name: "Eaglercraft 1.20", url: "https://daniezonsfusd.github.io/1.20" },
         { name: "Resent Client 1.8", url: "https://daniezonsfusd.github.io/1.8" },
@@ -697,22 +695,6 @@
         { name: "Kart Bros", url:"https://daniezonsfusd.github.io/multi3/offline/kartbros.html/", forceOnline: true },
     ];
 
-    function loadOverrides() {
-        const overrides = JSON.parse(localStorage.getItem('gameOverrides') || '{}');
-        gameData.forEach(game => { if (overrides[game.url]) game.forceOnline = overrides[game.url]; });
-    }
-
-    function toggleOverride(url) {
-        const game = gameData.find(g => g.url === url);
-        if (game) {
-            game.forceOnline = !game.forceOnline;
-            const overrides = JSON.parse(localStorage.getItem('gameOverrides') || '{}');
-            overrides[url] = game.forceOnline;
-            localStorage.setItem('gameOverrides', JSON.stringify(overrides));
-            checkSystemStatus();
-        }
-    }
-
     function setupStatusDashboard() {
         const grid = document.getElementById('status-checker-grid');
         if(!grid) return;
@@ -720,7 +702,6 @@
             <div class="glass" style="display: flex; justify-content: space-between; padding: 20px; align-items: center; gap: 10px;">
                 <span style="font-weight: bold; flex: 1;">${game.name}</span>
                 <span id="stat-${idx}" style="font-size: 0.8em; color: var(--secondary-text); font-weight: bold; background: rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 4px; white-space: nowrap;">Checking...</span>
-                <button class="override-btn ${game.forceOnline ? 'forced' : ''}" onclick="toggleOverride('${game.url}')">Force</button>
             </div>
         `).join('');
     }
@@ -799,7 +780,6 @@
     };
 
     // --- Initialization ---
-    loadOverrides();
     setupStatusDashboard();
     checkSystemStatus();
     setInterval(checkSystemStatus, 300000);
