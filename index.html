@@ -703,8 +703,8 @@ For inquiries regarding permission requests or commercial usage rights, contact 
         if (!txt || !bar || !dot) return;
         let label = '', col = '', cls = '';
         if (offlineCount === 0) { label = 'All Systems Functional'; col = '#4CAF50'; cls = 'online'; }
-        else if (offlineCount <= 5) { label = 'Partially Online'; col = '#FFC107'; cls = 'partially-online'; }
-        else if (offlineCount <= 8) { label = 'Mostly Offline'; col = '#FF9800'; cls = 'mostly-offline'; }
+        else if (offlineCount <= 12) { label = 'Partially Online'; col = '#FFC107'; cls = 'partially-online'; }
+        else if (offlineCount <= 36) { label = 'Mostly Offline'; col = '#FF9800'; cls = 'mostly-offline'; }
         else { label = 'Critical Outage'; col = '#ff4757'; cls = 'offline'; }
         txt.textContent = label; txt.style.color = col; bar.style.borderLeftColor = col; dot.className = 'dot ' + cls;
     }
