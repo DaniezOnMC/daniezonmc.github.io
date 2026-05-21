@@ -95,6 +95,37 @@
         .changelog { border-left: 3px solid var(--primary); margin-left: 10px; padding-left: 25px; }
         .changelog-item { margin-bottom: 25px; position: relative; }
         .changelog-item::before { content: ''; position: absolute; left: -35px; top: 4px; width: 16px; height: 16px; background: var(--bg); border: 4px solid var(--primary); border-radius: 50%; }
+
+        /* License Viewer Custom Styles */
+        .license-box {
+    max-height: 250px;
+    overflow-y: scroll;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85em;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap; /* Keeps your text layout and spacing exactly intact */
+}
+
+/* Optional: Custom scrollbar styling to fit the dark theme vibe */
+.license-box::-webkit-scrollbar {
+    width: 8px;
+}
+.license-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+.license-box::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+.license-box::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+        
         
         .announcement-box { padding: 18px; border-radius: 12px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); margin-bottom: 15px; }
         .announcement-box.important { border-left: 4px solid var(--accent); background: rgba(255, 71, 87, 0.03); }
@@ -148,6 +179,7 @@
     <i class="fas fa-gamepad dock-item" title="Library" onclick="window.location.href='#games'"></i>
     <i class="fas fa-server dock-item" title="Dashboard" onclick="window.location.href='#status-dashboard'"></i>
     <i class="fas fa-bug dock-item" title="Tracker" onclick="window.location.href='#issues'"></i>
+    <i class="fas fa-gavel dock-item" title="License" onclick="window.location.href='#license-viewer'"></i>
 </div>
 
 <div class="ticker-wrap">
@@ -392,6 +424,70 @@
             </div>
         </section>    
     </div>
+
+    <section id="license-viewer" class="glass" style="margin-top: 80px; padding: 40px;">
+    <h2 style="margin-top: 0; margin-bottom: 20px;">
+        <i class="fas fa-gavel"></i> End User License Agreement
+    </h2>
+    <p style="opacity: 0.8; font-size: 0.9em; margin-bottom: 20px;">
+        Please review the proprietary license terms governing the use, branching, and attribution requirements of this repository.
+    </p>
+    
+    <div class="license-box">
+PROPRIETARY LICENSE AGREEMENT Copyright (c) 2026 DaniezOnSFUSD. All Rights Reserved.
+-------------------------------------------------------------------------------
+
+I. MANDATORY NOTICE RETENTION AND ATTRIBUTION
+THIS CONDITION IS A MATERIAL TERM OF THIS AGREEMENT.
+Subject to the permissions granted herein, any and all permitted copies, forks, or partial redistributions of the Proprietary Components must strictly adhere to the following:
+
+Retention of Copyright: The original copyright notice—Copyright (c) 2026 DaniezOnSFUSD. All Rights Reserved.—must remain intact and clearly visible in all source files and repositories.
+License Inclusion: A complete, unaltered copy of this LICENSE file must be included in the root directory of any fork or copy.
+Source Attribution: A prominent link or reference back to the original source repository hosted by DaniezOnSFUSD must be maintained in the project documentation (e.g., https://github.com/DaniezOnSFUSD/homepage/blob/main/LICENSE).
+
+Failure to include these notices constitutes a material breach of contract, renders the license null and void ab initio, and constitutes unauthorized copyright infringement.
+
+II. DEFINITIONS AND SCOPE OF JURISDICTION
+This Agreement constitutes a legally binding contractual instrument between the Licensee (hereafter "the User") and DaniezOnSFUSD (hereafter "the Licensor").
+This Agreement governs the "Proprietary Components," defined as:
+
+Architectural Logic: Unique directory hierarchies, navigational schematics, and structural metadata.
+Codebase: All custom HTML5, CSS3, ECMAScript-compliant JavaScript, and backend logic facilitating the User Interface (UI).
+Visual Assets: Proprietary iconography, trade dress, vector graphics, and branding motifs.
+
+III. THIRD-PARTY ASSET ATTRIBUTION AND INDEMNIFICATION
+The repository incorporates distinct "Third-Party Modules" (including but not limited to Slope, Papa’s Gamerias, and EaglerCraft).
+Retention of Title: Licensor asserts no claim of ownership over assets authored by RenzorsRevenge1, Flipline Studios, Armor Games, lax1dude, chocofush, elite4r, or associated entities.
+External Governance: User interaction with Third-Party Modules is subject to the respective End User License Agreements (EULA) of the original creators.
+The Licensor is held harmless against any claims arising from the User's misuse of these materials.
+
+IV. RESTRICTIVE GRANT OF NON-TRANSFERABLE LICENSE
+Subject to the condition precedent of strict adherence to Section I and the GitHub Terms of Service (ToS), the Licensor grants a Limited, Revocable, Non-Sublicensable, and Non-Exclusive License to:
+
+Render and inspect the Proprietary Components via the GitHub web interface.
+Execute a "Fork" within the GitHub ecosystem for strictly non-commercial, personal, and archival purposes.
+
+V. COVENANTS AND PROHIBITED EXPLOITATIONS
+Any exercise of rights not explicitly enumerated in Section IV is strictly ultra vires.
+The User is perpetually enjoined from:
+
+Unauthorized Replication: Mirroring or deployment of Proprietary Components on external servers, CDNs, or secondary hosting platforms.
+Derivative Transformation: Creation of modified works that substantially replicate the "Look and Feel" (Trade Dress) of the original interface.
+Commercial Monetization: Any deployment involving programmatic advertising, paywalled access, or the solicitation of donations.
+Secondary Distribution: Selling, leasing, or assigning the proprietary source code to any third party.
+
+VI. LIMITATION OF LIABILITY AND "AS-IS" PROVISO
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE PROPRIETARY COMPONENTS ARE PROVIDED "AS IS".
+The Licensor disclaims all warranties, express or implied. In no event shall the Licensor be liable for any claims, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from or in connection with the software.
+
+VII. TERMINATION AND ENFORCEMENT
+Automatic Rescission: Any breach of this Agreement results in the immediate and automatic termination of the license without notice.
+Legal Recourse: The Licensor reserves the right to seek injunctive relief and pursue statutory damages under the DMCA and international intellectual property treaties.
+
+VIII. CONTACT INFORMATION
+For inquiries regarding permission requests or commercial usage rights, contact the repository owner directly through the GitHub platform.
+    </div>
+    </section>
 
     <footer style="margin-top: 80px; padding: 60px 20px; border-top: 1px solid var(--border); opacity: 0.9; font-size: 0.85em; line-height: 1.6; color: var(--text);">
         <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: left;">
