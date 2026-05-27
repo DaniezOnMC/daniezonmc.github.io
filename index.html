@@ -130,6 +130,7 @@
         .announcement-box { padding: 18px; border-radius: 12px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); margin-bottom: 15px; }
         .announcement-box.important { border-left: 4px solid var(--accent); background: rgba(255, 71, 87, 0.03); }
         .announcement-box.maintenance { border-left: 4px solid #FFC107; background: rgba(255, 193, 7, 0.03); }
+        .announcement-box.fixed { border-left: 4px solid #43b581; background: rgba(255, 193, 7, 0.03); }
         .announcement-box.general { border-left: 4px solid var(--amethyst); background: rgba(153, 102, 204, 0.03); }
         .announcement-meta { display: flex; justify-content: space-between; font-size: 0.8em; margin-bottom: 8px; opacity: 0.7; }
     </style>
@@ -365,12 +366,20 @@
         <section id="announcements">
             <h2>Community Announcements</h2>
             <div style="max-height: 480px; overflow-y: auto; padding-right: 10px;">
+                <div class="announcement-box fixed">
+                    <div class="announcement-meta">
+                        <span><i class="fas fa-check-circle"></i> <strong>Issue Resolved</strong></span>
+                        <span>May 26, 2026</span>
+                    </div>
+                    <p style="margin: 5px 0; font-weight: bold; color: var(--text);">Updating Schedule Restored</p>
+                    <p style="margin: 5px 0 0; font-size: 0.9em; color: var(--secondary-text);">My school has returned my Chromebook! (YAY!) This means my updating schedule will return to normal with multiple games per week. New games will be added starting May 27, 2026.</p>
+                </div>
                 <div class="announcement-box important">
                     <div class="announcement-meta">
                         <span><i class="fas fa-exclamation-triangle"></i> <strong>IMPORTANT ALERT</strong></span>
                         <span>May 20, 2026</span>
                     </div>
-                    <p style="margin: 5px 0; font-weight: bold; color: var(--text);">MAJOR SETBACK IN UPDATES!</p>
+                    <p style="margin: 5px 0; font-weight: bold; color: var(--text);">MAJOR SETBACK IN UPDATES! (Resolved)</p>
                     <p style="margin: 5px 0 0; font-size: 0.9em; color: var(--secondary-text);">My school has taken away my chromebook because one of my teachers couldnt see me on GoGuardian, this will mean that my updates will be less frequently pushed to github! Sorry for the inconvenience and we will be back soon!</p>
                 </div>
                 <div class="announcement-box maintenance">
@@ -380,14 +389,6 @@
                     </div>
                     <p style="margin: 5px 0; font-weight: bold; color: var(--text);">Proxy Mirror Links Deployment</p>
                     <p style="margin: 5px 0 0; font-size: 0.9em; color: var(--secondary-text);">Working on asset structures to ensure links load even under heavy school network filtering.</p>
-                </div>
-                <div class="announcement-box general">
-                    <div class="announcement-meta">
-                        <span><i class="fas fa-bullhorn"></i> <strong>GENERAL UPDATE</strong></span>
-                        <span>May 10, 2026</span>
-                    </div>
-                    <p style="margin: 5px 0; font-weight: bold; color: var(--text);">Shout out to Aptos Middle Crew!</p>
-                    <p style="margin: 5px 0 0; font-size: 0.9em; color: var(--secondary-text);">Massive thanks to everyone passing the link around. We hit a huge traffic milestone across networks!</p>
                 </div>
             </div>
         </section>
