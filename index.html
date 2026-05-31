@@ -780,6 +780,13 @@ For inquiries regarding permission requests or commercial usage rights, contact 
     };
 
     setupStatusDashboard(); checkSystemStatus(); setInterval(checkSystemStatus, 300000);
+    }
+
+    // --- Initialization Execution ---
+    setupStatusDashboard(); 
+    renderTestingGrounds(); // Added this here so the function actually runs when the page boots up!
+    checkSystemStatus(); 
+    setInterval(checkSystemStatus, 300000);
 </script>
 </body>
 </html>
