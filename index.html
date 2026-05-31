@@ -285,6 +285,16 @@
         </div>
     </section>
 
+    <section id="testing-grounds" style="margin-top: 80px; padding: 40px; border-radius: 24px; border: 1px solid rgba(255, 193, 7, 0.15); background: linear-gradient(135deg, rgba(255, 193, 7, 0.02) 0%, rgba(0, 0, 0, 0) 100%);" class="glass">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 25px;">
+            <h2 style="margin: 0; color: #FFC107; text-shadow: 0 0 10px rgba(255, 193, 7, 0.2);"><i class="fas fa-flask"></i> Testing Grounds</h2>
+            <p style="opacity: 0.6; margin: 0; font-size: 0.9em; font-style: italic;">Unstable Beta Builds</p>
+        </div>
+        
+        <div class="grid" id="testing-grid">
+            </div>
+    </section>
+
     <section id="status-dashboard" style="margin-top: 80px; padding: 40px; border-radius: 24px; border: 1px solid var(--border);" class="glass">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
             <h2 style="margin: 0;"><i class="fas fa-server"></i> Website Diagnostics (Depends on your Network Strength if it Works or Not)</h2>
@@ -522,6 +532,42 @@ For inquiries regarding permission requests or commercial usage rights, contact 
 </div>
 
 <script>
+
+    // --- Testing Grounds Inventory ---
+    // If theres no games ready for beta testing, leave this array completely empty: []
+    // To add a game, follow this format: { name: "Game Title", url: "https://link.com", status: "Blank" }
+    const testingGroundsData = [
+        // { name: "2D Grid PvP Arena", url: "https://daniezonsfusd.github.io/Testing/1.html", status: "BETA" }
+    ];
+
+    function renderTestingGrounds() {
+        const testingGrid = document.getElementById('testing-grid');
+        if (!testingGrid) return;
+
+        if (testingGroundsData.length === 0) {
+            // Placeholder fallback layout when no builds are active
+            testingGrid.style.gridTemplateColumns = "1fr";
+            testingGrid.innerHTML = `
+                <div style="text-align: center; padding: 40px 20px; border: 1px dashed rgba(255, 255, 255, 0.1); border-radius: 16px; background: rgba(0,0,0,0.15);">
+                    <i class="fas fa-lock" style="font-size: 2em; color: rgba(255, 193, 7, 0.4); margin-bottom: 15px; display: block;"></i>
+                    <span style="font-weight: bold; opacity: 0.9; letter-spacing: 1px; color: var(--secondary-text);">NO UNSTABLE EXPERIMENTS RUNNING</span>
+                    <p style="margin: 8px 0 0; font-size: 0.85em; opacity: 0.5; max-width: 500px; margin-left: auto; margin-right: auto;">
+                        All current assets have migrated over to the main production library. Check back later for developer canary builds.
+                    </p>
+                </div>
+            `;
+        } else {
+            // Restore regular layout alignment if items are present
+            testingGrid.style.gridTemplateColumns = "repeat(auto-fill, minmax(240px, 1fr))";
+            testingGrid.innerHTML = testingGroundsData.map(game => `
+                <a href="${game.url}" class="card game-card" style="border-bottom: 3px solid #FFC107;">
+                    <span style="font-weight: bold;">${game.name}</span>
+                    <span class="badge" style="background: #FFC107; color: #000; align-self: flex-start; margin-left: 0; margin-top: 10px;">${game.status || 'TEST'}</span>
+                </a>
+            `).join('');
+        }
+    }
+
     // --- Global Theme Controls ---
     const themeBtn = document.getElementById('theme-toggle');
     function setTheme(themeName) { 
